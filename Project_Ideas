@@ -1,0 +1,15 @@
+//For this project you are required to build a request forum application, which allows users to create accounts, post their own requests and answer other people's requests. 
+
+Ideas for project:
+* Book recommendation/acquiring
+* Friend finder
+  - in uni trying to find friends
+  - system where you submit your degree/units/year and system matches similar together
+  - 'request' comes through - 'make a friend'
+  - see list of similar people and profiles
+  - have separate chats for different degrees/sems/years
+* Similar to stack exchange
+  - experience points - if people like answer/how many you respond too
+  - code/question to ask
+  - tag section + search tags
+  - accounts 
