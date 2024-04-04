@@ -1,91 +1,147 @@
 h1 {
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 16px;
-  }
-  
-  html{
-    background-color: #ECECEC;
-  }
-  
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  /* this also makes the nav bar links slanted */
-  a{
-    color: #B85C3D;
-    /* font-weight: bolder; */
-    font-style: italic;
-    text-decoration: none;
-  }
-  
+  text-align: center;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+html{
+  background-color: #ECECEC;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* this also makes the nav bar links slanted */
+a{
+  color: #B85C3D;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.container{
+  margin: 20px;
+  padding: 20px
+}
+
+.subForum{
+  margin-top:20px;
+}
+
+.subForumTitle{
+  background-color: #acadaf;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+}
+
+.subForumDescription *{
+  margin-block: 0;
+
+}
+
+.subForumDivider{
+  display: none;
+}
+
+.subForumRow{
+  display: grid;
+  grid-template-columns: 7% 60% 13% 20%;
+}
+
+.subForumColumn{
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: #acadaf;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subForumIcon i {
+  font-size: 45px;
+}
+
+/* For the smartphones */
+@media screen and (max-width: 460px){
   .container{
-    margin: 20px;
-    padding: 20px
+    margin: 10px;
+    padding: 10px;
   }
-  
-  .subForum{
-    margin-top:20px;
-  }
-  
-  .subForumTitle{
-    background-color: #acadaf;
-    padding: 5px;
-    border-radius: 5px;
-    margin: 4px;
-  }
-  
+
   .subForumRow{
     display: grid;
-    grid-template-columns: 7% 60% 13% 20%;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 65% 35%;
   }
-  
-  .subForumColumn{
-    padding: 10px;
-    margin: 4px;
-    border-radius: 5px;
-    background-color: #acadaf;
+
+  .subForumStats{
+    font-size: 12px
   }
-  
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .subForumDivider{
+    display: block;
   }
-  
-  .subForumIcon i {
-    font-size: 45px;
+}
+
+/* For the tablets */
+@media screen and (min-width: 460px) and (max-width: 1024){
+  .container{
+    margin: 15px;
+    padding: 15px;
   }
-  
-  
-  
-  /* Nav Bar */
-  
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
+
+  .subForumRow{
+    display: grid;
+    grid-template-columns: 10% 60% 10% 20%;
+    grid-template-rows: 65% 35%;
   }
-  
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+
+  .subForumIcon i{
+    font-size: 35px;
   }
-  
-  .topnav a:hover {
-    background-color: #B85C3D;
-    color: black;
-    font-weight: bolder;
+
+  .html{
+    font-size: 16px;
   }
-  
-  .topnav a.active {
-    background-color: #008080;
-    color: white;
+
+  h1{
+    font-size: 30px;
   }
+}
+
+
+
+/* Nav Bar */
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #B85C3D;
+  color: black;
+  font-weight: bolder;
+}
+
+.topnav a.active {
+  background-color: #008080;
+  color: white;
+}
