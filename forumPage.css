@@ -1,5 +1,6 @@
 h1 {
   text-align: center;
+  color: #c0502b;
 }
 
 h2 {
@@ -17,7 +18,7 @@ body {
 
 /* this also makes the nav bar links slanted */
 a{
-  color: #B85C3D;
+  color: #c0502b;
   font-style: italic;
   text-decoration: none;
 }
@@ -31,8 +32,10 @@ a{
   margin-top:20px;
 }
 
+/* #acadaf - light grey, #7e7c7c - medium grey*/
 .subForumTitle{
-  background-color: #acadaf;
+  background-color: #008080;
+  color: #e7e5e5;
   padding: 5px;
   border-radius: 5px;
   margin: 4px;
@@ -40,11 +43,11 @@ a{
 
 .subForumDescription *{
   margin-block: 0;
-
 }
 
-.subForumDivider{
-  display: none;
+
+.boldInfoLink{
+  font-weight:bold;
 }
 
 .subForumRow{
@@ -66,7 +69,12 @@ a{
 }
 
 .subForumIcon i {
-  font-size: 45px;
+  font-size: 4vw;
+}
+
+hr {
+  border: none;
+  margin: 0;
 }
 
 /* For the smartphones */
@@ -78,16 +86,23 @@ a{
 
   .subForumRow{
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 65% 35%;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 60% 40%;
+  }
+
+  .subForumIcon i{
+    font-size: 8vw;
   }
 
   .subForumStats{
     font-size: 12px
   }
 
-  .subForumDivider{
-    display: block;
+  hr {
+    margin: auto;
+    border-top: 3px solid #333;
+    border-radius: 2px;
+    width: 98%;
   }
 }
 
@@ -105,7 +120,7 @@ a{
   }
 
   .subForumIcon i{
-    font-size: 35px;
+    font-size: 5vw;
   }
 
   .html{
@@ -114,6 +129,12 @@ a{
 
   h1{
     font-size: 30px;
+  }
+
+  hr {
+    border-top: 3px solid #333;
+    border-radius: 2px;
+    width: 98%;
   }
 }
 
@@ -136,12 +157,44 @@ a{
 }
 
 .topnav a:hover {
-  background-color: #B85C3D;
-  color: black;
+  background-color: #c0502b;
+  color: white;
   font-weight: bolder;
 }
 
 .topnav a.active {
   background-color: #008080;
   color: white;
+}
+
+
+/* Search Box */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.search-container input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.search-container button {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button i {
+  color: white;
+}
+
+.search-container button:hover i {
+  color: #c0502b;
 }
