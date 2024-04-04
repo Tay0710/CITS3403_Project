@@ -104,6 +104,45 @@ hr {
     border-radius: 2px;
     width: 98%;
   }
+
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive a {
+    display: block;
+    text-align: center;
+  }
+
+  .topnav.responsive .search-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .topnav.responsive .search-container form {
+    display: flex;
+    align-items: center;
+  }
+
+  .topnav.responsive .search-container input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+  }
+
+  .topnav.responsive .search-container button {
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
 }
 
 /* For the tablets */
@@ -197,4 +236,38 @@ hr {
 
 .search-container button:hover i {
   color: #c0502b;
+}
+
+
+/* Ask a Question */
+.forum-form {
+  margin-top: 0;
+}
+
+.forum-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.forum-form input[type="text"], 
+.forum-form textarea {
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.forum-form input[type="submit"] {
+  background-color: #008080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.forum-form input[type="submit"]:hover {
+  background-color: #006666;
 }
