@@ -24,10 +24,27 @@
     </div>
   </header>
 
+  <h1>StudiVault Forum</h1>
+  <p style="text-align : center">Vaulting you to Academic Success</p>
+
+  <!-- Question Submission -->
+  <div class="container">
+    <form class="forum-form">
+      <label  for="subtopic">Sub-Topic:</label>
+      <input type="text" id="topic" name="topic" placeholder="Enter your sub-topic" required>
+      
+      <label class = "questionTitle" for="tags">Tags (comma separated):</label>
+      <input type="text" id="tags" name="tags" placeholder="e.g., tag1, tag2, tag3">
+      
+      <label class = "questionTitle" for="description">Description:</label>
+      <textarea id="description" name="description" placeholder="Enter a description" required></textarea>
+      
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
 
   <div class="container">
-    <h1>StudiVault Forum</h1>
-    <p style="text-align : center">Vaulting you to Academic Success</p>
     <!-- Forum Topic 1 -->
     <div class="subForum">
       <div class="subForumTitle">
@@ -163,17 +180,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div style="text-align: center;">
-    <form>
-      <label for="tags">Tags (comma separated):</label><br>
-      <input type="text" id="tags" name="tags"><br>
-      <label for="question">Ask a question</label><br>
-      <textarea id="question" name="question" rows="4" cols="50"></textarea><br>
-      <input type="submit" value="Submit">
-    </form>
   </div>
 
 </body>
