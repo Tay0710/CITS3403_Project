@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1>Profile</h1>
 
-    <p>Hi, {{ user.username }}! Here is your profile.</p>
-</div>
+
+<h1>Profile</h1>
+
+{% if validatedUser %}
 
 <div class="container">
-    <table>
+
+<p>Hi, {{ user.username }}! Here is your profile.</p>
+
+    <table class="table">
         <tr>
             <th>Name</th>
-            <td>{{ user.username }}</td>
-            <td><button type="button">Edit <i class="fa fa-edit"></i></button></td>
+            <td>{{ user.fname}} {{  user.lname }}</td>
         </tr>
         <tr>
             <th>Email</th>
             <td>{{ user.email }}</td>
-            <td><button type="button">Edit <i class="fa fa-edit"></i></button></td>
+
         </tr>
         <tr>
             <th>Position</th>
             <td>{{ user.position }}</td>
-            <td><button type="button">Edit <i class="fa fa-edit"></i></button></td>
         </tr>
         <tr>
             <th>Area(s) of study</th>
@@ -31,18 +32,22 @@
                 {{ study }},
                 {% endfor %}
             </td>
-            <td><button type="button">Edit <i class="fa fa-edit"></i></button></td>
         </tr>
 
         <tr>
             <th>Bio</th>
             <td>{{ user.bio }}</td>
-            <td><button type="button">Edit <i class="fa fa-edit"></i></button></td>
         </tr>
     </table>
 
+    <button type="button">Edit Profile <i class="fa fa-edit"></i></button>
+
 </div>
 
+{% else %}
 
+<p>Please <a href="#home">log in</a> to see your profile.</p>
+
+{% endif %}
 
 {% endblock %}

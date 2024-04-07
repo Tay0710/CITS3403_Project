@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Create New Profile</h1>
+
+
+<div class="container">
+
+    <p>Fill in the details below to create a profile.</p>
+
+    <form>
+        <label for="fname" class="form-label">First name:</label><br>
+        <input type="text" class="form-control" id="fname" name="fname" required><br>
+
+        <label for="lname" class="form-label">Last name:</label><br>
+        <input type="text" class="form-control" id="lname" name="fname" required><br>
+
+        <label for="email" class="form-label">Email:</label><br>
+        <input type="email" class="form-control" id="email" name="email" required><br>
+
+        <label for="position" class="form-label">Position:</label><br>
+        <select id="position" class="form-select" name="position" size="3" required>
+            <option value="Undergraduate Student">Undergraduate Student</option>
+            <option value="Postgraduate Student">Postgraduate Student</option>
+            <option value="Staff">Staff</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Future Student">Future Student</option>
+        </select><br>
+
+        <label for="study" class="form-label">Area(s) of study:</label><br>
+        <select id="study" class="form-select" name="study" size="3" multiple required>
+            <option value="Computer Science">Computer Science</option>
+            <option value="French">French</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Nursing">Nursing</option>
+        </select><br>
+
+        <label for="bio"  class="form-label">Bio:</label>
+        <textarea class="form-control" name="bio" maxlength="200"></textarea><br>
+
+        <input type="submit" class="form-control" value="Submit">
+
+    </form>
+</div>
+{% endblock %}
