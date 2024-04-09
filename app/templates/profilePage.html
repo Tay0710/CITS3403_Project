@@ -9,7 +9,7 @@
 
 <div class="container">
 
-<p>Hi, {{ user.username }}! Here is your profile.</p>
+<p>Hi, {{ user.fname }} {{ user.lname }}! Here is your profile.</p>
 
     <table class="table">
         <tr>
@@ -39,14 +39,11 @@
             <td>{{ user.bio }}</td>
         </tr>
     </table>
-
-    <button type="button">Edit Profile <i class="fa fa-edit"></i></button>
-
 </div>
 
 {% else %}
 
-<p>Please <a href="#home">log in</a> to see your profile.</p>
+<p>Please <a href="/home">log in</a> to see your profile.</p>
 
 {% endif %}
 
