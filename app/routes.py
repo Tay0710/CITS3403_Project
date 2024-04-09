@@ -3,6 +3,7 @@ from app import app
 @app.route('/')
 @app.route('/profile')
 def profile():
+    title='Profile'
     validatedUser=True
     user={  'fname' : 'John',
             'lname' : 'Smith',
@@ -11,8 +12,19 @@ def profile():
             'study' : ['Computer Science', 'French'],
             'bio' : 'Attending UWA, studying a Bachelor of Science majoring in CompSci and a minor in French. No previous programming experience. Hobbies include hiking and knitting.'
           }
-    return render_template("profilePage.html", user=user, validatedUser=validatedUser)
+    return render_template("profilePage.html", user=user, validatedUser=validatedUser, title=title)
 
-@app.route('/createProfile')
-def createProfile():
-    return render_template("createProfile.html")
+@app.route('/home')
+def home():
+    title='Home'
+    return render_template("home.html")
+
+@app.route('/forum')
+def forum():
+    title='Forum'
+    return render_template("forum.html")
+
+@app.route('/post')
+def post():
+    title='Post'
+    return render_template("post.html")
