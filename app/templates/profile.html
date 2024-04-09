@@ -3,8 +3,6 @@
 {% block content %}
 
 
-<h1>Profile</h1>
-
 {% if validatedUser %}
 
 <div class="container">
@@ -26,11 +24,9 @@
             <td>{{ user.position }}</td>
         </tr>
         <tr>
-            <th>Area(s) of study</th>
+            <th>Primary area of study</th>
             <td>
-                {% for study in user.study %}
-                {{ study }},
-                {% endfor %}
+                {{ user.study }}
             </td>
         </tr>
 
