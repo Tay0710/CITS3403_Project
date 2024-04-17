@@ -72,3 +72,26 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+
+/* CSS styles for the search button */
+.search-bar button {
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: darkcyan;
+}
+
+/* CSS styles for the "Your Name" link/button */
+.profile a {
+    color: teal;
+    text-decoration: none;
+}
+
+.profile a:hover {
+    text-decoration: underline;
+}

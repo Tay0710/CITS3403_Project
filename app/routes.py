@@ -17,14 +17,14 @@ def profile():
 @app.route('/home')
 def home():
     title='Home'
-    return render_template("home.html")
+    return render_template("home.html", title=title)
 
 @app.route('/forum')
 def forum():
     title='Forum'
-    return render_template("forum.html")
+    return render_template("forum.html", title=title)
 
 @app.route('/post')
 def post():
     title='Post'
-    return render_template("post.html")
+    return render_template("post.html", title=title)
