@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudiVault</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <header>
+    <div class="topnav">
+      <a href="#home">Home</a>
+      <a class="active" href="#forum">Forum</a>
+      <a href="#profile">Profile</a>
+      <a href="#topics">Topics</a>
+      <div class="search-container">
+        <form action="/search" method="GET">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <h1>StudiVault Forum</h1>
+  <p style="text-align : center">Vaulting you to Academic Success</p>
+
+  <!-- Question Submission -->
+  <div class="container">
+    <form class="forum-form">
+      <label  for="subtopic">Sub-Topic:</label>
+      <input type="text" id="topic" name="topic" placeholder="Enter your sub-topic" required>
+      
+      <label class = "questionTitle" for="tags">Tags (comma separated):</label>
+      <input type="text" id="tags" name="tags" placeholder="e.g., tag1, tag2, tag3">
+      
+      <label class = "questionTitle" for="description">Description:</label>
+      <textarea id="description" name="description" placeholder="Enter a description" required></textarea>
+      
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+
+  <div class="container">
+    <!-- Forum Topic 1 -->
+    <div class="subForum">
+      <div class="subForumTitle">
+        <h2>General University Questions</h2>
+      </div>
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "subForumDivider">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 2</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Topic 2 -->
+    <div class="subForum">
+      <div class="subForumTitle">
+        <h2>Forum Topic 2</h2>
+      </div>
+      
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 2</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Topic 3 -->
+    <div class="subForum">
+      <div class="subForumTitle">
+        <h2>Forum Topic 3</h2>
+      </div>
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 3</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "default">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 2</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "default">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 3</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
