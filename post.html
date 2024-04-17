@@ -12,10 +12,10 @@
 <body>
   <header>
     <div class="topnav">
-      <a href="#home">Home</a>
-      <a class="active" href="#forum">Forum</a>
-      <a href="#profile">Profile</a>
-      <a href="#topics">Topics</a>
+      <a href="/home">Home</a>
+      <a class="active" href="/forum">Forum</a>
+      <a href="/profile">Profile</a>
+      <a href="/topics">Topics</a>
       <div class="search-container">
         <form action="/search" method="GET">
           <input type="text" placeholder="Search.." name="search">
@@ -43,11 +43,11 @@
             <option value="">Choose a Unit or Subject</option>
         </select>
 
+        <label class="questionTitle" for="title">Title:</label>
+        <textarea id="title" name="title" placeholder="Enter a title" required></textarea>
+
         <label class="questionTitle" for="description">Description:</label>
         <textarea id="description" name="description" placeholder="Enter a description" required></textarea>
-
-        <label class="questionTitle" for="content">Content:</label>
-        <textarea id="content" name="content" placeholder="Enter your post content" required></textarea>
 
         <input type="submit" value="Submit">
     </form>
