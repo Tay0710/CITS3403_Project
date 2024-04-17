@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Forum - Search Page</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="forum.css">
+</head>
+<body>
+
+<!--NAV bar, same as every other page-->
+<header>
+    <div class="topnav">
+        <a href="#home">Home</a>
+        <a class="active" href="#forum">Forum</a>
+        <a href="#profile">Profile</a>
+        <a href="#topics">Topics</a>
+        <div class="search-container">
+            <form action="/search" method="GET">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!--Just that section of wording-->
+<h1>Welcome to the StudiVault Forum!</h1>
+<h2 class = "subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+
+<!-- Dropdown menu for degrees -->
+<div class="degree-selection">
+    <h1>University Courses</h1>
+    <label for="degrees">Select a Bachelor's Degree:</label>
+    <select id="degrees">
+        <option value ="">Choose a Degree</option>
+        <!-- Add degree options here -->
+    </select>
+</div>
+
+<!-- Dropdown menu for units -->
+<div class="unit-selection">
+    <h1>Units</h1>
+    <label for="units">Select a Unit:</label>
+    <select id="units">
+        <option value="">Choose a Unit</option>
+        <!-- Add unit options here -->
+    </select>
+</div>
+
+<!-- Placeholder for the dropdown menu for general topics -->
+<div class="topic-selection">
+    <h1>General University Questions</h1>
+    <label for="topics">Select a General Topic:</label>
+    <select id="topics">
+        <option value="">Choose a General Topic</option>
+        <!-- Add topic options here -->
+    </select>
+</div>
+
+
+
+
+
+<div class="container">
+    <!-- Forum Topic 1 -->
+    <div class="subForum">
+      <div class="subForumTitle" onclick="toggleContent(this)">
+        <h2>General University Questions</h2>
+      </div>
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "subForumDivider">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow content">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 2</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Topic 2 -->
+    <div class="subForum">
+      <div class="subForumTitle">
+        <h2>Forum Topic 2</h2>
+      </div>
+      
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 2</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Topic 3 -->
+    <div class="subForum">
+      <div class="subForumTitle">
+        <h2>Forum Topic 3</h2>
+      </div>
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 1</a> </h2>
+          <p>Description of the content within the Forum Topic 3</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "default">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 2</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+      </div>
+
+      <hr class = "default">
+      <!-- New Sub-Topic -->
+      <div class="subForumRow">
+        <div class="subForumIcon subForumColumn center">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="subForumDescription subForumColumn">
+          <h2><a href="">Sub-Topic 3</a> </h2>
+          <p>Description of the content within the Forum Topic 1</p>
+        </div>
+        <div class="subForumStats subForumColumn center">
+          <span> 24 posts </span>
+        </div>
+        <div class="subForumInfo subForumColumn">
+          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
+          <br>
+          <small>3 Apr 2024</small>
+        </div>
+    </div>
+</div>
+    
+
+
+<!-- replace these classes with classes from Taylah so as to be inline with css-->
+<div class="post">
+    <div class="title" onclick="toggleContent(this)">Post Title 1</div>
+    <div class="content">
+        Full content of Post 1 goes here.
+    </div>
+</div>
+<div class="post">
+    <div class="title" onclick="toggleContent(this)">Post Title 2</div>
+    <div class="content">
+        Full content of Post 2 goes here.
+    </div>
+</div>
+
+<script>
+    // JavaScript to toggle content visibility
+    function toggleContent(element) {
+        var content = element.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+        } else {
+            content.style.display = "none";
+        }
+    }
+</script>
