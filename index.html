@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS styles for the search button */
+        .search-bar button {
+            background-color: teal;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: darkcyan;
+        }
+    </style>
+    <style>
+        /* CSS styles for the "Your Name" link/button */
+        .profile a {
+            color: teal;
+            text-decoration: none;
+        }
+
+        .profile a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Image in the header -->
+        <img src="https://brandslogos.com/wp-content/uploads/images/large/uwa-university-perth-logo.png" alt="University of Western Australia Logo" style="width: 200px;" >
+        <h1>UWA Advisory</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!-- Search bar in the top menu bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+        </nav>
+        <div class="profile">
+            <p>Welcome, <a href="#">Your Name</a></p>
+        </div>
+    </header>
+    <main>
+        <section id="welcome">
+            <h2>Welcome</h2>
+            <p>Welcome to the homepage. This website is designed by UWA students, for UWA students. Recieve advice as well as give advice to other students. Previous UWA students as well as UWA staff can also answer your queries. We are here to help!</p>
+        </section>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>How to use the website: 1. create a profile 2. If you have a query, head to the 'post' page and post your question. </p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Homepage</p>
+    </footer>
+</body>
+</html>
