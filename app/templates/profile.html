@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if validatedUser %}
+
+<div class="container">
+
+<p>Hi, {{ user.fname }} {{ user.lname }}! Here is your profile.</p>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <td>{{ user.fname}} {{  user.lname }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ user.email }}</td>
+
+        </tr>
+        <tr>
+            <th>Position</th>
+            <td>{{ user.position }}</td>
+        </tr>
+        <tr>
+            <th>Primary area of study</th>
+            <td>
+                {{ user.study }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Bio</th>
+            <td>{{ user.bio }}</td>
+        </tr>
+    </table>
+</div>
+
+{% else %}
+
+<p>Please <a href="/home">log in</a> to see your profile.</p>
+
+{% endif %}
+
+{% endblock %}
