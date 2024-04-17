@@ -1,0 +1,273 @@
+h1 {
+  text-align: center;
+  color: #c0502b;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+html{
+  background-color: #ECECEC;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* this also makes the nav bar links slanted */
+a{
+  color: #c0502b;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.container{
+  margin: 20px;
+  padding: 20px
+}
+
+.subForum{
+  margin-top:20px;
+}
+
+/* #acadaf - light grey, #7e7c7c - medium grey*/
+.subForumTitle{
+  background-color: #008080;
+  color: #e7e5e5;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+}
+
+.subForumDescription *{
+  margin-block: 0;
+}
+
+
+.boldInfoLink{
+  font-weight:bold;
+}
+
+.subForumRow{
+  display: grid;
+  grid-template-columns: 7% 60% 13% 20%;
+}
+
+.subForumColumn{
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: #acadaf;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subForumIcon i {
+  font-size: 4vw;
+}
+
+hr {
+  border: none;
+  margin: 0;
+}
+
+/* For the smartphones */
+@media screen and (max-width: 460px){
+  .container{
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .subForumRow{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 60% 40%;
+  }
+
+  .subForumIcon i{
+    font-size: 8vw;
+  }
+
+  .subForumStats{
+    font-size: 12px
+  }
+
+  hr {
+    margin: auto;
+    border-top: 3px solid #333;
+    border-radius: 2px;
+    width: 98%;
+  }
+
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive a {
+    display: block;
+    text-align: center;
+  }
+
+  .topnav.responsive .search-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .topnav.responsive .search-container form {
+    display: flex;
+    align-items: center;
+  }
+
+  .topnav.responsive .search-container input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+  }
+
+  .topnav.responsive .search-container button {
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+/* For the tablets */
+@media screen and (min-width: 460px) and (max-width: 1024){
+  .container{
+    margin: 15px;
+    padding: 15px;
+  }
+
+  .subForumRow{
+    display: grid;
+    grid-template-columns: 10% 60% 10% 20%;
+    grid-template-rows: 65% 35%;
+  }
+
+  .subForumIcon i{
+    font-size: 5vw;
+  }
+
+  .html{
+    font-size: 16px;
+  }
+
+  h1{
+    font-size: 30px;
+  }
+
+  hr {
+    border-top: 3px solid #333;
+    border-radius: 2px;
+    width: 98%;
+  }
+}
+
+
+
+/* Nav Bar */
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #c0502b;
+  color: white;
+  font-weight: bolder;
+}
+
+.topnav a.active {
+  background-color: #008080;
+  color: white;
+}
+
+
+/* Search Box */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.search-container input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.search-container button {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button i {
+  color: white;
+}
+
+.search-container button:hover i {
+  color: #c0502b;
+}
+
+
+/* Ask a Question */
+.forum-form {
+  margin-top: 0;
+}
+
+.forum-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.forum-form input[type="text"], 
+.forum-form textarea {
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.forum-form input[type="submit"] {
+  background-color: #008080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.forum-form input[type="submit"]:hover {
+  background-color: #006666;
+}
