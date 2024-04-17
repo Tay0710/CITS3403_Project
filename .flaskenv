@@ -1,0 +1,2 @@
+FLASK_APP=studiVault.py
+FLASK_ENV=development
