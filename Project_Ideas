@@ -14,4 +14,56 @@ Ideas for project:
   - tag section + search tags
   - accounts 
 
-edens test
+FRIEND FINDER
+1. HTML/CSS 
+  - Home page
+    - Welcome message
+    - Introduction
+  - Generic initial posting page i.e. like a forum
+    - Add capability to add tags (which can then be viewed on individual pages)
+    - Comment on the post
+    - Option to request to be friends
+  - Course/degrees at uni
+    - Arts, Sciences etc.
+  - Your profile/account
+    - Bio
+    - Potentially keep track of used tags
+
+STACK EXCHANGE VIBES - advisory from previous students/university help
+1. HTML/CSS/FLASK
+  - Menu - stick at the top/side of the page
+  - Home Page
+    - Welcome
+    - Header
+    - Introduction
+    - Search Bar
+    - Profile in top corner
+  - Page of topics
+    - Degrees/Subjects
+    - Description of degrees
+    - Internships
+  - Forum Page
+    - Tag line/drop-down menu/filter
+    - General uni questions
+  - Account/Profile
+    - Name
+    - User Name
+    - Profile pic ????
+    - Bio
+    - Credentials - i.e. grad date and degree etc.
+  - FAQs/Contacts
+2. Interactivity - JavaScript
+  - Links between pages (Menu)
+  - Buttons
+    - Create profile
+      - Save account details to be able to check it
+  - Posting capabilities
+    - Save name
+    - Save text
+    - Save tag
+  - Search bar functionality just on the page of topics
+
+4. Potential Additional Functionality
+  - Verified Accounts
+    - Comes at the top of the comments
+
