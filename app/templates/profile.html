@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
-</head>
-
 {% block content %}
-
 
 {% if validatedUser %}
 
@@ -50,4 +45,3 @@
 {% include "footer.html" %}
 
 {% endblock %}
-
