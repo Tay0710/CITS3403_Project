@@ -16,7 +16,6 @@
 
     {% if title == "Home"%}
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-    <script src="{{ url_for('static', filename='home.js') }}"></script>
     {% endif %}
 
     {% if title == "Forum"%}
@@ -25,15 +24,8 @@
     {% endif %}
 
     {% if title == "Post"%}
-    <link rel="stylesheet" href="{{ url_for('static', filename='post.css') }}">
     <script src="{{ url_for('static', filename='post.js') }}"></script>
     {% endif %}
-
-    {% if title == "Profile"%}
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
-    <script src="{{ url_for('static', filename='profile.js') }}"></script>
-    {% endif %}
-
 
 </head>
 
