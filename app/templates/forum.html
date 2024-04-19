@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Forum - Search Page</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="forum.css">
-</head>
-<body>
+{% extends "base.html" %}
 
-<!--NAV bar, same as every other page-->
-<header>
-    <div class="topnav">
-        <a href="#home">Home</a>
-        <a class="active" href="#forum">Forum</a>
-        <a href="#profile">Profile</a>
-        <a href="#topics">Topics</a>
-        <div class="search-container">
-            <form action="/search" method="GET">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-</header>
+{% block content %}
 
 <!--Just that section of wording-->
 <h1>Welcome to the StudiVault Forum!</h1>
@@ -216,14 +193,10 @@
     </div>
 </div>
 
-<script>
-    // JavaScript to toggle content visibility
-    function toggleContent(element) {
-        var content = element.nextElementSibling;
-        if (content.style.display === "none") {
-            content.style.display = "block";
-        } else {
-            content.style.display = "none";
-        }
-    }
-</script>
+{% include "footer.html" %}
+
+{% endblock %}
+
+
+
+
