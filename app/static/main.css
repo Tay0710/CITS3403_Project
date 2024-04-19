@@ -1,6 +1,9 @@
 h1 {
   text-align: center;
   color: #c0502b;
+  font-size: 250%;
+  font-weight: bold;
+  padding-top: 2%;
 }
 
 h2 {
@@ -8,15 +11,17 @@ h2 {
 }
 
 html{
+  height: 100%;
   background-color: #ECECEC;
 }
 
 body {
+  height: 100%;
   margin: 0;
+  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f8f8f8;
 }
-
 
 /* this also makes the nav bar links slanted */
 a{
@@ -29,7 +34,6 @@ a{
   margin-top:20px;
 }
 
-/* #acadaf - light grey, #7e7c7c - medium grey*/
 .subForumTitle{
   background-color: #008080;
   color: #e7e5e5;
@@ -41,7 +45,6 @@ a{
 .subForumDescription *{
   margin-block: 0;
 }
-
 
 .boldInfoLink{
   font-weight:bold;
@@ -258,8 +261,9 @@ hr {
 .forum-form select,
 .forum-form textarea {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
