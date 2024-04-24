@@ -35,6 +35,22 @@
         </section>
     </main>
 
+    <p>Please log in to view and post in the forum.</p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>Don't have an account? <a>Create profile.</a></p>
+
 </body>
 
 {% include "footer.html" %}

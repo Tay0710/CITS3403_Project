@@ -2,10 +2,12 @@ from flask import render_template, request, url_for, redirect
 import sqlite3
 
 from app import app
+from app.forms import LoginForm
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    form = LoginForm()
+    return render_template('home.html', title='Home', form=form)
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -29,7 +31,6 @@ def thank_you():
 
 @app.route('/profile')
 def profile():
-    title='Profile'
     validatedUser=True
     user={  'fname' : 'John',
             'lname' : 'Smith',
@@ -38,19 +39,13 @@ def profile():
             'study' : 'Computer Science',
             'bio' : 'Attending UWA, studying a Bachelor of Science majoring in CompSci and a minor in French. No previous programming experience. Hobbies include hiking and knitting.'
           }
-    return render_template("profile.html", user=user, validatedUser=validatedUser, title=title)
-
-@app.route('/home')
-def home():
-    title='Home'
-    return render_template("home.html", title=title)
+    return render_template("profile.html", user=user, validatedUser=validatedUser, title='Profile')
 
 @app.route('/forum')
 def forum():
-    title='Forum'
-    return render_template("forum.html", title=title)
+    return render_template("forum.html", title='Forum')
 
 @app.route('/post')
 def post():
-    title='Post'
-    return render_template("post.html", title=title)
+    return render_template("post.html", title='Post')
+    
