@@ -184,6 +184,10 @@ hr {
 .topnav {
   overflow: hidden;
   background-color: #333;
+  /* position: fixed; */
+  top: 0;
+  width: 100%;
+  z-index: 100000; /* Ensure it's above other content */
 }
 
 .topnav a {
@@ -204,6 +208,28 @@ hr {
 .topnav a.active {
   background-color: #008080;
   color: white;
+}
+
+
+/* Add a border between the slogan and content */
+.slogan {
+  border-bottom: 3px solid #333; /* Add a 2px solid border at the bottom */
+  margin-bottom: 20px; /* Add some space below the border */
+  padding-bottom: 20px; /* Add some space below the border for better spacing */
+}
+
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  vertical-align: middle;
+  bottom: 0;
+  left: 0;
 }
 
 
@@ -288,10 +314,3 @@ hr {
 .forum-form input[type="submit"]:hover {
   background-color: #006666;
 }
-
-
-
-
-
-
-
