@@ -1,6 +1,32 @@
-from flask import render_template
+from flask import render_template, request, url_for, redirect
+import sqlite3
+
 from app import app
+
 @app.route('/')
+def index():
+    return render_template('home.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    topic = request.form['topic']
+    subtopic = request.form['subtopic']
+    title = request.form['title']
+    description = request.form['description']
+
+    # Store the data in the SQLite database
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO questions (topic, subtopic, title, description) VALUES (?, ?, ?, ?)', (topic, subtopic, title, description))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('thank_you'))
+
+@app.route('/thank-you')
+def thank_you():
+    return render_template('thank_you.html')
+
 @app.route('/profile')
 def profile():
     title='Profile'
