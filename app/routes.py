@@ -5,11 +5,10 @@ from app import app
 from app.forms import LoginForm
 
 @app.route('/', methods=['GET','POST'])
-def index():
+def home():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(form.username.data, form.remember_me.data))
-        return redirect('/forum')
+        return redirect((url_for('forum')))
     return render_template('home.html', title='Home', form=form)
 
 @app.route('/submit', methods=['POST'])

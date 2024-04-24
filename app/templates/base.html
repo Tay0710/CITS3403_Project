@@ -3,10 +3,10 @@
 <body>
   <header>
     <div class="topnav">
-      <a href="/" {% if request.path == "/" %} class="active" {% endif %}>Home</a>
-      <a href="/forum" {% if request.path == "/forum" %} class="active" {% endif %}>Forum</a>
-      <a href="/post" {% if request.path == "/post" %} class="active" {% endif %}>Post</a>
-      <a href="/profile" {% if request.path == "/profile" %} class="active" {% endif %}>Profile</a>
+      <a href="{{ url_for('home')  }}" {% if request.path == "/" %} class="active" {% endif %}>Home</a>
+      <a href="{{ url_for('forum')  }}" {% if request.path == "/forum" %} class="active" {% endif %}>Forum</a>
+      <a href="{{ url_for('post')  }}" {% if request.path == "/post" %} class="active" {% endif %}>Post</a>
+      <a href="{{ url_for('profile')  }}" {% if request.path == "/profile" %} class="active" {% endif %}>Profile</a>
       <div class="search-container">
         <form action="/search" method="GET">
           <input type="text" placeholder="Search.." name="search">
