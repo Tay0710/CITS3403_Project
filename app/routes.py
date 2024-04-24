@@ -1,12 +1,15 @@
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, flash
 import sqlite3
 
 from app import app
 from app.forms import LoginForm
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
     form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(form.username.data, form.remember_me.data))
+        return redirect('/forum')
     return render_template('home.html', title='Home', form=form)
 
 @app.route('/submit', methods=['POST'])

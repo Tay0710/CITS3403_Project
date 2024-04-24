@@ -3,7 +3,7 @@
 <body>
   <header>
     <div class="topnav">
-      <a href="/home" {% if request.path == "/home" %} class="active" {% endif %}>Home</a>
+      <a href="/" {% if request.path == "/" %} class="active" {% endif %}>Home</a>
       <a href="/forum" {% if request.path == "/forum" %} class="active" {% endif %}>Forum</a>
       <a href="/post" {% if request.path == "/post" %} class="active" {% endif %}>Post</a>
       <a href="/profile" {% if request.path == "/profile" %} class="active" {% endif %}>Profile</a>
