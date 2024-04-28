@@ -1,7 +1,8 @@
 from flask import render_template, request, url_for, redirect
 import sqlite3
 
-from app import app
+from app import app, db
+from app.models import Questions
 
 @app.route('/')
 def index():
@@ -14,12 +15,12 @@ def submit():
     title = request.form['title']
     description = request.form['description']
 
-    # Store the data in the SQLite database
-    conn = sqlite3.connect('data.db')
-    cursor = conn.cursor()
-    cursor.execute('INSERT INTO questions (topic, subtopic, title, description) VALUES (?, ?, ?, ?)', (topic, subtopic, title, description))
-    conn.commit()
-    conn.close()
+    # Create a new Questions object
+    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description)
+
+    # Add the new object to the session
+    db.session.add(question)
+    db.session.commit()
 
     return redirect(url_for('thank_you'))
 
