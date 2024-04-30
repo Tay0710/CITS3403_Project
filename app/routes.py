@@ -50,4 +50,8 @@ def forum():
 @app.route('/post')
 def post():
     return render_template("post.html", title='Post')
+
+@app.route('/createProfile')
+def createProfile():
+    return render_template("createProfile.html", title='Create Profile')
     

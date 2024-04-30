@@ -7,19 +7,6 @@
         <!-- Image in the header -->
         <img src="https://brandslogos.com/wp-content/uploads/images/large/uwa-university-perth-logo.png" alt="University of Western Australia Logo" style="width: 200px;" >
         <h1>UWA Advisory</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <!-- Search bar in the top menu bar -->
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="submit">Search</button>
-            </div>
-        </nav>
         <div class="profile">
             <p>Welcome, <a href="#">Your Name</a></p>
         </div>
@@ -55,7 +42,8 @@
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
-    <p>Don't have an account? <a>Create profile.</a></p>
+
+    <p>Don't have an account? <a href="{{ url_for('createProfile') }}">Create profile.</a></p>
 
 </body>
 
