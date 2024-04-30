@@ -6,7 +6,9 @@
 
 <div class="container">
 
-<p>Hi, {{ user.fname }} {{ user.lname }}! Here is your profile.</p>
+    <a href="{{ url_for('logout') }}">Log out</a>
+
+    <p>Hi, {{ user.fname }} {{ user.lname }}! Here is your profile.</p>
 
     <table class="table">
         <tr>
