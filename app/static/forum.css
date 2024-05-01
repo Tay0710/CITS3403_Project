@@ -22,6 +22,11 @@ select {
 }
 
 
+.container {
+    padding-bottom: 50px;
+}
+
+
 .degree-selection,
 .unit-selection,
 .topic-selection {
@@ -37,19 +42,6 @@ select {
 
 
 
-/* whats currently being used for the toggle, however this will change wil Taylahs code*/
-.post {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-.post .title {
-    font-weight: bold;
-    cursor: pointer;
-}
-.post .content {
-    display: none;
-}
 
 
 
