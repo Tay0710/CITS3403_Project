@@ -49,9 +49,9 @@ def home():
 @app.route('/forum')
 def forum():
     title='Forum'
-    posts = Questions.query.all()
-    print(posts)
-    return render_template("forum.html", title=title, posts=posts)
+    post_list = Questions.query.all()
+    print(post_list)
+    return render_template("forum.html", title=title, post_list=post_list)
 
 
 @app.route('/post')
