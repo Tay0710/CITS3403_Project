@@ -41,157 +41,53 @@
 
 
 <div class="container">
-    <!-- Forum Topic 1 -->
-    <div class="subForum">
-      <div class="subForumTitle" onclick="toggleContent(this)">
-        <h2>General University Questions</h2>
-      </div>
-      <!-- New Sub-Topic -->
-      <div class="subForumRow">
-        <div class="subForumIcon subForumColumn center">
-          <i class="fa fa-book"></i>
-        </div>
-        <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 1</a> </h2>
-          <p>Description of the content within the Forum Topic 1</p>
-        </div>
-        <div class="subForumStats subForumColumn center">
-          <span> 24 posts </span>
-        </div>
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
-        </div>
-      </div>
 
-      <hr class = "subForumDivider">
-      <!-- New Sub-Topic -->
-      <div class="subForumRow content">
-        <div class="subForumIcon subForumColumn center">
-          <i class="fa fa-book"></i>
-        </div>
-        <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 2</a> </h2>
-          <p>Description of the content within the Forum Topic 1</p>
-        </div>
-        <div class="subForumStats subForumColumn center">
-          <span> 24 posts </span>
-        </div>
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
-        </div>
-      </div>
-    </div>
-
-    <!-- Forum Topic 2 -->
-    <div class="subForum">
-      <div class="subForumTitle">
-        <h2>Forum Topic 2</h2>
-      </div>
       
-      <!-- New Sub-Topic -->
-      <div class="subForumRow">
-        <div class="subForumIcon subForumColumn center">
-          <i class="fa fa-book"></i>
-        </div>
-        <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 1</a> </h2>
-          <p>Description of the content within the Forum Topic 2</p>
-        </div>
-        <div class="subForumStats subForumColumn center">
-          <span> 24 posts </span>
-        </div>
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
-        </div>
-      </div>
-    </div>
 
-    <!-- Forum Topic 3 -->
+
+      <!-- STUFF TO EXPERIMENT WITH  -->
     <div class="subForum">
+
       <div class="subForumTitle">
-        <h2>Forum Topic 3</h2>
+        <h2>Experimenting</h2>
       </div>
-      <!-- New Sub-Topic -->
+
+
+      
+      <!-- New Sub/chain -->
+      {% for post in posts %}
       <div class="subForumRow">
+
         <div class="subForumIcon subForumColumn center">
           <i class="fa fa-book"></i>
         </div>
+
+
         <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 1</a> </h2>
-          <p>Description of the content within the Forum Topic 3</p>
+            <div class = "Title">
+              <h2 class="Heading"><a href="{{ url_for('viewpost', post_id=post.post_id) }}">{{ post.title }}</a></h2>
+            </div>
+
+            <p class="descriptionText">Post description: {{ post.description }}</p>
         </div>
+
+
         <div class="subForumStats subForumColumn center">
           <span> 24 posts </span>
         </div>
+
+
         <div class="subForumInfo subForumColumn">
           <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
           <br>
           <small>3 Apr 2024</small>
         </div>
+
+
       </div>
 
-      <hr class = "default">
-      <!-- New Sub-Topic -->
-      <div class="subForumRow">
-        <div class="subForumIcon subForumColumn center">
-          <i class="fa fa-book"></i>
-        </div>
-        <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 2</a> </h2>
-          <p>Description of the content within the Forum Topic 1</p>
-        </div>
-        <div class="subForumStats subForumColumn center">
-          <span> 24 posts </span>
-        </div>
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
-        </div>
-      </div>
-
-      <hr class = "default">
-      <!-- New Sub-Topic -->
-      <div class="subForumRow">
-        <div class="subForumIcon subForumColumn center">
-          <i class="fa fa-book"></i>
-        </div>
-        <div class="subForumDescription subForumColumn">
-          <h2><a href="">Sub-Topic 3</a> </h2>
-          <p>Description of the content within the Forum Topic 1</p>
-        </div>
-        <div class="subForumStats subForumColumn center">
-          <span> 24 posts </span>
-        </div>
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
-        </div>
+      {% endfor %}
     </div>
-</div>
-    
-
-
-<!-- replace these classes with classes from Taylah so as to be inline with css-->
-<div class="post">
-    <div class="title" onclick="toggleContent(this)">Post Title 1</div>
-    <div class="content">
-        Full content of Post 1 goes here.
-    </div>
-</div>
-<div class="post">
-    <div class="title" onclick="toggleContent(this)">Post Title 2</div>
-    <div class="content">
-        Full content of Post 2 goes here.
-    </div>
-</div>
 
 {% include "footer.html" %}
 

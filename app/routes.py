@@ -49,9 +49,17 @@ def home():
 @app.route('/forum')
 def forum():
     title='Forum'
-    return render_template("forum.html", title=title)
+    posts = Questions.query.all()
+    print(posts)
+    return render_template("forum.html", title=title, posts=posts)
+
 
 @app.route('/post')
 def post():
     title='Post'
     return render_template("post.html", title=title)
+
+@app.route('/post/<int:post_id>')
+def viewpost(post_id):
+    posts = Questions.query.get_or_404(post_id)
+    return render_template("viewpost.html", post=post)
