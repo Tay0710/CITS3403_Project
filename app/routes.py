@@ -61,5 +61,5 @@ def post():
 
 @app.route('/post/<int:post_id>')
 def viewpost(post_id):
-    posts = Questions.query.get_or_404(post_id)
+    post = Questions.query.get_or_404(post_id)
     return render_template("viewpost.html", post=post)
