@@ -13,7 +13,10 @@
       <h1>Topics</h1>
       <label for="degrees">Select a Topic</label>
       <select id="degrees">
-          <option value ="">Topic</option>
+          <option value ="">Topics</option>
+          {% for topic in topics %}
+            <option value="{{ topic }}">{{ topic }}</option>
+          {% endfor %}
           <!-- Add degree options here -->
       </select>
   </div>
@@ -25,6 +28,9 @@
       <label for="topics">Select a unit or subject</label>
       <select id="topics">
           <option value="">unit or subject</option>
+          {% for topic, subtopic in subtopics %}
+            <option value="{{ subtopic }}">{{ subtopic }}</option>
+          {% endfor %}
           <!-- Add topic options here -->
       </select>
   </div>
@@ -37,23 +43,21 @@
 
 
 
-
+{% for topic, topic_posts in grouped_posts.items() %}
 <div class="container">
 
       
 
 
-      <!-- STUFF TO EXPERIMENT WITH  -->
+    <div class="subForumTitle">
+      <h2>{{ topic }}</h2>
+    </div>
+
     <div class="subForum">
 
-      <div class="subForumTitle">
-        <h2>Topic</h2>
-      </div>
-
-
-      
+    
       <!-- New Sub/chain -->
-      {% for post in post_list %}
+      {% for post in topic_posts %}
       <div class="subForumRow">
 
         <div class="subForumIcon subForumColumn center">
@@ -80,13 +84,11 @@
           <br>
           <small>3 Apr 2024</small>
         </div>
-
-
       </div>
 
       {% endfor %}
     </div>
-
+{% endfor %}
 {% include "footer.html" %}
 
 {% endblock %}
