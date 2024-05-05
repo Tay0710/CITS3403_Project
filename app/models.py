@@ -1,5 +1,6 @@
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+from sqlalchemy.orm import relationship
 from app import db
 
 # To be able to execute this you need to undertake the following steps:
@@ -18,6 +19,9 @@ class Questions(db.Model):
     title: so.Mapped[str] = so.mapped_column(sa.String(120))
     description: so.Mapped[str] = so.mapped_column(sa.String(255))
 
+    # Define the relationship with Comments
+    comments = relationship('Comments', backref='question')
+    
     def __repr__(self):
         return '<Questions {}>'.format(self.title)
     
