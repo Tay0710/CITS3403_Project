@@ -7,9 +7,24 @@
     <h3>{{ post.topic }}</h3>
     <h3>{{ post.subtopic }}</h3>
     <p>{{ post.description }}</p>
+
+    <h2>Comments</h2>
+    <div id="comments">
+        {% for comment in post.comments %}
+            <div class="comment">
+                <p>{{ comment.comment_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="commentForm">
+        <input type="hidden" id="post_id" value="{{ post.post_id }}"> <!-- Hidden input field to store post_id -->
+        <textarea name="comment_text" id="comment_text" placeholder="Add a comment"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='comment.js') }}"></script>
 </body>
-
-
 
 {% include "footer.html" %}
 
