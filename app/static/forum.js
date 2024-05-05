@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var topicSelect = document.getElementById("degrees");
-    var subtopicSelect = document.getElementById("topics");
+    var topicSelect = document.getElementById("topics");
+    var subtopicSelect = document.getElementById("subtopic");
 
     // Disable the subtopic select by default
     subtopicSelect.disabled = true;
@@ -36,10 +36,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Enable the subtopic select
             subtopicSelect.disabled = false;
+
+            // Hide posts that do not belong to the selected topic
+            var allPosts= document.querySelectorAll('.subForumRow');
+            allPosts.forEach(function(post) {
+                if (post.dataset.topic !== selectedTopic) {
+                    post.style.display = 'none'
+                } else {
+                    post.style.display = 'block';
+                }
+            });
+
+            var allTitles = document.querySelectorAll('.subForumTitle');
+            allTitles.forEach(function(title) {
+                if (title.textContent.trim() !== selectedTopic) {
+                    title.style.display = 'none';
+                } else {
+                    title.style.display = 'block';
+                }
+            });
         } else {
             // Reset and disable the subtopic select if no topic is selected
             subtopicSelect.selectedIndex = 0;
             subtopicSelect.disabled = true;
+
+            var allPosts = document.querySelectorAll('.subForumRow');
+            allPosts.forEach(function(post) {
+                post.style.display = 'block';
+            });
+
+            var allTitles = document.querySelectorAll('subForumTitle');
+            allTitles.forEach(function(title) {
+                title.style.display = 'block';
+            });
         }
     });
 });
