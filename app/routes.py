@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, jsonify
 import sqlite3
 
 from app import app, db
@@ -68,7 +68,14 @@ def add_comment(post_id):
         db.session.commit()
     return redirect(url_for('viewpost', post_id=post_id))
 
+@app.route('/comments/<int:post_id>')
+def get_comments(post_id):
+    post = Questions.query.get_or_404(post_id)
+    comments = [comment.comment_text for comment in post.comments]
+    return jsonify(comments)
+
 @app.route('/post/<int:post_id>')
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
-    return render_template("viewpost.html", post=post)
+    title = 'ViewPost'  # Assigning the title here
+    return render_template("viewpost.html", post=post, title=title)
