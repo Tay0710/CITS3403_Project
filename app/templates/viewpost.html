@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body>
+    <h1>{{ post.title }}</h1>
+    <h3>{{ post.topic }}</h3>
+    <h3>{{ post.subtopic }}</h3>
+    <p>{{ post.description }}</p>
+</body>
+
+
+
+{% include "footer.html" %}
+
+{% endblock %}
