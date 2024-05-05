@@ -20,3 +20,11 @@ class Questions(db.Model):
 
     def __repr__(self):
         return '<Questions {}>'.format(self.title)
+    
+class Comments(db.Model):
+    comment_id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    comment_text: so.Mapped[str] = so.mapped_column(sa.Text, nullable=False)
+    post_id: so.Mapped[int] = so.mapped_column(sa.Integer, db.ForeignKey('questions.post_id'), nullable=False)
+
+    def __repr__(self):
+        return '<Comments {}>'.format(self.text)
