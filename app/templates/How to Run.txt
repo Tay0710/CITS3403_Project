@@ -1,0 +1,17 @@
+1. Install python (3.8.10)
+2. Install the requirements.txt file:
+    pip install -r requirements.txt
+3. Install virtual environment:
+    sudo apt-get install python3-venv
+4. Create virtual environment:
+    python3 -m venv venv
+5. Run the virtual environment:
+    source venv/bin/activate
+6. Initialise the database
+    flask db init 
+7. Do the migrations
+    flask db migrate
+8. Update the tables
+    flask db upgrade
+9. Run the flask app using debug for easy refreshing
+    flask run --debug

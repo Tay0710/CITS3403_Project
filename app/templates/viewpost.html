@@ -6,10 +6,9 @@
     <div class="post-container">
         <h1>{{ post.title }}</h1>
         <div class="post-info">
-            <h3>{{ post.topic }}</h3>
-            <h3>{{ post.subtopic }}</h3>
+            <h3>{{ post.topic }} : {{ post.subtopic }}</h3>
         </div>
-        <p>{{ post.description }}</p>
+        <p><span class="bolded">Question: </span>{{ post.description }}</p>
     </div>
 
     <div id="commentsTitle">
@@ -35,7 +34,5 @@
 
     <script src="{{ url_for('static', filename='comment.js') }}"></script>
 </body>
-
-{% include "footer.html" %}
 
 {% endblock %}
