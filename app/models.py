@@ -1,7 +1,7 @@
 # To be able to execute this you need to undertake the following steps:
 # 1. create your table in models.py
 # 2. flask db init
-# 3. flask db migrate
+# 3. flask db migrate -m "MESSAGE"
 # 4. flask db upgrade
 # 5. Should be able to app app.db and see the new database
 # NEXT STEP IS TO CONNECT IT TO THE HTML!! SHOULD PROBS COMMIT THIS
