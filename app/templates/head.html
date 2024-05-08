@@ -23,6 +23,10 @@
     <script src="{{ url_for('static', filename='post.js') }}"></script>
     {% endif %}
 
+    {% if title == "ViewPost" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewpost.css') }}">
+    {% endif %}
+
 </head>
 
 {% block content %}{% endblock %}

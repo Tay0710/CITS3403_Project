@@ -1,8 +1,8 @@
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, jsonify
 import sqlite3
 
 from app import app, db
-from app.models import Questions
+from app.models import Questions, Comments
 
 @app.route('/')
 def index():
@@ -53,13 +53,29 @@ def forum():
     print(post_list)
     return render_template("forum.html", title=title, post_list=post_list)
 
-
 @app.route('/post')
 def post():
     title='Post'
     return render_template("post.html", title=title)
 
+@app.route('/add_comment/<int:post_id>', methods=['POST'])
+def add_comment(post_id):
+    post = Questions.query.get_or_404(post_id)
+    comment_text = request.form.get('comment_text')
+    if comment_text:
+        comment = Comments(comment_text=comment_text, post_id=post_id)
+        db.session.add(comment)
+        db.session.commit()
+    return redirect(url_for('viewpost', post_id=post_id))
+
+@app.route('/comments/<int:post_id>')
+def get_comments(post_id):
+    post = Questions.query.get_or_404(post_id)
+    comments = [comment.comment_text for comment in post.comments]
+    return jsonify(comments)
+
 @app.route('/post/<int:post_id>')
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
-    return render_template("viewpost.html", post=post)
+    title = 'ViewPost'  # Assigning the title here
+    return render_template("viewpost.html", post=post, title=title)
