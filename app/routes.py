@@ -1,16 +1,15 @@
-from flask import render_template, request, url_for, redirect, flash
+from flask import render_template, request, url_for, redirect, flash, jsonify
 from urllib.parse import urlsplit
 import sqlite3
 from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user
 import sqlalchemy as sa
-from app import db
-from app.models import User
+from app import app, db
+from app.models import User, Questions, Comments
 from flask_login import logout_user
 from flask_login import login_required
 from app.forms import CreateProfileForm
-
 
 @app.route('/', methods=['GET','POST'])
 def home():
@@ -35,12 +34,12 @@ def submit():
     title = request.form['title']
     description = request.form['description']
 
-    # Store the data in the SQLite database
-    conn = sqlite3.connect('data.db')
-    cursor = conn.cursor()
-    cursor.execute('INSERT INTO questions (topic, subtopic, title, description) VALUES (?, ?, ?, ?)', (topic, subtopic, title, description))
-    conn.commit()
-    conn.close()
+    # Create a new Questions object
+    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description)
+
+    # Add the new object to the session
+    db.session.add(question)
+    db.session.commit()
 
     return redirect(url_for('thank_you'))
 
@@ -64,6 +63,9 @@ def profile():
 @app.route('/forum')
 @login_required
 def forum():
+    title='Forum'
+    post_list = Questions.query.all()
+    print(post_list)
     return render_template("forum.html", title='Forum')
 
 @app.route('/post')
@@ -88,4 +90,25 @@ def createProfile():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-    
+
+@app.route('/add_comment/<int:post_id>', methods=['POST'])
+def add_comment(post_id):
+    post = Questions.query.get_or_404(post_id)
+    comment_text = request.form.get('comment_text')
+    if comment_text:
+        comment = Comments(comment_text=comment_text, post_id=post_id)
+        db.session.add(comment)
+        db.session.commit()
+    return redirect(url_for('viewpost', post_id=post_id))
+
+@app.route('/comments/<int:post_id>')
+def get_comments(post_id):
+    post = Questions.query.get_or_404(post_id)
+    comments = [comment.comment_text for comment in post.comments]
+    return jsonify(comments)
+
+@app.route('/post/<int:post_id>')
+def viewpost(post_id):
+    post = Questions.query.get_or_404(post_id)
+    title = 'ViewPost'  # Assigning the title here
+    return render_template("viewpost.html", post=post, title=title)

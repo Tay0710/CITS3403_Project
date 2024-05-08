@@ -22,12 +22,37 @@ select {
 }
 
 
+.container {
+    padding-bottom: 50px;
+}
+
+
+
+
+.selection-container {
+    margin-top: 50px;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+}
+
+
+
+
+.search-bar {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+}
+
+.search-bar input {
+    margin-right: 10px; /* Add some spacing between input and button */
+}
+
 .degree-selection,
 .unit-selection,
 .topic-selection {
-    width: calc(33.33% - 20px); /* Each dropdown menu takes one-third of the screen width minus some padding */
-    margin-right: 20px; /* Add some margin between dropdown menus */
-    /*float: left; /* Float the dropdown menus to align them horizontally */
+    margin-left: 20px; /* Add margin between dropdown menus and search bar */
+    width: calc(33.33% - 20px); /* Each dropdown menu takes one-third of the container minus some padding */
     border: none;
 }
 
@@ -36,20 +61,6 @@ select {
 
 
 
-
-/* whats currently being used for the toggle, however this will change wil Taylahs code*/
-.post {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-.post .title {
-    font-weight: bold;
-    cursor: pointer;
-}
-.post .content {
-    display: none;
-}
 
 
 
@@ -60,6 +71,10 @@ select {
 
 /* Adjust width for smaller screens */
 @media screen and (max-width: 768px) {
+    .selection-container {
+        flex-wrap: wrap;
+    }
+
     .degree-selection,
     .unit-selection,
     .topic-selection {
