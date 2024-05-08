@@ -1,7 +1,9 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-# suggest changing the name of database_url to have website in front
+
 class Config:
-    # ...
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    
+# suggest changing the name of database_url to have website in front
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
