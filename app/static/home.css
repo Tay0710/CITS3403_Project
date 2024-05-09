@@ -57,16 +57,50 @@
 }
 
 .topics li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 2fr 7fr; /* Two columns, smaller and larger */
+    align-items: start; /* Align items at the start of the row */
+}
+  
+.topics li p {
+    grid-column: 2 / 3; /* Span across the second column */
 }
 
-#intro-text{
-    /* text-align:center; */
+.topics ul li span {
+    font-weight: bold;
+    color: #c0502b;
+    margin-right: 5px; /* add space between the span and the text */
+    grid-column: 1 / 2; /* Span across the first column */
+    align-self: center; /* Align text in the middle of the smaller column */
+    padding-left: 20px;
+}
+
+#forum p.intro {
+    font-weight: bold;
+    font-size: 1.2em; /* Adjust the size as needed */
+    color: #008080;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+#forum p.scroll {
+    font-weight: bold;
+    color: #c0502b;
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+a {
+    font-weight: bold;
+}
+p.intro {
     font-weight: bold;
 }
 
-#forum p{
+p {
     text-align:center;
+    margin-top: 20px; /* Add some space above the text */
 }
 
 
