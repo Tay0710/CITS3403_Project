@@ -3,18 +3,27 @@
 {% block content %}
 
 <body>
-    <header>
-        <!-- Image in the header -->
-        <img src="https://brandslogos.com/wp-content/uploads/images/large/uwa-university-perth-logo.png" alt="University of Western Australia Logo" style="width: 200px;">
-        <h1>UWA Advisory</h1>
-        <div class="profile">
-            <p>Welcome, <a href="#">Your Name</a></p>
-        </div>
-    </header>
     <main>
+        <!-- Gallery of happy student photos -->
+        <div class="gallery-container">
+            <div class="gallery-slider">
+                <img class="gallery-image" src="https://icic.thu.edu.tw/upload/sitemap/University_Posters.jpg" alt="Group of Students">
+                <img class="gallery-image" src="https://storage.googleapis.com/gamecocksonline-com/2020/08/889dda65-wbs_stadium_fans_1600x600-1024x384.jpg" alt="Sport">
+                <img class="gallery-image" src="https://www.mecmining.com.au/wp-content/uploads/2020/10/shutterstock_646064452.jpg" alt="Internship">
+                <img class="gallery-image" src="https://www.geospatialworld.net/wp-content/uploads/2022/03/Brown-University-Engineering-Research-Center-1024x384.jpg" alt="Accomodation">
+                <img class="gallery-image" src="https://independentsector.org/wp-content/uploads/2022/03/Libraby-VFG-Featured-8-29-18-1024x384.jpg" alt="Library">
+            </div>
+            <button class="prev-button" onclick="moveSlide(-1)">❮</button>
+            <button class="next-button" onclick="moveSlide(1)">❯</button>
+        </div>
+
         <section id="forum">
-            <h2>Forum</h2>
-            <p>Engage with the UWA community by participating in discussions on various topics. Feel free to ask questions, share your experiences, and connect with other students and staff.</p>
+            <h3>Welcome to StudiVault – Your Gateway to the University Community!</h3>
+            <p>StudiVault is more than just a forum; it's your direct line to the vibrant UWA
+                community. Whether you're seeking answers, sharing insights, or connecting 
+                with peers and staff, StudiVault is the place to be. Engage in lively 
+                discussions, seek advice, and expand your knowledge through meaningful 
+                interactions.</p>
             <div class="topics">
                 <h3>Recent Topics</h3>
                 <ul>
