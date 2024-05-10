@@ -49,14 +49,21 @@ def home():
 @app.route('/forum')
 def forum():
     title='Forum'
-    post_list = Questions.query.all()
-    grouped_posts = {}
-    for post in post_list:
-        if post.topic not in grouped_posts:
-            grouped_posts[post.topic] = []
-        grouped_posts[post.topic].append(post)
-    topics = grouped_posts.keys()
-    return render_template("forum.html", title=title, grouped_posts=grouped_posts, topics=topics)
+    all_posts = Questions.query.all()
+    posts_with_topics = [(post, post.topic, post.subtopic) for post in all_posts]   #List of tuples
+    
+    grouped_posts = {"All Topics": all_posts}       #Default grouping of all posts 
+    for post, topic, subtopic in posts_with_topics:
+        if topic not in grouped_posts:
+            grouped_posts[topic] = []
+        grouped_posts[topic].append(post)       #Goes through the tuples, creates a list of topics 
+
+    topics = list(grouped_posts.keys())     #Grabs the list of topics
+    subtopics = {           #Each topic key is mapped to subtopic 
+        topic: list(set([subtopic for _, t, subtopic in posts_with_topics if t == topic])) 
+        for topic in topics
+    }
+    return render_template("forum.html", title=title, all_posts=all_posts, grouped_posts=grouped_posts, topics=topics, subtopics=subtopics) 
 
 
 @app.route('/post')

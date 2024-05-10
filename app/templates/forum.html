@@ -13,8 +13,7 @@
       <h1>Topics</h1>
       <label for="topics">Select a Topic</label>
       <select id="topics">
-          <option value ="">Topics</option>
-          {% for topic in topics %}
+          {% for topic in grouped_posts.keys() %}
             <option value="{{ topic }}">{{ topic }}</option>
           {% endfor %}
           <!-- Add degree options here -->
@@ -28,8 +27,10 @@
       <label for="subtopic">Select a unit or subject</label>
       <select id="subtopic">
           <option value="">unit or subject</option>
-          {% for topic, subtopic in subtopics %}
-            <option value="{{ subtopic }}">{{ subtopic }}</option>
+          {% for topic, subtopic_list in subtopics.items() %}
+            {% for subtopic in subtopic_list %}
+              <option value="{{ subtopic }}">{{ subtopic }}</option>
+            {% endfor %}
           {% endfor %}
           <!-- Add topic options here -->
       </select>
@@ -43,22 +44,22 @@
 
 
 
-{% for topic, topic_posts in grouped_posts.items() %}
+
 <div class="container">
 
       
+  <div class="subForum">
 
 
-    <div class="subForumTitle">
-      <h2>{{ topic }}</h2>
-    </div>
+    
 
-    <div class="subForum">
+  
 
     
       <!-- New Sub/chain -->
-      {% for post in topic_posts %}
-      <div class="subForumRow" data-topic="{{ post.topic }}">
+      {% for post in grouped_posts['All Topics'] %}
+    
+      <div class="subForumRow" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
 
         <div class="subForumIcon subForumColumn center">
           <i class="fa fa-book"></i>
@@ -84,11 +85,15 @@
           <br>
           <small>3 Apr 2024</small>
         </div>
+        
       </div>
-
       {% endfor %}
     </div>
-{% endfor %}
+</div> 
+
+
+
+
 {% include "footer.html" %}
 
 {% endblock %}
