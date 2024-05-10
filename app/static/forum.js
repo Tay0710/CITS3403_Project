@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     var topicSelect = document.getElementById("topics");
     var subtopicSelect = document.getElementById("subtopic");
+    var subForumContainer = document.querySelector('.subForum')
 
     // Disable the subtopic select by default
     subtopicSelect.disabled = true;
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     topicSelect.addEventListener("change", function() {
         // Function to update subtopic dropdown menu based on the selected topic
         var selectedTopic = topicSelect.value;
-        
         
         if (selectedTopic == "") {
             showAllPosts();
@@ -65,10 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 post.classList.remove('hidden');
         });
 
-        var allTitles = document.querySelectorAll('.subForumTitle');
-        allTitles.forEach(function(title) {
-                title.classList.add('hidden');
-        });
+        
 
         if (topicSelect.value !== "All Topics") {
             var groupedPosts = document.querySelectorAll('.subForumRow[data-topic]');
@@ -97,14 +94,21 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        var allTitles = document.querySelectorAll('.subForumTitle');
-        allTitles.forEach(function(title) {
-            if (selectedTopic !== "" && selectedTopic !== "All Topics" && title.textContent.trim() !== selectedTopic) {
-                title.classList.add('hidden');
-            } else {
-                title.classList.remove('hidden');
-            }
-        });
+        
+
+        var titleExists = document.querySelector('.subForumTitle');
+
+        if (!titleExists) {
+            var subForumTitle = document.createElement('div');
+            subForumTitle.classList.add('subForumTitle');
+            var titleText = document.createElement('h2');
+            titleText.textContent = selectedTopic;
+            subForumTitle.appendChild(titleText);
+            subForumContainer.prepend(subForumTitle);
+        } else {
+            titleExists.querySelector('h2').textContent = selectedTopic;
+        }
 
     }    
+    whatToShow(topicSelect.value)
  });
