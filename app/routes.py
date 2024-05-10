@@ -50,14 +50,15 @@ def home():
 def forum():
     title='Forum'
     all_posts = Questions.query.all()
+    posts_with_topics = [(post, post.topic) for post in all_posts]
     
     grouped_posts = {"All Topics": all_posts}
-    for post in all_posts:
-        if post.topic not in grouped_posts:
-            grouped_posts[post.topic] = []
-        grouped_posts[post.topic].append(post)
-    topics = [topic for topic in grouped_posts.keys() if topic != "All Topics"]
-    
+    for post, topic in posts_with_topics:
+        if topic not in grouped_posts:
+            grouped_posts[topic] = []
+        grouped_posts[topic].append(post)
+
+    topics = list(grouped_posts.keys())
     return render_template("forum.html", title=title, all_posts=all_posts, grouped_posts=grouped_posts, topics=topics) 
 
 
