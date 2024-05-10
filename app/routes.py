@@ -49,14 +49,16 @@ def home():
 @app.route('/forum')
 def forum():
     title='Forum'
-    post_list = Questions.query.all()
-    grouped_posts = {}
-    for post in post_list:
+    all_posts = Questions.query.all()
+    
+    grouped_posts = {"All Topics": all_posts}
+    for post in all_posts:
         if post.topic not in grouped_posts:
             grouped_posts[post.topic] = []
         grouped_posts[post.topic].append(post)
-    topics = grouped_posts.keys()
-    return render_template("forum.html", title=title, grouped_posts=grouped_posts, topics=topics)
+    topics = [topic for topic in grouped_posts.keys() if topic != "All Topics"]
+    
+    return render_template("forum.html", title=title, all_posts=all_posts, grouped_posts=grouped_posts, topics=topics) 
 
 
 @app.route('/post')

@@ -13,8 +13,7 @@
       <h1>Topics</h1>
       <label for="topics">Select a Topic</label>
       <select id="topics">
-          <option value ="">Topics</option>
-          {% for topic in topics %}
+          {% for topic in grouped_posts.keys() %}
             <option value="{{ topic }}">{{ topic }}</option>
           {% endfor %}
           <!-- Add degree options here -->
@@ -45,7 +44,7 @@
 
 {% for topic, topic_posts in grouped_posts.items() %}
 <div class="container">
-
+  
       
 
 
@@ -88,7 +87,10 @@
 
       {% endfor %}
     </div>
+    
 {% endfor %}
+
+
 {% include "footer.html" %}
 
 {% endblock %}

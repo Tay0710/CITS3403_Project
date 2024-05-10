@@ -12,15 +12,35 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add more topics and their respective subtopics here
     };
 
+
+
+
     // Add event listener to the topic select
     topicSelect.addEventListener("change", function() {
-        // Get the selected topic
+        // Function to update subtopic dropdown menu based on the selected topic
         var selectedTopic = topicSelect.value;
+        
+        
+        if (selectedTopic == "") {
+            showAllPosts();
+        } else {
+            dropDownOptions(selectedTopic);
+            whatToShow(selectedTopic)
+        }
+    });
 
-        // Enable the subtopic select when a topic is selected
-        if (selectedTopic !== "") {
-            // Clear existing options
-            subtopicSelect.innerHTML = "";
+
+
+
+
+    function dropDownOptions(selectedTopic) {
+        // Clear existing options
+        subtopicSelect.innerHTML = "";
+        subtopicSelect.disabled = true;
+
+        // If a valid topic is selected, populate subtopic options
+        if (selectedTopic !== "" && subtopics[selectedTopic]) {
+            subtopicSelect.disabled = false;
 
             // Add default option
             var defaultOption = document.createElement("option");
@@ -33,42 +53,58 @@ document.addEventListener("DOMContentLoaded", function() {
                 option.text = subtopic;
                 subtopicSelect.add(option);
             });
+        }
+    }
 
-            // Enable the subtopic select
-            subtopicSelect.disabled = false;
 
-            // Hide posts that do not belong to the selected topic
-            var allPosts= document.querySelectorAll('.subForumRow');
-            allPosts.forEach(function(post) {
-                if (post.dataset.topic !== selectedTopic) {
-                    post.style.display = 'none'
-                } else {
-                    post.style.display = 'block';
+
+
+    function showAllPosts() {
+        var allPosts = document.querySelectorAll('.subForumRow');
+        allPosts.forEach(function(post) {
+                post.classList.remove('hidden');
+        });
+
+        var allTitles = document.querySelectorAll('.subForumTitle');
+        allTitles.forEach(function(title) {
+                title.classList.add('hidden');
+        });
+
+        if (topicSelect.value !== "All Topics") {
+            var groupedPosts = document.querySelectorAll('.subForumRow[data-topic]');
+            groupedPosts.forEach(function(post) {
+                var topic = post.dataset.topic;
+                if (topic !== "" && topic !== "All Topics") {
+                    post.classList.add('hidden');
                 }
-            });
-
-            var allTitles = document.querySelectorAll('.subForumTitle');
-            allTitles.forEach(function(title) {
-                if (title.textContent.trim() !== selectedTopic) {
-                    title.style.display = 'none';
-                } else {
-                    title.style.display = 'block';
-                }
-            });
-        } else {
-            // Reset and disable the subtopic select if no topic is selected
-            subtopicSelect.selectedIndex = 0;
-            subtopicSelect.disabled = true;
-
-            var allPosts = document.querySelectorAll('.subForumRow');
-            allPosts.forEach(function(post) {
-                post.style.display = 'block';
-            });
-
-            var allTitles = document.querySelectorAll('subForumTitle');
-            allTitles.forEach(function(title) {
-                title.style.display = 'block';
             });
         }
-    });
-});
+    }
+
+
+
+
+
+
+    // Function to show/hide posts and titles based on the selected topic
+    function whatToShow(selectedTopic) {
+        var allPosts = document.querySelectorAll('.subForumRow');
+        allPosts.forEach(function(post) {
+            if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
+                post.classList.add('hidden');
+            } else {
+                post.classList.remove('hidden');
+            }
+        });
+
+        var allTitles = document.querySelectorAll('.subForumTitle');
+        allTitles.forEach(function(title) {
+            if (selectedTopic !== "" && selectedTopic !== "All Topics" && title.textContent.trim() !== selectedTopic) {
+                title.classList.add('hidden');
+            } else {
+                title.classList.remove('hidden');
+            }
+        });
+
+    }    
+ });
