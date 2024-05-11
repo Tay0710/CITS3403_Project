@@ -70,12 +70,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 var topic = post.dataset.topic;
                 if (topic !== "" && topic !== "All Topics") {
                     post.classList.add('hidden');
-                post.classList.remove('hidden');
-
-                };
+                }
             });
         }
     }
+
 
 
 
@@ -87,9 +86,10 @@ document.addEventListener("DOMContentLoaded", function() {
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
                 post.classList.add('hidden');
-        }
-    });
-
+                } else {
+                post.classList.remove('hidden');
+            }
+        });
 
         
 
@@ -106,13 +106,8 @@ document.addEventListener("DOMContentLoaded", function() {
             titleExists.querySelector('h2').textContent = selectedTopic;
         }
 
-    }   
-
+    }    
     whatToShow(topicSelect.value)           //Show the title initially 
-
-
-    
-
 
 
     subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
@@ -139,8 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 post.classList.remove('hidden');
             }
-        });
+    });
     }
 });
-
-
