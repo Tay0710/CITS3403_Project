@@ -50,16 +50,17 @@ def home():
 def forum():
     title='Forum'
     all_posts = Questions.query.all()
-    posts_with_topics = [(post, post.topic) for post in all_posts]
+    posts_with_topics = [(post, post.topic, post.subtopic) for post in all_posts]
     
     grouped_posts = {"All Topics": all_posts}
-    for post, topic in posts_with_topics:
+    for post, topic, subtopic in posts_with_topics:
         if topic not in grouped_posts:
             grouped_posts[topic] = []
         grouped_posts[topic].append(post)
 
     topics = list(grouped_posts.keys())
-    return render_template("forum.html", title=title, all_posts=all_posts, grouped_posts=grouped_posts, topics=topics) 
+    subtopics = {topic:list(set([subtopic for _, t, subtopic in posts_with_topics if t == topic])) for topic in topics}
+    return render_template("forum.html", title=title, all_posts=all_posts, grouped_posts=grouped_posts, topics=topics, subtopics=subtopics) 
 
 
 @app.route('/post')

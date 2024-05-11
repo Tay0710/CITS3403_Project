@@ -27,8 +27,10 @@
       <label for="subtopic">Select a unit or subject</label>
       <select id="subtopic">
           <option value="">unit or subject</option>
-          {% for topic, subtopic in subtopics %}
-            <option value="{{ subtopic }}">{{ subtopic }}</option>
+          {% for topic, subtopic_list in subtopics.items() %}
+            {% for subtopic in subtopic_list %}
+              <option value="{{ subtopic }}">{{ subtopic }}</option>
+            {% endfor %}
           {% endfor %}
           <!-- Add topic options here -->
       </select>
