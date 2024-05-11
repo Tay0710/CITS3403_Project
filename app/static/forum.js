@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Disable the subtopic select by default
-    subtopicSelect.disabled = true;
-
+    subtopicSelect.disabled = true; 
+        
 
     
     topicSelect.addEventListener("change", function() {     // Function to update subtopic dropdown menu based on the selected topic  
         
         var selectedTopic = topicSelect.value;
-        
+
         if (selectedTopic == "") {
             showAllPosts();
         } else {
@@ -36,12 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (selectedTopic !== "" && subtopics[selectedTopic]) {        // If a valid topic is selected, populate subtopic options
             subtopicSelect.disabled = false;
 
-
             var defaultOption = document.createElement("option");       // Add default option
             defaultOption.text = "All Subtopics";
-            subtopicSelect.add(defaultOption);
-
-            
+            subtopicSelect.add(defaultOption)
+        
+                
             subtopics[selectedTopic].forEach(function(subtopic) {       // Add subtopic options based on the selected topic
                 var option = document.createElement("option");
                 option.text = subtopic;
@@ -52,15 +51,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+        
+
+
+
 
     function showAllPosts() {               // Function to show all posts without grouping 
 
         var allPosts = document.querySelectorAll('.subForumRow');           // Remove 'hidden' css to reveal all posts
-        allPosts.forEach(function(post) {
+            allPosts.forEach(function(post) {
                 post.classList.remove('hidden');
         });
 
-        
+
         if (topicSelect.value !== "All Topics") {           // Apply 'hidden' to all posts that are not the selected topic 
             var groupedPosts = document.querySelectorAll('.subForumRow[data-topic]');
             groupedPosts.forEach(function(post) {
@@ -83,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
                 post.classList.add('hidden');
-            } else {
+                } else {
                 post.classList.remove('hidden');
             }
         });
@@ -116,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    
+
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
             var allPosts = document.querySelectorAll('.subForumRow');
             allPosts.forEach(function(post) {
@@ -124,6 +129,11 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 post.classList.remove('hidden');
             }
+            if (post.dataset.subtopic !== selectedSubtopic) {
+                post.classList.add('hidden');
+            } else {
+                post.classList.remove('hidden');
+            }
     });
     }
- });
+});
