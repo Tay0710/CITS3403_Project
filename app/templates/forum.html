@@ -27,7 +27,6 @@
       <label for="subtopic">Select a unit or subject</label>
       <select id="subtopic">
           <option value="">unit or subject</option>
-          
           {% for topic, subtopic_list in subtopics.items() %}
             {% for subtopic in subtopic_list %}
               <option value="{{ subtopic }}">{{ subtopic }}</option>
@@ -50,11 +49,12 @@
 <div class="container">
 
       
+
+      
   <div class="subForum">
 
 
-    
-
+  
   
 
     
@@ -87,12 +87,10 @@
           <br>
           <small>3 Apr 2024</small>
         </div>
-        
       </div>
       {% endfor %}
     </div>
 </div> 
-
 
 
 
