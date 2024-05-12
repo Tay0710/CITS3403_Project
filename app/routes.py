@@ -27,6 +27,7 @@ def home():
         return redirect(next_page)
     return render_template('home.html', title='Home', form=form)
 
+@login_required
 @app.route('/submit', methods=['POST'])
 def submit():
     topic = request.form['topic']
@@ -35,7 +36,7 @@ def submit():
     description = request.form['description']
 
     # Create a new Questions object
-    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description)
+    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description, user_id=current_user.id)
 
     # Add the new object to the session
     db.session.add(question)
@@ -99,7 +100,7 @@ def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
     if comment_text:
-        comment = Comments(comment_text=comment_text, post_id=post_id)
+        comment = Comments(comment_text=comment_text, post_id=post_id, user_id=current_user.id)
         db.session.add(comment)
         db.session.commit()
     return redirect(url_for('viewpost', post_id=post_id))
