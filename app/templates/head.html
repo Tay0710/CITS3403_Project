@@ -19,6 +19,10 @@
     <script src="{{ url_for('static', filename='forum.js') }}"></script>
     {% endif %}
 
+    {% if title == "Profile"%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    {% endif %}
+
     {% if title == "Post"%}
     <link rel="stylesheet" href="{{ url_for('static', filename='post.css') }}">
     <script src="{{ url_for('static', filename='post.js') }}"></script>

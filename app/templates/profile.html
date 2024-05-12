@@ -4,11 +4,22 @@
 
 <div class="container">
 
+    {% if current_user == user%}
     <a href="{{ url_for('logout') }}">Log out</a>
+    <p>This is your profile.</p>
 
-    <p>Hi, {{ user.username }} ! Here is your profile.</p>
+    {% else %}
+    
+    <p>Welcome to {{ user.username }}'s profile.</p>
+   
+    {% endif %}
 
-    <table class="table">
+
+    <table class="table" id="user-details">
+        <tr>
+            <th>Username</th>
+            <td>{{ user.username }}</td>
+        </tr>
         <tr>
             <th>First Name</th>
             <td>{{ user.fname}}</td>
@@ -17,15 +28,15 @@
             <th>Last Name</th>
             <td>{{ user.lname}}</td>
         </tr>
+
+        {% if current_user == user %}
         <tr>
-            <th>Username</th>
-            <td>{{ user.username }}</td>
-        </tr>
-        <tr>
+
             <th>Email</th>
             <td>{{ user.email }}</td>
 
         </tr>
+        {% endif %}
         <tr>
             <th>Position</th>
             <td>{{ user.position }}</td>
@@ -68,6 +79,7 @@
     {% for comment in comments %}
         <div class="post">
             <p>{{ comment.comment_text }}</p>
+            <p>{{ comment.timestamp }}</p>
         </div>
     {% endfor %}
 
