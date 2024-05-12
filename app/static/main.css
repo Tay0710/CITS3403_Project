@@ -51,11 +51,6 @@ a{
   font-weight:bold;
 }
 
-.subForumRow{
-  display: grid;
-  grid-template-columns: 7% 60% 13% 20%;
-}
-
 .subForumColumn{
   padding: 10px;
   margin: 4px;
