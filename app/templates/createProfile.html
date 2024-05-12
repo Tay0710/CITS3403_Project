@@ -6,42 +6,73 @@
 
     <p>Fill in the details below to create a profile.</p>
 
-    <form>
-        <label for="fname" class="form-label">First name:</label><br>
-        <input type="text" class="form-control" id="fname" name="fname" required><br>
-
-        <label for="lname" class="form-label">Last name:</label><br>
-        <input type="text" class="form-control" id="lname" name="fname" required><br>
-
-        <label for="email" class="form-label">Email:</label><br>
-        <input type="email" class="form-control" id="email" name="email" required><br>
-
-        <label for="position" class="form-label">Current position:</label><br>
-        <input type="radio" name="position" id="undergrad" class="form-check-input" value="Undergraduate Student">
-        <label for="undergrad" class="form-check-label">Undergraduate Student</label><br>
-        <input type="radio" name="position" id="postgrad" class="form-check-input" value="Postgraduate Student">
-        <label for="postgrad" class="form-check-label">Postgraduate Student</label><br>
-        <input type="radio" name="position" id="staff" class="form-check-input" value="Staff">
-        <label for="staff" class="form-check-label">Staff</label><br>
-        <input type="radio" name="position" id="future" class="form-check-input" value="Future Student">
-        <label for="future" class="form-check-label">Future Student</label><br>
-        <input type="radio" name="position" id="graduate" class="form-check-input" value="Graduate">
-        <label for="graduate" class="form-check-label">Graduate</label><br><br>
-
-        <label for="study" class="form-label">Area(s) of study:</label><br>
-        <select id="study" class="form-select" name="study" size="3" required>
-            <option value="Computer Science">Computer Science</option>
-            <option value="French">French</option>
-            <option value="Accounting">Accounting</option>
-            <option value="Data Science">Data Science</option>
-            <option value="Nursing">Nursing</option>
-        </select><br>
-
-        <label for="bio"  class="form-label">Bio:</label>
-        <textarea class="form-control" name="bio" maxlength="200"></textarea><br>
-
-        <input type="submit" class="form-control" value="Submit">
-
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.fname.label }}<br>
+            {{ form.fname(size=32) }}<br>
+            {% for error in form.fname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.lname.label }}<br>
+            {{ form.lname(size=32) }}<br>
+            {% for error in form.lname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=64) }}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.position.label }}<br>
+            {{ form.position(size=32) }}<br>
+            {% for error in form.position.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.study.label }}<br>
+            {{ form.study(size=64) }}<br>
+            {% for error in form.study.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.bio.label }}<br>
+            {{ form.bio(size=200) }}<br>
+            {% for error in form.bio.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password2.label }}<br>
+            {{ form.password2(size=32) }}<br>
+            {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
     </form>
+    
 </div>
 {% endblock %}

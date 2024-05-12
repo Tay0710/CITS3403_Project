@@ -2,46 +2,46 @@
 
 {% block content %}
 
-{% if validatedUser %}
-
 <div class="container">
 
-<p>Hi, {{ user.fname }} {{ user.lname }}! Here is your profile.</p>
+    <a href="{{ url_for('logout') }}">Log out</a>
+
+    <p>Hi, {{ current_user.username }} ! Here is your profile.</p>
 
     <table class="table">
         <tr>
-            <th>Name</th>
-            <td>{{ user.fname}} {{  user.lname }}</td>
+            <th>First Name</th>
+            <td>{{ current_user.fname}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ current_user.lname}}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{ current_user.username }}</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td>{{ user.email }}</td>
+            <td>{{ current_user.email }}</td>
 
         </tr>
         <tr>
             <th>Position</th>
-            <td>{{ user.position }}</td>
+            <td>{{ current_user.position }}</td>
         </tr>
         <tr>
-            <th>Primary area of study</th>
+            <th>Area of study</th>
             <td>
-                {{ user.study }}
+                {{ current_user.study }}
             </td>
         </tr>
-
         <tr>
             <th>Bio</th>
-            <td>{{ user.bio }}</td>
+            <td>{{ current_user.bio }}</td>
         </tr>
     </table>
 </div>
 
-{% else %}
-
-<p>Please <a href="/home">log in</a> to see your profile.</p>
-
-{% endif %}
-
-{% include "footer.html" %}
 
 {% endblock %}

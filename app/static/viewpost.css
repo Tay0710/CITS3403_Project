@@ -1,0 +1,140 @@
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #ECECEC;
+  color: #333;
+}
+
+.post-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #c0502b;
+}
+
+.post-container h1{
+  color: #fff;
+}
+
+.post-container p{
+  margin-top: 10px;
+}
+
+.bolded {
+  font-weight: bold;
+}
+
+.post-info h3 {
+  margin: 0;
+}
+
+.comments-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #008080;
+}
+
+.comment {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.comment-form-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+#commentsTitle h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: #008080;
+  color: #fff;
+  padding: 7px;
+  width: 97%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+#comment_text {
+  width: 100%;
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.comment-form-container button {
+  padding: 10px 20px;
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.comment-form-container button:hover {
+  background-color: #006666;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .post-container,
+  .comments-container,
+  .comment-form-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  #comment_text {
+    height: 80px;
+  }
+}
+
+/* Additional styles */
+.question-header {
+  font-weight: bold;
+}
+
+.comments-header {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.comment-number {
+  background-color: #008080;
+  color: #e7e5e5;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+}
+
+.comment-content {
+  background-color: #008080;
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+}
+
+.comment-number + .comment-content {
+  margin-top: 10px;
+}
+
+.comment-number::before {
+  content: "Comment: ";
+  font-weight: bold;
+}
