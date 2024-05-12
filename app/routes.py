@@ -48,12 +48,13 @@ def submit():
 def thank_you():
     return render_template('thank_you.html')
 
-@app.route('/profile')
+@app.route('/profile/<username>')
 @login_required
-def profile():
-    posts=db.session.scalars(current_user.questions.select()).all()
-    comments=db.session.scalars(current_user.comments.select()).all()
-    return render_template("profile.html", title='Profile', posts=posts, comments=comments)
+def profile(username):
+    user = db.first_or_404(sa.select(User).where(User.username == username))
+    posts=db.session.scalars(user.questions.select()).all()
+    comments=db.session.scalars(user.comments.select()).all()
+    return render_template("profile.html", title='Profile', user=user, posts=posts, comments=comments)
 
 @app.route('/forum')
 @login_required

@@ -6,39 +6,39 @@
 
     <a href="{{ url_for('logout') }}">Log out</a>
 
-    <p>Hi, {{ current_user.username }} ! Here is your profile.</p>
+    <p>Hi, {{ user.username }} ! Here is your profile.</p>
 
     <table class="table">
         <tr>
             <th>First Name</th>
-            <td>{{ current_user.fname}}</td>
+            <td>{{ user.fname}}</td>
         </tr>
         <tr>
             <th>Last Name</th>
-            <td>{{ current_user.lname}}</td>
+            <td>{{ user.lname}}</td>
         </tr>
         <tr>
             <th>Username</th>
-            <td>{{ current_user.username }}</td>
+            <td>{{ user.username }}</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td>{{ current_user.email }}</td>
+            <td>{{ user.email }}</td>
 
         </tr>
         <tr>
             <th>Position</th>
-            <td>{{ current_user.position }}</td>
+            <td>{{ user.position }}</td>
         </tr>
         <tr>
             <th>Area of study</th>
             <td>
-                {{ current_user.study }}
+                {{ user.study }}
             </td>
         </tr>
         <tr>
             <th>Bio</th>
-            <td>{{ current_user.bio }}</td>
+            <td>{{ user.bio }}</td>
         </tr>
     </table>
 
