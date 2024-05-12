@@ -34,9 +34,10 @@ a{
   margin-top:20px;
 }
 
-.subForumTitle{
+.subForumTitle h2{
   background-color: #008080;
   color: #e7e5e5;
+  font-weight: bold;
   padding: 5px;
   border-radius: 5px;
   margin: 4px;
