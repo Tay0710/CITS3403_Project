@@ -24,10 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-
-
-
-
     function dropDownOptions(selectedTopic) {           // Function about topic to subtopic filter behaviours
         // Clear existing options
         subtopicSelect.innerHTML = "";
@@ -49,13 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-
-
-        
-
-
-
-
     function showAllPosts() {               // Function to show all posts without grouping 
 
         var allPosts = document.querySelectorAll('.subForumRow');           // Remove 'hidden' css to reveal all posts
@@ -75,12 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-
-
-
-
-
-    
     function whatToShow(selectedTopic) {            // Function to show/hide posts and titles based on the selected topic
         var allPosts = document.querySelectorAll('.subForumRow');
         allPosts.forEach(function(post) {
@@ -90,8 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 post.classList.remove('hidden');
             }
         });
-
-        
 
         var titleExists = document.querySelector('.subForumTitle');         // Function to create, and apply correct Title based on topic selected 
 
@@ -118,8 +99,6 @@ document.addEventListener("DOMContentLoaded", function() {
             whatToShow(topicSelect.value);
         }
     });
-
-    
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
             var allPosts = document.querySelectorAll('.subForumRow');
