@@ -50,15 +50,7 @@ def thank_you():
 @app.route('/profile')
 @login_required
 def profile():
-    validatedUser=True
-    user={  'fname' : 'John',
-            'lname' : 'Smith',
-            'email' : 'student1@uwa.com',
-            'position' : 'Undergraduate Student',
-            'study' : 'Computer Science',
-            'bio' : 'Attending UWA, studying a Bachelor of Science majoring in CompSci and a minor in French. No previous programming experience. Hobbies include hiking and knitting.'
-          }
-    return render_template("profile.html", user=user, validatedUser=validatedUser, title='Profile')
+    return render_template("profile.html", title='Profile')
 
 @app.route('/forum')
 @login_required
