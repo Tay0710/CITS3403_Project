@@ -36,7 +36,7 @@ def submit():
     description = request.form['description']
 
     # Create a new Questions object
-    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description, user_id=current_user.id)
+    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description, user_id=current_user.id, author=current_user)
 
     # Add the new object to the session
     db.session.add(question)
@@ -51,7 +51,9 @@ def thank_you():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template("profile.html", title='Profile')
+    posts=db.session.scalars(current_user.questions.select()).all()
+    comments=db.session.scalars(current_user.comments.select()).all()
+    return render_template("profile.html", title='Profile', posts=posts, comments=comments)
 
 @app.route('/forum')
 @login_required
@@ -100,7 +102,7 @@ def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
     if comment_text:
-        comment = Comments(comment_text=comment_text, post_id=post_id, user_id=current_user.id)
+        comment = Comments(comment_text=comment_text, post_id=post_id, user_id=current_user.id, author=current_user)
         db.session.add(comment)
         db.session.commit()
     return redirect(url_for('viewpost', post_id=post_id))

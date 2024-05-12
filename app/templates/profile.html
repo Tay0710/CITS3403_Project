@@ -41,6 +41,42 @@
             <td>{{ current_user.bio }}</td>
         </tr>
     </table>
+
+    <p>Here are your posts:</p>
+    
+    <div class="post-container">
+
+        {% for post in posts %}
+
+            <h1>{{ post.title }}</h1>
+            <div class="post-info">
+                <h3>{{ post.topic }} : {{ post.subtopic }}</h3>
+            </div>
+            <p><span class="bolded">Question: </span>{{ post.description }}</p>
+
+        {% endfor %}
+
+    </div>
+
+    
+    <p>Here are your comments:</p>
+
+    <div class="comments-container">
+        {% for comment in comments %}
+            <div class="comment">
+                <p>{{ comment.comment_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+
+
+
+
 </div>
 
 
