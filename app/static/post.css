@@ -8,15 +8,15 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  .forum-form label {
+.forum-form label {
     margin-top: 10px;
     font-weight: bold;
-  }
+}
   
-  .forum-form select,
-  .forum-form textarea {
+.forum-form select,
+.forum-form textarea {
     width: 100%;
     padding: 5px;
     margin-top: 7px;
@@ -24,14 +24,14 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
-  }
+}
   
-  .forum-form select {
+.forum-form select {
     margin: 10px;
     font-size: 100%;
-  }
+}
   
-  .forum-form input[type="submit"] {
+.forum-form input[type="submit"] {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #008080;
@@ -40,9 +40,9 @@
     border-radius: 3px;
     cursor: pointer;
     font-weight: bold;
-  }
+}
   
-  .forum-form input[type="submit"]:hover {
+.forum-form input[type="submit"]:hover {
     background-color: #006666;
-  }
+}
   

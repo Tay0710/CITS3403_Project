@@ -52,7 +52,7 @@
     
       <div class="subForumRow" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
 
-        <div class="subForumDescription subForumColumn">
+        <div class="post">
           <a class='post_title' href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
           <p>by <a href="{{ url_for('profile', username=post.author.username)  }}" class="boldInfoLink"> {{post.author.username}}</a>
             ({{ post.timestamp }})
