@@ -3,30 +3,41 @@
 {% block content %}
 
 <body>
-    <header>
-        <!-- Image in the header -->
-        <img src="https://brandslogos.com/wp-content/uploads/images/large/uwa-university-perth-logo.png" alt="University of Western Australia Logo" style="width: 200px;">
-        <h1>UWA Advisory</h1>
-        <div class="profile">
-            <p>Welcome, <a href="#">Your Name</a></p>
-        </div>
-    </header>
     <main>
-        <section id="forum">
-            <h2>Forum</h2>
-            <p>Engage with the UWA community by participating in discussions on various topics. Feel free to ask questions, share your experiences, and connect with other students and staff.</p>
-            <div class="topics">
-                <h3>Recent Topics</h3>
-                <ul>
-                    <li><a href="#">How to prepare for exams?</a></li>
-                    <li><a href="#">Best study spots on campus</a></li>
-                    <li><a href="#">Tips for managing stress during finals</a></li>
-                </ul>
+        <!-- Gallery of happy student photos -->
+        <div class="gallery-container">
+            <div class="gallery-slider">
+                <img class="gallery-image" src="https://icic.thu.edu.tw/upload/sitemap/University_Posters.jpg" alt="Group of Students">
+                <img class="gallery-image" src="https://storage.googleapis.com/gamecocksonline-com/2020/08/889dda65-wbs_stadium_fans_1600x600-1024x384.jpg" alt="Sport">
+                <img class="gallery-image" src="https://www.mecmining.com.au/wp-content/uploads/2020/10/shutterstock_646064452.jpg" alt="Internship">
+                <img class="gallery-image" src="https://www.geospatialworld.net/wp-content/uploads/2022/03/Brown-University-Engineering-Research-Center-1024x384.jpg" alt="Accomodation">
+                <img class="gallery-image" src="https://independentsector.org/wp-content/uploads/2022/03/Libraby-VFG-Featured-8-29-18-1024x384.jpg" alt="Library">
             </div>
+            <button class="prev-button" onclick="moveSlide(-1)">❮</button>
+            <button class="next-button" onclick="moveSlide(1)">❯</button>
+        </div>
+
+        <section id="forum">
+            <p class="intro">Welcome to StudiVault – Your Gateway to the University Community!</p>
+            <p>StudiVault is more than just a forum; it's your direct line to the vibrant UWA
+                community. Whether you're seeking answers, sharing insights, or connecting 
+                with peers and staff, StudiVault is the place to be. Engage in lively 
+                discussions, seek advice, and expand your knowledge through meaningful 
+                interactions.</p>
+            <p class="scroll">Please scroll down to LOG IN and ACCESS the StudiVault website!</p>
+            <div class="topics">
+                <p class="intro">Key Features</p>
+                <ul>
+                    <li><span>Create Your Profile:</span> Personalize your StudiVault experience by creating a profile that showcases your interests and expertise. Connect with like-minded individuals and establish your presence within the community.</li>
+                    <li><span>Share Your Voice:</span> Create and publish posts that resonate with you. Whether it's a question, a thought-provoking idea, or a helpful tip, your posts can spark engaging conversations and provide valuable insights to others.</li>
+                    <li><span>Explore and Discover:</span> Dive into the vast repository of discussions on various topics. Use the search feature to find posts that interest you or explore new threads to expand your horizons.</li>
+                    <li><span>Join the Conversation:</span> Comment on posts to share your perspective, offer advice, or simply show support. Your contributions can help others and foster a sense of community within StudiVault.</li>
+                </ul>
+            </div>    
         </section>
     </main>
 
-    <p>Please log in to view and post in the forum.</p>
+    <p class="intro">Please log in to view and post in the forum.</p>
 
 
     <form action="" method="post" novalidate>
