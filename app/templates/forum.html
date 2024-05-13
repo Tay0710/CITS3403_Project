@@ -52,29 +52,12 @@
     
       <div class="subForumRow" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
 
-      <div class="subForumIcon subForumColumn center">
-        <i class="fa fa-book"></i>
-      </div>
-
-
-      <div class="subForumDescription subForumColumn">
-          <div class = "Title">
-            <h2 class="Heading"><a href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a></h2>
-          </div>
-
+        <div class="post">
+          <a class='post_title' href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
+          <p>by <a href="{{ url_for('profile', username=post.author.username)  }}" class="boldInfoLink"> {{post.author.username}}</a>
+            ({{ post.timestamp }})
+          </p>
           <p class="descriptionText">{{ post.description }}</p>
-      </div>
-
-
-      <div class="subForumStats subForumColumn center">
-        <span> 24 posts </span>
-      </div>
-
-
-        <div class="subForumInfo subForumColumn">
-          <a href="" class="boldInfoLink">Last Post</a> by <a href="" class="boldInfoLink"> AUser</a>
-          <br>
-          <small>3 Apr 2024</small>
         </div>
       </div>
       {% endfor %}

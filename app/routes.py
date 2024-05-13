@@ -27,6 +27,7 @@ def home():
         return redirect(next_page)
     return render_template('home.html', title='Home', form=form)
 
+@login_required
 @app.route('/submit', methods=['POST'])
 def submit():
     topic = request.form['topic']
@@ -35,7 +36,7 @@ def submit():
     description = request.form['description']
 
     # Create a new Questions object
-    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description)
+    question = Questions(topic=topic, subtopic=subtopic, title=title, description=description, user_id=current_user.id, author=current_user)
 
     # Add the new object to the session
     db.session.add(question)
@@ -47,18 +48,13 @@ def submit():
 def thank_you():
     return render_template('thank_you.html')
 
-@app.route('/profile')
+@app.route('/profile/<username>')
 @login_required
-def profile():
-    validatedUser=True
-    user={  'fname' : 'John',
-            'lname' : 'Smith',
-            'email' : 'student1@uwa.com',
-            'position' : 'Undergraduate Student',
-            'study' : 'Computer Science',
-            'bio' : 'Attending UWA, studying a Bachelor of Science majoring in CompSci and a minor in French. No previous programming experience. Hobbies include hiking and knitting.'
-          }
-    return render_template("profile.html", user=user, validatedUser=validatedUser, title='Profile')
+def profile(username):
+    user = db.first_or_404(sa.select(User).where(User.username == username))
+    posts=db.session.scalars(user.questions.select()).all()
+    comments=db.session.scalars(user.comments.select()).all()
+    return render_template("profile.html", title='Profile', user=user, posts=posts, comments=comments)
 
 @app.route('/forum')
 @login_required
@@ -107,7 +103,7 @@ def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
     if comment_text:
-        comment = Comments(comment_text=comment_text, post_id=post_id)
+        comment = Comments(comment_text=comment_text, post_id=post_id, user_id=current_user.id, author=current_user)
         db.session.add(comment)
         db.session.commit()
     return redirect(url_for('viewpost', post_id=post_id))
