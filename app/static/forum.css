@@ -1,10 +1,9 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
-
 
 select {
     width: 100%;
@@ -16,18 +15,13 @@ select {
     box-sizing: border-box;
 }
 
-
 .subtitle {
     text-align: center;
 }
 
-
 .container {
     padding-bottom: 50px;
 }
-
-
-
 
 .selection-container {
     margin-top: 50px;
@@ -35,9 +29,6 @@ select {
     justify-content: space-between; /* Distribute items evenly along the main axis */
     align-items: center; /* Center items vertically */
 }
-
-
-
 
 .search-bar {
     display: flex; /* Use flexbox for layout */
@@ -57,17 +48,9 @@ select {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+.hidden {
+    display: none !important;
+}
 
 /* Adjust width for smaller screens */
 @media screen and (max-width: 768px) {
@@ -82,4 +65,15 @@ select {
         margin-right: 0; /* Reset margin for smaller screens */
         float: none; /* Reset float for smaller screens */
 }
+}
+
+.forum-form select,
+.forum-form textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
 }
