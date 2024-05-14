@@ -2,3 +2,4 @@ venv
 app.db
 *.pyc
 app/__pycache__
+__pycache__
