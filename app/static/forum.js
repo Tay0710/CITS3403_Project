@@ -101,18 +101,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
+        var selectedTopic = topicSelect.value;
+
+        if (selectedSubtopic == "All Subtopics") { 
+            whatToShow(selectedTopic);
+        } else {
             var allPosts = document.querySelectorAll('.subForumRow');
             allPosts.forEach(function(post) {
-            if (post.dataset.subtopic !== selectedSubtopic) {
-                post.classList.add('hidden');
-            } else {
-                post.classList.remove('hidden');
-            }
-            if (post.dataset.subtopic !== selectedSubtopic) {
-                post.classList.add('hidden');
-            } else {
-                post.classList.remove('hidden');
-            }
-    });
+                if (post.dataset.subtopic !== selectedSubtopic) {
+                    post.classList.add('hidden');
+                } else {
+                    post.classList.remove('hidden');
+                }
+            }); 
+        }
     }
 });
