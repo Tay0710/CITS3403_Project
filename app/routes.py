@@ -143,3 +143,4 @@ def delete_post(post_id):
     except:
         flash("There was a problem deleting the post. Try again.")
         return redirect(f"/profile/{current_user.username}")
+

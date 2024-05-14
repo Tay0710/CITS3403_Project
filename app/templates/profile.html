@@ -53,6 +53,8 @@
         </tr>
     </table>
 
+    {% if posts %}
+
     <div class="subForum">
         <div class="subForumTitle">
             <h2>{{ user.username }}'s Posts</h2>
@@ -73,6 +75,10 @@
 
     {% endfor %}
 
+    {% endif %}
+
+    {% if comments %}
+
     <div class="subForum">
         <div class="subForumTitle">
             <h2>{{ user.username }}'s Comments</h2>
@@ -88,6 +94,8 @@
             <p>{{ comment.timestamp }}</p>
         </div>
     {% endfor %}
+
+    {% endif %}
 
 </div>
 
