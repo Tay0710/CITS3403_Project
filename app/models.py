@@ -54,7 +54,7 @@ class Questions(db.Model):
     author: so.Mapped[User] = so.relationship(back_populates='questions')
 
     # Define the relationship with Comments
-    comments = relationship('Comments', backref='question')
+    comments = relationship('Comments', cascade='all,delete', backref='question')
     
     def __repr__(self):
         return '<Questions {}>'.format(self.title)
