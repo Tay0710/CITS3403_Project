@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var subtopicSelect = document.getElementById("subtopic");
     var subForumContainer = document.querySelector('.subForum')
     var subtopics = {
-        "General University Questions": ["Housing And Accomodation", "Campus Events", "Health and Wellnes", "Internships and Experiential Learning", "Financial Aid and Scholarships", "Student Organizations", "Technology and Resources", "Transportation and Parking"],
+        "General University Questions": ["Housing And Accommodation", "Campus Events", "Health and Wellness", "Internships and Experiential Learning", "Financial Aid and Scholarships", "Student Organizations", "Technology and Resources", "Transportation and Parking"],
         "University Courses": ["Mathematics", "Physics", "Literature", "Engineering", "Computer Science", "Business"],
     };
 
