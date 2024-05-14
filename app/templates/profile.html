@@ -62,6 +62,9 @@
     {% for post in posts %}
 
     <div class="post">
+        {% if current_user == user %}
+        <a href="/post/delete/{{post.post_id}}" class="btn active deleteBtn">Delete</a>
+        {% endif %}
         <a class='post_title' href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
         <p>{{ post.description }}</p>
@@ -78,12 +81,14 @@
 
     {% for comment in comments %}
         <div class="post">
+            {% if current_user == user %}
+            <a href="/comment/delete/{{comment.comment_id}}" class="btn active deleteBtn">Delete</a>
+            {% endif %}
             <p>{{ comment.comment_text }}</p>
             <p>{{ comment.timestamp }}</p>
         </div>
     {% endfor %}
 
 </div>
-
 
 {% endblock %}

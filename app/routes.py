@@ -119,3 +119,27 @@ def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
     title = 'ViewPost'  # Assigning the title here
     return render_template("viewpost.html", post=post, title=title)
+
+@app.route('/comment/delete/<int:comment_id>')
+def delete_comment(comment_id):
+    try: 
+        comment_to_delete = Comments.query.get_or_404(comment_id)
+        db.session.delete(comment_to_delete)
+        db.session.commit()
+        flash("Comment was successfully deleted.")
+        return redirect(f"/profile/{current_user.username}")
+    except:
+        flash("There was a problem deleting the comment. Try again.")
+        return redirect(f"/profile/{current_user.username}")
+    
+@app.route('/post/delete/<int:post_id>')
+def delete_post(post_id):
+    try: 
+        post_to_delete = Questions.query.get_or_404(post_id)
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        flash("Post was successfully deleted.")
+        return redirect(f"/profile/{current_user.username}")
+    except:
+        flash("There was a problem deleting the post. Try again.")
+        return redirect(f"/profile/{current_user.username}")
