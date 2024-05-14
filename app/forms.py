@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectField, TextAreaField, EmailField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
+import sqlalchemy as sa
 from app import db
 from app.models import User
 
@@ -11,10 +12,10 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log In')
 
 class CreateProfileForm(FlaskForm):
-    fname = StringField('First Name', validators=[DataRequired()])
-    lname = StringField('Last Name', validators=[DataRequired()])
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    fname = StringField('First Name', validators=[DataRequired(), Length(min=1, max=64)])
+    lname = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=64)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=1, max=64)])
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=1, max=120)])
     position = RadioField('Position', choices=[
         ('Undergraduate Student', 'Undergraduate Student'),
         ('Postgraduate Student', 'Postgraduate Student'),
@@ -87,7 +88,7 @@ class CreateProfileForm(FlaskForm):
         ('Urban and Regional Planning', 'Urban and Regional Planning'),
         ('Zoology', 'Zoology')
     ], validators=[DataRequired()])
-    bio = TextAreaField('Bio', validators=[DataRequired()])
+    bio = TextAreaField('Bio', validators=[DataRequired(),  Length(min=1, max=200)])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Create Profile')
