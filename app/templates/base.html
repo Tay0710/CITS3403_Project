@@ -4,9 +4,11 @@
   <header>
     <div class="topnav">
       <a href="{{ url_for('home')  }}" {% if request.path == "/" %} class="active" {% endif %}>Home</a>
+      {% if current_user.is_authenticated %}
       <a href="{{ url_for('forum')  }}" {% if request.path == "/forum" %} class="active" {% endif %}>Forum</a>
       <a href="{{ url_for('post')  }}" {% if request.path == "/post" %} class="active" {% endif %}>Post</a>
       <a href="{{ url_for('profile', username=current_user.username)  }}" {% if request.path == "/profile" %} class="active" {% endif %}>Profile</a>
+      {% endif %}
     </div>
   </header>
 
