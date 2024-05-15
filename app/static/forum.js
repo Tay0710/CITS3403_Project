@@ -122,6 +122,8 @@ document.addEventListener("DOMContentLoaded", function() {
         var searchText = searchInput.value.trim().toLowerCase();
         if (searchText !== '') {
             search(searchText);
+        } else {
+            window.location.href = '/forum'; // Link to the original forum page
         }
     });
 
@@ -143,27 +145,15 @@ function search(searchText) {
     });
 }
 
-// Modify this function to display the search results for both posts and comments
 function displaySearchResults(postResults, commentResults) {
     var subForumContainer = document.querySelector('.subForum');
     subForumContainer.innerHTML = '';
 
     // Display posts header
     var postHeader = document.createElement('h2');
-    postHeader.textContent = 'Posts';
+    postHeader.textContent = 'Matching Posts';
     postHeader.classList.add('section-header'); // Add class for styling
     subForumContainer.appendChild(postHeader);
-    
-    // Display post title
-    if (postResults.length > 0) {
-        var postTitle = document.createElement('h3');
-        postTitle.classList.add('post_title'); // Add class for styling
-        var postLink = document.createElement('a');
-        postLink.href = `/post/${postResults[0].post_id}`;
-        postLink.textContent = postResults[0].title;
-        postTitle.appendChild(postLink);
-        subForumContainer.appendChild(postTitle);
-    }
 
     // Display post results
     postResults.forEach(result => {
@@ -195,7 +185,7 @@ function displaySearchResults(postResults, commentResults) {
 
     // Display comments header
     var commentHeader = document.createElement('h2');
-    commentHeader.textContent = 'Comments';
+    commentHeader.textContent = 'Matching Comments';
     commentHeader.classList.add('section-header'); // Add class for styling
     subForumContainer.appendChild(commentHeader);
 
@@ -207,10 +197,11 @@ function displaySearchResults(postResults, commentResults) {
 
         var postContent = document.createElement('div');
         postContent.classList.add('post');
+
         var postLink = document.createElement('a');
         postLink.classList.add('post_title');
         postLink.href = `/post/${result.post_id}`;
-        postLink.textContent = result.title; // Display the title of the post
+        postLink.textContent = result.post_title;
         postContent.appendChild(postLink);
 
         // Add comment information
@@ -220,12 +211,12 @@ function displaySearchResults(postResults, commentResults) {
             <p><strong>Comment:</strong> ${result.comment_text}</p>
         `;
 
+        postContent.appendChild(postInfo); // Add comment information to postContent
+
         postRow.appendChild(postContent);
-        postRow.appendChild(postInfo);
         subForumContainer.appendChild(postRow);
     });
 }
 
-    
 });
 
