@@ -99,3 +99,17 @@ select {
         max-width: none; /* Reset max-width */
     }
 }
+
+@media screen and (max-width: 767px) {
+    .subtopic-selection,
+    .search-bar {
+        width: 100%;
+        margin-top: 10px; /* Adjust margin as needed */
+    }
+
+    .subtopic-selection select,
+    .search-bar input {
+        width: 100%;
+        max-width: none; /* Reset max-width */
+    }
+}
