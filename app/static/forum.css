@@ -33,6 +33,7 @@ select {
 .search-bar {
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
+
 }
 
 .search-bar input {
@@ -83,4 +84,18 @@ select {
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+    .subtopic-selection,
+    .search-bar {
+        width: 100%;
+        margin-top: 10px; /* Adjust margin as needed */
+    }
+
+    .subtopic-selection select,
+    .search-bar input {
+        width: 100%;
+        max-width: none; /* Reset max-width */
+    }
 }
