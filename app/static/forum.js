@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var subtopicSelect = document.getElementById("subtopic");
     var subForumContainer = document.querySelector('.subForum')
     var subtopics = {
-        "General University Questions": ["Housing And Accomodation", "Campus Events", "Health and Wellnes", "Internships and Experiential Learning", "Financial Aid and Scholarships", "Student Organizations", "Technology and Resources", "Transportation and Parking"],
-        "University Courses": ["Mathematics", "Physics", "Literature", "Engineering", "Computer Science", "Business"],
+        "General University Questions": ["Accommodation", "Campus Events", "Health and Wellness", "Internships", "Scholarships", "Student Clubs", "Technology and Resources", "Transportation and Parking"],
+        "University Courses": ["Mathematics", "Physics", "Literature", "Engineering", "ComputerScience", "Business"],
     };
 
     // Disable the subtopic select by default
