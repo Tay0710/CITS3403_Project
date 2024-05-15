@@ -116,26 +116,98 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     }
 
+    // No formatting but comment and post showing
     var searchInput = document.querySelector('.search-bar input');
     var searchButton = document.querySelector('.search-bar button');
-
+    
     searchButton.addEventListener('click', function() {
         var searchText = searchInput.value.trim().toLowerCase();
         if (searchText !== '') {
-            searchPosts(searchText);
+            search(searchText);
         }
     });
-
-    function searchPosts(searchText) {
-        var allPosts = document.querySelectorAll('.subForumRow');
-        allPosts.forEach(function(post) {
-            var title = post.querySelector('.post_title').textContent.toLowerCase();
-            var description = post.querySelector('.descriptionText').textContent.toLowerCase();
-            if (title.includes(searchText) || description.includes(searchText)) {
-                post.classList.remove('hidden');
-            } else {
-                post.classList.add('hidden');
-            }
+    
+    function search(searchText) {
+        fetch('/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ searchTerm: searchText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            displaySearchResults(data.posts, data.comments);
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     }
+    
+    function displaySearchResults(postResults, commentResults) {
+        var subForumContainer = document.querySelector('.subForum');
+        subForumContainer.innerHTML = '';
+    
+        // Display posts header
+        var postHeader = document.createElement('h2');
+        postHeader.textContent = 'Posts';
+        postHeader.classList.add('section-header'); // Add class for styling
+        subForumContainer.appendChild(postHeader);
+    
+        // Display post results
+        postResults.forEach(result => {
+            var postRow = document.createElement('div');
+            postRow.classList.add('subForumRow');
+            postRow.dataset.postId = result.post_id;
+    
+            var postContent = document.createElement('div');
+            postContent.classList.add('post');
+            var postLink = document.createElement('a');
+            postLink.classList.add('post_title');
+            postLink.href = `/post/${result.post_id}`;
+            postLink.textContent = result.title;
+            postContent.appendChild(postLink);
+    
+            // Add post information
+            var postInfo = document.createElement('div');
+            postInfo.innerHTML = `
+                <p><strong>User:</strong> ${result.username}</p>
+                <p><strong>Description:</strong> ${result.description}</p>
+            `;
+    
+            postRow.appendChild(postContent);
+            postRow.appendChild(postInfo);
+            subForumContainer.appendChild(postRow);
+        });
+    
+        // Display comments header
+        var commentHeader = document.createElement('h2');
+        commentHeader.textContent = 'Comments';
+        commentHeader.classList.add('section-header'); // Add class for styling
+        subForumContainer.appendChild(commentHeader);
+    
+        // Display comment results
+        commentResults.forEach(result => {
+            var postRow = document.createElement('div');
+            postRow.classList.add('subForumRow');
+            postRow.dataset.postId = result.post_id;
+    
+            var postContent = document.createElement('div');
+            postContent.classList.add('post');
+            postContent.innerHTML = `<p>${result.comment_text}</p>`;
+    
+            // Add comment information
+            var postInfo = document.createElement('div');
+            postInfo.innerHTML = `
+                <p><strong>User:</strong> ${result.username}</p>
+                <p><strong>Description:</strong> ${result.description}</p>
+            `;
+    
+            postRow.appendChild(postContent);
+            postRow.appendChild(postInfo);
+            subForumContainer.appendChild(postRow);
+        });
+    }
+    
+    
 });
