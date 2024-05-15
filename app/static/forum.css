@@ -24,7 +24,7 @@ select {
 }
 
 .selection-container {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Distribute items evenly along the main axis */
     align-items: center; /* Center items vertically */
@@ -39,14 +39,21 @@ select {
     margin-right: 10px; /* Add some spacing between input and button */
 }
 
-.degree-selection,
-.unit-selection,
+.search-bar,
+.subtopic-selection,
 .topic-selection {
     margin-left: 20px; /* Add margin between dropdown menus and search bar */
     width: calc(33.33% - 20px); /* Each dropdown menu takes one-third of the container minus some padding */
     border: none;
+    padding-bottom: 30px;
 }
 
+.welcome-text {
+    padding-bottom: 50px;
+    padding-top: 20px;
+    border: 10px double #008080;
+    margin-top: 10px;
+}
 
 .hidden {
     display: none !important;

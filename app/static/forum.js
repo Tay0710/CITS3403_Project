@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var subtopicSelect = document.getElementById("subtopic");
     var subForumContainer = document.querySelector('.subForum')
     var subtopics = {
-        "General University Questions": ["Housing And Accomodation", "Campus Events", "Health and Wellnes", "Internships and Experiential Learning", "Financial Aid and Scholarships", "Student Organizations", "Technology and Resources", "Transportation and Parking"],
-        "University Courses": ["Mathematics", "Physics", "Literature", "Engineering", "Computer Science", "Business"],
+        "General University Questions": ["Accommodation", "Campus Events", "Health and Wellness", "Internships", "Scholarships", "Student Clubs", "Technology and Resources", "Transportation and Parking"],
+        "University Courses": ["Mathematics", "Physics", "Literature", "Engineering", "ComputerScience", "Business"],
     };
 
     // Disable the subtopic select by default
@@ -101,18 +101,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
+        var selectedTopic = topicSelect.value;
+
+        if (selectedSubtopic == "All Subtopics") { 
+            whatToShow(selectedTopic);
+        } else {
             var allPosts = document.querySelectorAll('.subForumRow');
             allPosts.forEach(function(post) {
-            if (post.dataset.subtopic !== selectedSubtopic) {
-                post.classList.add('hidden');
-            } else {
-                post.classList.remove('hidden');
-            }
-            if (post.dataset.subtopic !== selectedSubtopic) {
-                post.classList.add('hidden');
-            } else {
-                post.classList.remove('hidden');
-            }
-    });
+                if (post.dataset.subtopic !== selectedSubtopic) {
+                    post.classList.add('hidden');
+                } else {
+                    post.classList.remove('hidden');
+                }
+            }); 
+        }
     }
 });
