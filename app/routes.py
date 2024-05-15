@@ -1,25 +1,21 @@
 from flask import render_template, request, url_for, redirect, flash, jsonify
 from urllib.parse import urlsplit
 import sqlite3
-from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, CreateProfileForm, EditProfileForm
 from flask_login import current_user, login_user
 import sqlalchemy as sa
 from app import app, db
 from app.models import User, Questions, Comments
-from flask_login import logout_user
-from flask_login import login_required
-from app.forms import CreateProfileForm
+from flask_login import logout_user, login_required
+
 
 @app.route('/', methods=['GET','POST'])
 def home():
-    #if current_user.is_authenticated:
-        #return redirect(url_for('forum'))
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
         if user is None or not user.check_password(form.password.data):
-            return redirect((url_for('home')))
+            return redirect("/#login")
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or urlsplit(next_page).netloc != '':
@@ -143,4 +139,26 @@ def delete_post(post_id):
     except:
         flash("There was a problem deleting the post. Try again.")
         return redirect(f"/profile/{current_user.username}")
-
+    
+@app.route('/editProfile', methods=['GET', 'POST'])
+def editProfile():
+    form = EditProfileForm(current_user.username, current_user.email)
+    if form.validate_on_submit():
+        current_user.fname = form.fname.data
+        current_user.lname = form.lname.data
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.position = form.position.data
+        current_user.study = form.study.data
+        current_user.bio = form.bio.data
+        db.session.commit()
+        return redirect(f"/profile/{current_user.username}")
+    elif request.method == 'GET':
+        form.fname.data = current_user.fname
+        form.lname.data = current_user.lname
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.position.data = current_user.position
+        form.study.data = current_user.study
+        form.bio.data = current_user.bio
+    return render_template("editProfile.html", title='Edit Profile', form=form)
