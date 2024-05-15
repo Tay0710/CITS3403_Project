@@ -7,6 +7,12 @@
 # NEXT STEP IS TO CONNECT IT TO THE HTML!! SHOULD PROBS COMMIT THIS
 # Make sure you've imported the table to routes.py and studiVault.py 
 
+# If databases already exist and you are adding columns
+# 1. Easiest to delete the app.db
+# 2. Make the head the latest migration
+# 3. flask db migrate
+#flask db init
+
 from datetime import datetime, timezone
 from typing import Optional
 import sqlalchemy as sa
