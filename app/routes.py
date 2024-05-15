@@ -117,10 +117,9 @@ def get_comments(post_id):
 @app.route('/post/<int:post_id>')
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
-    title = post.title  # Assigning the title here
+    title = 'ViewPost'  # Assigning the title here
     comments = Comments.query.filter_by(post_id=post_id).all()
     return render_template("viewpost.html", post=post, title=title, comments=comments)
-
 
 # No formatting but comment and post showing
 @app.route('/search', methods=['POST'])
@@ -128,7 +127,7 @@ def search():
     search_term = request.json.get('searchTerm', '')
     if not search_term:
         return jsonify({'error': 'Search term not provided'}), 400
-
+    
     # Query the database for posts and comments that contain the search term
     post_results = Questions.query.filter(
         (Questions.title.ilike(f'%{search_term}%')) |
@@ -147,6 +146,7 @@ def search():
     } for result in post_results]
 
     serialized_comment_results = [{
+        'post_id': result.post_id,
         'comment_id': result.comment_id,
         'comment_text': result.comment_text,
         'username': result.author.username,  # Include username
