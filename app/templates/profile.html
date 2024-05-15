@@ -5,10 +5,7 @@
 <div class="container">
 
     {% if current_user == user%}
-    <a href="{{ url_for('logout') }}">Log out</a>
-    <a href="{{ url_for('editProfile') }}">Edit Profile</a>
     <p>This is your profile.</p>
-
     {% else %}
     
     <p>Welcome to {{ user.username }}'s profile.</p>
@@ -53,6 +50,13 @@
             <td>{{ user.bio }}</td>
         </tr>
     </table>
+
+    {% if current_user == user%}
+    <a href="{{ url_for('logout') }}" class="btn active">Log out</a>
+    <a href="{{ url_for('editProfile') }}" class="btn active">Edit Profile</a>
+    <a href="{{ url_for('deleteUser', user_id=user.id) }}" class="btn active">Delete Account</a>
+
+    {% endif %}
 
     {% if posts %}
 

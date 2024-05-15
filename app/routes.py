@@ -7,6 +7,7 @@ import sqlalchemy as sa
 from app import app, db
 from app.models import User, Questions, Comments
 from flask_login import logout_user, login_required
+from sqlalchemy import delete
 
 
 @app.route('/', methods=['GET','POST'])
@@ -95,6 +96,7 @@ def logout():
     return redirect(url_for('home'))
 
 @app.route('/add_comment/<int:post_id>', methods=['POST'])
+@login_required
 def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
@@ -105,18 +107,49 @@ def add_comment(post_id):
     return redirect(url_for('viewpost', post_id=post_id))
 
 @app.route('/comments/<int:post_id>')
+@login_required
 def get_comments(post_id):
     post = Questions.query.get_or_404(post_id)
     comments = [comment.comment_text for comment in post.comments]
     return jsonify(comments)
 
 @app.route('/post/<int:post_id>')
+@login_required
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
     title = 'ViewPost'  # Assigning the title here
     return render_template("viewpost.html", post=post, title=title)
 
+@app.route('/deleteUser/<int:user_id>')
+@login_required
+def deleteUser(user_id):
+    if (user_id == current_user.id) :
+        #try: 
+            user_to_delete = User.query.get_or_404(user_id)
+            # logout_user()
+            db.session.delete(user_to_delete)
+
+            # delete user's posts and comments
+            posts=db.session.scalars(user_to_delete.questions.select()).all()
+            for post in posts :
+                db.session.delete(post)
+            comments=db.session.scalars(user_to_delete.comments.select()).all()
+            for comment in comments :
+                db.session.delete(comment)
+                
+            db.session.commit()
+            flash("Account was successfully deleted.")
+            return redirect(url_for("home"))
+        #except:
+            #flash("There was a problem deleting the account. Try again.")
+            #return redirect(f"/profile/{current_user.username}")
+
+    else :
+        flash("you can't delete someone else's stuff")
+        redirect(url_for(f"/profile/{current_user.username}"))
+
 @app.route('/comment/delete/<int:comment_id>')
+@login_required
 def delete_comment(comment_id):
     try: 
         comment_to_delete = Comments.query.get_or_404(comment_id)
@@ -129,6 +162,7 @@ def delete_comment(comment_id):
         return redirect(f"/profile/{current_user.username}")
     
 @app.route('/post/delete/<int:post_id>')
+@login_required
 def delete_post(post_id):
     try: 
         post_to_delete = Questions.query.get_or_404(post_id)
@@ -141,6 +175,7 @@ def delete_post(post_id):
         return redirect(f"/profile/{current_user.username}")
     
 @app.route('/editProfile', methods=['GET', 'POST'])
+@login_required
 def editProfile():
     form = EditProfileForm(current_user.username, current_user.email)
     if form.validate_on_submit():
