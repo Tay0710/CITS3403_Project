@@ -12,6 +12,16 @@ select {
     text-align: center;
 }
 
+.section-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #008080;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 96.5%;
+    margin: 0 auto;
+}
+
 .selection-container {
     margin-top: 50px;
     display: flex; /* Use flexbox for layout */
