@@ -255,6 +255,14 @@ footer {
   border-radius: 3px;
 }
 
+.section-header {
+  font-size: 24px; /* Large font size */
+  font-weight: bold; /* Bold text */
+  text-align: center; /* Centered text */
+  margin-top: 20px; /* Add some space above the headers */
+  margin-bottom: 10px; /* Add some space below the headers */
+}
+
 .search-container button {
   padding: 5px;
   background-color: transparent;
