@@ -115,4 +115,27 @@ document.addEventListener("DOMContentLoaded", function() {
             }
     });
     }
+
+    var searchInput = document.querySelector('.search-bar input');
+    var searchButton = document.querySelector('.search-bar button');
+
+    searchButton.addEventListener('click', function() {
+        var searchText = searchInput.value.trim().toLowerCase();
+        if (searchText !== '') {
+            searchPosts(searchText);
+        }
+    });
+
+    function searchPosts(searchText) {
+        var allPosts = document.querySelectorAll('.subForumRow');
+        allPosts.forEach(function(post) {
+            var title = post.querySelector('.post_title').textContent.toLowerCase();
+            var description = post.querySelector('.descriptionText').textContent.toLowerCase();
+            if (title.includes(searchText) || description.includes(searchText)) {
+                post.classList.remove('hidden');
+            } else {
+                post.classList.add('hidden');
+            }
+        });
+    }
 });
