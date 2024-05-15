@@ -121,7 +121,6 @@ def viewpost(post_id):
     comments = Comments.query.filter_by(post_id=post_id).all()
     return render_template("viewpost.html", post=post, title=title, comments=comments)
 
-# No formatting but comment and post showing
 @app.route('/search', methods=['POST'])
 def search():
     search_term = request.json.get('searchTerm', '')
