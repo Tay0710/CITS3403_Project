@@ -119,3 +119,20 @@ def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
     title = 'ViewPost'  # Assigning the title here
     return render_template("viewpost.html", post=post, title=title)
+
+@app.route('/search', methods=['POST'])
+def search():
+    search_term = request.json.get('searchTerm', '')
+    if not search_term:
+        return jsonify({'error': 'Search term not provided'}), 400
+    
+    # Query the database for posts that contain the search term in their title or description
+    results = Questions.query.filter(
+        (Questions.title.ilike(f'%{search_term}%')) |
+        (Questions.description.ilike(f'%{search_term}%'))
+    ).all()
+    
+    # Serialize the results
+    serialized_results = [{'post_id': result.post_id, 'title': result.title, 'description': result.description} for result in results]
+    
+    return jsonify({'results': serialized_results})
