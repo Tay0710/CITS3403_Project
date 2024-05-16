@@ -1,17 +1,16 @@
 from flask import render_template, request, url_for, redirect, flash, jsonify
 from urllib.parse import urlsplit
 import sqlite3
-from app import app
 from app.forms import LoginForm
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
-from app import app, db
+from app import db
 from app.models import User, Questions, Comments
-from flask_login import logout_user
-from flask_login import login_required
 from app.forms import CreateProfileForm
 
-@app.route('/', methods=['GET','POST'])
+from app.blueprints import main
+
+@main.route('/', methods=['GET','POST'])
 def home():
     #if current_user.is_authenticated:
         #return redirect(url_for('forum'))
@@ -19,16 +18,16 @@ def home():
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
         if user is None or not user.check_password(form.password.data):
-            return redirect((url_for('home')))
+            return redirect((url_for('main.home')))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or urlsplit(next_page).netloc != '':
-            next_page = url_for('forum')
+            next_page = url_for('main.forum')
         return redirect(next_page)
     return render_template('home.html', title='Home', form=form)
 
 @login_required
-@app.route('/submit', methods=['POST'])
+@main.route('/submit', methods=['POST'])
 def submit():
     topic = request.form['topic']
     subtopic = request.form['subtopic']
@@ -42,13 +41,13 @@ def submit():
     db.session.add(question)
     db.session.commit()
 
-    return redirect(url_for('thank_you'))
+    return redirect(url_for('main.thank_you'))
 
-@app.route('/thank-you')
+@main.route('/thank-you')
 def thank_you():
     return render_template('thank_you.html')
 
-@app.route('/profile/<username>')
+@main.route('/profile/<username>')
 @login_required
 def profile(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
@@ -56,7 +55,7 @@ def profile(username):
     comments=db.session.scalars(user.comments.select()).all()
     return render_template("profile.html", title='Profile', user=user, posts=posts, comments=comments)
 
-@app.route('/forum')
+@main.route('/forum')
 @login_required
 def forum():
     all_posts = Questions.query.all()
@@ -75,12 +74,12 @@ def forum():
     }
     return render_template("forum.html", title='Forum', all_posts=all_posts, grouped_posts=grouped_posts, topics=topics, subtopics=subtopics) 
 
-@app.route('/post')
+@main.route('/post')
 @login_required
 def post():
     return render_template("post.html", title='Post')
 
-@app.route('/createProfile', methods=['GET', 'POST'])
+@main.route('/createProfile', methods=['GET', 'POST'])
 def createProfile():
     form = CreateProfileForm()
     if form.validate_on_submit():
@@ -89,16 +88,16 @@ def createProfile():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     return render_template("createProfile.html", title='Create Profile', form=form)
 
-@app.route('/logout')
+@main.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
-@app.route('/add_comment/<int:post_id>', methods=['POST'])
+@main.route('/add_comment/<int:post_id>', methods=['POST'])
 def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
@@ -106,22 +105,22 @@ def add_comment(post_id):
         comment = Comments(comment_text=comment_text, post_id=post_id, user_id=current_user.id, author=current_user)
         db.session.add(comment)
         db.session.commit()
-    return redirect(url_for('viewpost', post_id=post_id))
+    return redirect(url_for('main.viewpost', post_id=post_id))
 
-@app.route('/comments/<int:post_id>')
+@main.route('/comments/<int:post_id>')
 def get_comments(post_id):
     post = Questions.query.get_or_404(post_id)
     comments = [comment.comment_text for comment in post.comments]
     return jsonify(comments)
 
-@app.route('/post/<int:post_id>')
+@main.route('/post/<int:post_id>')
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
     title = 'ViewPost'  # Assigning the title here
     comments = Comments.query.filter_by(post_id=post_id).all()
     return render_template("viewpost.html", post=post, title=title, comments=comments)
 
-@app.route('/search', methods=['POST'])
+@main.route('/search', methods=['POST'])
 def search():
     search_term = request.json.get('searchTerm', '')
     if not search_term:
