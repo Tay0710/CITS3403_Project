@@ -77,7 +77,7 @@
         <a class='post_title' href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
         <p>{{ post.description }}</p>
-        <p>({{ post.timestamp }})</p>
+        <p>({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
     </div>
 
     {% endfor %}
