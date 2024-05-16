@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             dropDownOptions(selectedTopic);
             PostsByFilter(selectedTopic, selectedSubtopic);
+            if (selectedSubtopic !== "" && selectedSubtopic !== "All Subtopics") {
+                updateTitle(selectedTopic, "");
+            }
         }
     });
 
