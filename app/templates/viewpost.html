@@ -6,21 +6,23 @@
     <div class="post-container">
         <h1>{{ post.title }}</h1>
         <div class="post-info">
-            <h3>{{ post.topic }} : {{ post.subtopic }}</h3>
+            <h3>{{ post.topic }} | {{ post.subtopic }}</h3>
         </div>
         <p><span class="bolded">Question: </span>{{ post.description }}</p>
     </div>
 
-    <div id="commentsTitle">
-        <h2>Comments</h2>
-    </div>
-    <div class="comments-container">
-        <div id="comments">
-            {% for comment in post.comments %}
-                <div class="comment">
-                    <p>{{ comment.comment_text }}</p>
-                </div>
-            {% endfor %}
+    <div class="comments-section">
+        <div id="commentsTitle">
+            <h2>Comments</h2>
+        </div>
+        <div class="comments-container">
+            <div id="comments">
+                {% for comment in post.comments %}
+                    <div class="comment">
+                        <p>{{ comment.comment_text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 

@@ -15,5 +15,11 @@
     flask db upgrade
 9. Enter a secret key of your choosing:
     export SECRET_KEY='asdhasjdhasjdh22e'
-10. Run the flask app using debug for easy refreshing
+10. Run the flask app using debug for easy refreshing:
     flask run --debug
+    OR 
+    Run the unittests:
+    python -m unittest tests/unit.py
+    OR
+    Run the Selenium tests:
+    python -m unittest tests/selenium.py

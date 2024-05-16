@@ -19,7 +19,7 @@
 
         <section id="forum">
             <p class="intro">Welcome to StudiVault – Your Gateway to the University Community!</p>
-            <p>StudiVault is more than just a forum; it's your direct line to the vibrant UWA
+            <p>StudiVault is more than just a forum; it's your direct line to the vibrant university
                 community. Whether you're seeking answers, sharing insights, or connecting 
                 with peers and staff, StudiVault is the place to be. Engage in lively 
                 discussions, seek advice, and expand your knowledge through meaningful 
@@ -43,14 +43,14 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
+            {{ form.username.label }}:<br>
             {{ form.username(size=32) }}
             {% for error in form.username.errors %}
             <br><span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}<br>
+            {{ form.password.label }}:<br>
             {{ form.password(size=32) }}
             {% for error in form.password.errors %}
             <br><span style="color: red;">[{{ error }}]</span>
@@ -60,7 +60,7 @@
         <p>{{ form.submit() }}</p>
     </form>
 
-    <p>Don't have an account? <a href="{{ url_for('createProfile') }}">Create profile.</a></p>
+    <p>Don't have an account? <a href="{{ url_for('main.createProfile') }}">Create profile.</a></p>
 
 </body>
 
