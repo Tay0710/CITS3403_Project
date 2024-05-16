@@ -25,6 +25,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
+        var selectedSubtopic = subtopicSelect.value;
+        var selectedTopic = topicSelect.value;
+        if (selectedSubtopic !== "") {
+            filterBySubtopic(selectedSubtopic);
+        } else {
+            whatToShow(selectedTopic);
+        }
+    });
+
     function dropDownOptions(selectedTopic) {           // Function about topic to subtopic filter behaviours
         // Clear existing options
         subtopicSelect.innerHTML = "";
@@ -99,15 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
     whatToShow(topicSelect.value, subtopicSelect.value)           //Show the title initially 
 
 
-    subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
-        var selectedSubtopic = subtopicSelect.value;
-        var selectedTopic = topicSelect.value;
-        if (selectedSubtopic !== "") {
-            filterBySubtopic(selectedSubtopic);
-        } else {
-            whatToShow(selectedTopic);
-        }
-    });
+    
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
         var selectedTopic = topicSelect.value;
