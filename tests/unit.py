@@ -64,3 +64,40 @@ class TestUserModel(TestCase):
         self.assertEqual(retrieved_user.study, 'Computer Science')
         self.assertEqual(retrieved_user.bio, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
 
+# Unit Test Case 3: Test validates login form contains necessary fields (Username, Password, Remember Me) and their labels.
+class TestLoginFormFields(TestCase):
+
+    def setUp(self):
+        self.app = create_app(TestConfig)
+        self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+    def test_login_form_fields(self):
+        # Create a user
+        user = User(
+            username='test_user',
+            fname='John',
+            lname='Doe',
+            email='test@example.com',
+            position='Undergraduate Student',
+            study='Computer Science',
+            bio='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        # Load the login page
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+        # Check if the form contains the necessary fields and labels
+        self.assertIn(b'Username', response.data)
+        self.assertIn(b'Password', response.data)
+        self.assertIn(b'Remember Me', response.data)
