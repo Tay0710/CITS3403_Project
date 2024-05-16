@@ -139,15 +139,13 @@ def deleteUser(user_id):
                 db.session.delete(comment)
 
             db.session.commit()
-            flash("Account was successfully deleted.")
             return redirect(url_for("home"))
         except:
-            flash("There was a problem deleting the account. Try again.")
-            return redirect(f"/profile/{current_user.username}")
+            flash("Account could not be deleted. Try again.", 'error')
+            return redirect(url_for("profile", username=current_user.username))
 
     else :
-        flash("You can't delete someone else's accounts")
-        redirect(url_for(f"/profile/{current_user.username}"))
+        redirect(url_for("profile", username=current_user.username))
 
 @app.route('/comment/delete/<int:comment_id>')
 @login_required
@@ -157,14 +155,13 @@ def delete_comment(comment_id):
         if (comment_to_delete.user_id == current_user.id) :
             db.session.delete(comment_to_delete)
             db.session.commit()
-            flash("Comment was successfully deleted.")
-            return redirect(f"/profile/{current_user.username}")
+            flash("Comment deleted.", 'success')
+            return redirect(url_for("profile", username=current_user.username))
         else :
-            flash("You can't delete someone else's comments.")
-            return redirect(f"/profile/{current_user.username}")
+            return redirect(url_for("profile", username=current_user.username))
     except:
-        flash("There was a problem deleting the comment. Try again.")
-        return redirect(f"/profile/{current_user.username}")
+        flash("Comment could not be deleted. Try again.", 'error')
+        return redirect(url_for("profile", username=current_user.username))
     
 @app.route('/post/delete/<int:post_id>')
 @login_required
@@ -174,14 +171,13 @@ def delete_post(post_id):
         if (post_to_delete.user_id == current_user.id) :
             db.session.delete(post_to_delete)
             db.session.commit()
-            flash("Post was successfully deleted.")
-            return redirect(f"/profile/{current_user.username}")
+            flash("Post deleted.", 'success')
+            return redirect(url_for("profile", username=current_user.username))
         else :
-            flash("You can't delete someone else's posts.")
-            return redirect(f"/profile/{current_user.username}")            
+            return redirect(url_for("profile", username=current_user.username))            
     except:
-        flash("There was a problem deleting the post. Try again.")
-        return redirect(f"/profile/{current_user.username}")
+        flash("Post could not be deleted. Try again.", 'error')
+        return redirect(url_for("profile", username=current_user.username))
 
 @app.route('/post/edit/<int:post_id>', methods=['POST'])
 @login_required
@@ -191,14 +187,13 @@ def editPost(post_id):
         if (post_to_edit.user_id == current_user.id) :
             post_to_edit.description = request.form["newPostDescription"] + " [Edited]"
             db.session.commit()
-            flash("Post edited successfully")
-            return redirect(f"/profile/{current_user.username}")
+            flash("Post edited.", 'success')
+            return redirect(url_for("profile", username=current_user.username))
         else:
-            flash("You can't edit someone else's post.")
-            return redirect(f"/profile/{current_user.username}") 
+            return redirect(url_for("profile", username=current_user.username)) 
     except :
-        flash("There was a problem editing the post. Try again.")
-        return  redirect(f"/profile/{current_user.username}")
+        flash("Post could not be deleted. Try again.", 'error')
+        return  redirect(url_for("profile", username=current_user.username))
     
 @app.route('/editProfile', methods=['GET', 'POST'])
 @login_required
@@ -215,7 +210,8 @@ def editProfile():
         current_user.study = form.study.data
         current_user.bio = form.bio.data
         db.session.commit()
-        return redirect(f"/profile/{current_user.username}")
+        flash("Profile updated.", 'success')
+        return redirect(url_for("profile", username=current_user.username))
     
     # if request is to get the editProfile form (with current details filled in)
     elif request.method == 'GET':
