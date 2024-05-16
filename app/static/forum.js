@@ -15,12 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
     topicSelect.addEventListener("change", function() {     // Function to update subtopic dropdown menu based on the selected topic  
         
         var selectedTopic = topicSelect.value;
+        var selectedSubtopic = subtopicSelect.value;
 
         if (selectedTopic == "") {
             showAllPosts();
         } else {
             dropDownOptions(selectedTopic);
-            whatToShow(selectedTopic)
+            whatToShow(selectedTopic, selectedSubtopic);
         }
     });
 
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function whatToShow(selectedTopic) {            // Function to show/hide posts and titles based on the selected topic
+    function whatToShow(selectedTopic, selectedSubtopic) {            // Function to show/hide posts and titles based on the selected topic
         var allPosts = document.querySelectorAll('.subForumRow');
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
@@ -74,29 +75,37 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        var titleText;
+        if (selectedSubtopic && selectedSubtopic !== "All Subtopics") {
+            titleText = selectedTopic + " - " + selectedSubtopic;
+        } else {
+            titleText = selectedTopic
+        }
+
         var titleExists = document.querySelector('.subForumTitle');         // Function to create, and apply correct Title based on topic selected 
 
         if (!titleExists) {
             var subForumTitle = document.createElement('div');
             subForumTitle.classList.add('subForumTitle');
-            var titleText = document.createElement('h2');
-            titleText.textContent = selectedTopic;
-            subForumTitle.appendChild(titleText);
+            var titleElement = document.createElement('h2');
+            titleElement.textContent = titleText;
+            subForumTitle.appendChild(titleElement);
             subForumContainer.prepend(subForumTitle);
         } else {
-            titleExists.querySelector('h2').textContent = selectedTopic;
+            titleExists.querySelector('h2').textContent = titleText;
         }
 
     }    
-    whatToShow(topicSelect.value)           //Show the title initially 
+    whatToShow(topicSelect.value, subtopicSelect.value)           //Show the title initially 
 
 
     subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
         var selectedSubtopic = subtopicSelect.value;
+        var selectedTopic = topicSelect.value;
         if (selectedSubtopic !== "") {
             filterBySubtopic(selectedSubtopic);
         } else {
-            whatToShow(topicSelect.value);
+            whatToShow(selectedTopic);
         }
     });
 
