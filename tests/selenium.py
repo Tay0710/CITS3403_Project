@@ -2,9 +2,11 @@ import multiprocessing
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from unittest import TestCase
 
-from app.models import User, Questions
+from app.models import User, Questions, Comments
 from app import create_app, db
 from config import TestConfig
 from werkzeug.security import generate_password_hash
@@ -158,3 +160,80 @@ class SeleniumTestAddPost(TestCase):
         # Check if the post was added to the database
         post = Questions.query.filter_by(title='Test Post Title').first()
         self.assertIsNotNone(post)
+
+# Selenium Test Case 4: Test checks if a comment is successfully added to a post in the database
+class SeleniumTestAddComment(TestCase):
+    def setUp(self):
+        self.testApp = create_app(TestConfig)
+        self.app_context = self.testApp.app_context()
+        self.app_context.push()
+        db.create_all()
+        
+        # Create a test user with hashed password
+        hashed_password = generate_password_hash('hashed_password')
+        test_user = User(
+            username='test_user',
+            fname='John',
+            lname='Doe',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Developer',
+            study='Computer Science',
+            bio='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        )
+        
+        db.session.add(test_user)
+
+        # Create a test post
+        test_post = Questions(
+            topic='Test Topic',
+            subtopic='Test Subtopic',
+            title='Test Post Title',
+            description='Test Post Description',
+            user_id=test_user.id,
+            author=test_user
+        )
+        db.session.add(test_post)
+        db.session.commit()
+
+        self.server_process = multiprocessing.Process(target=self.testApp.run)
+        self.server_process.start()
+
+        self.driver = webdriver.Chrome()
+        self.driver.get(localHost)
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+        self.server_process.terminate()
+        self.driver.close()
+
+    def test_add_comment(self):
+        # Log in as test user
+        self.driver.find_element(By.NAME, 'username').send_keys('test_user')
+        self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
+        self.driver.find_element(By.NAME, 'submit').click()
+
+        # Wait for the page to load
+        time.sleep(5)  # Adjust the delay as needed
+
+        # Navigate to the post page
+        self.driver.get(localHost + 'post/1')  # Assuming the post ID is 1
+
+        # Fill in the comment form
+        comment_input = self.driver.find_element(By.NAME, 'comment_text')
+        comment_input.send_keys('Test Comment Text')
+
+        # Submit the form
+        self.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+        
+        # Wait for the comment to be added to the page
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, f'//div[@class="comment" and p="Test Comment Text"]'))
+        )
+
+        # Check if the comment was added to the database
+        comment = Comments.query.filter_by(comment_text='Test Comment Text').first()
+        self.assertIsNotNone(comment)
