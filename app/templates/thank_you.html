@@ -6,8 +6,8 @@
 <div class="container">
     <h1>Thank you for your submission!</h1>
     <p>Your question has been submitted successfully.</p>
-    <p>Check out our <a href="/forum">forum</a> page to see other questions or create a new <a href="/post">post.</p>
-    <p>You can also view any posts you have made through your <a href="/profile"> profile.</p>
+    <p>Check out our <a href="{{ url_for('forum')  }}">forum</a> page to see other questions or create a new <a href="{{ url_for('post')  }}">post</a>.</p>
+    <p>You can also view any posts you have made through your <a href="{{ url_for('profile', username=current_user.username)  }}">profile</a>.</p>
 </div>
 
 {% endblock %}
