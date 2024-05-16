@@ -376,6 +376,7 @@ class SeleniumTestLogout(TestCase):
         # Assert that the URL contains '/login', indicating successful logout
         self.assertIn('/', self.driver.current_url)
 
+ # Selenium Test Case 7: Test ensures upon registration of user, the user is redirected to the home page to login.
 class SeleniumTestUserRegistration(TestCase):
     def setUp(self):
         self.testApp = create_app(TestConfig)
@@ -420,7 +421,7 @@ class SeleniumTestUserRegistration(TestCase):
         # Scroll to the bottom of the page
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-        # Pause for 3 seconds
+        # Wait for the page to load
         time.sleep(3)
 
         # Click the submit button
