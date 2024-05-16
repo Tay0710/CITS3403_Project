@@ -376,3 +376,60 @@ class SeleniumTestLogout(TestCase):
         # Assert that the URL contains '/login', indicating successful logout
         self.assertIn('/', self.driver.current_url)
 
+class SeleniumTestUserRegistration(TestCase):
+    def setUp(self):
+        self.testApp = create_app(TestConfig)
+        self.app_context = self.testApp.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        self.server_process = multiprocessing.Process(target=self.testApp.run)
+        self.server_process.start()
+
+        self.driver = webdriver.Chrome()
+        self.driver.get(localHost)
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+        self.server_process.terminate()
+        self.driver.close()
+
+    def test_user_registration(self):
+        # Wait for the create profile link to be visible
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/createProfile']"))
+        )
+
+        # Click on the create profile link
+        self.driver.find_element(By.XPATH, "//a[@href='/createProfile']").click()
+
+        # Fill in the registration form with valid data
+        self.driver.find_element(By.NAME, 'fname').send_keys('John')
+        self.driver.find_element(By.NAME, 'lname').send_keys('Doe')
+        self.driver.find_element(By.NAME, 'username').send_keys('test_user')
+        self.driver.find_element(By.NAME, 'email').send_keys('test@example.com')
+        self.driver.find_element(By.NAME, 'position').send_keys('Undergraduate Student')
+        self.driver.find_element(By.NAME, 'study').send_keys('Computer Science')
+        self.driver.find_element(By.NAME, 'bio').send_keys('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+        self.driver.find_element(By.NAME, 'password').send_keys('test_password')
+        self.driver.find_element(By.NAME, 'password2').send_keys('test_password')
+
+        # Scroll to the bottom of the page
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+        # Pause for 3 seconds
+        time.sleep(3)
+
+        # Click the submit button
+        self.driver.find_element(By.ID, 'submit').click()
+    
+        # Wait for the page to redirect to the login page
+        WebDriverWait(self.driver, 10).until(
+            EC.url_contains('/')
+        )
+
+        # Assert that the URL contains '/', indicating successful registration and redirection to the login page
+        self.assertIn('/', self.driver.current_url)
