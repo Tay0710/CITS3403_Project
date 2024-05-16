@@ -315,3 +315,64 @@ class SeleniumTestSearchBar(TestCase):
         self.assertTrue(any('Test Post' in result.text for result in search_results))
 
 
+ # Selenium Test Case 6: Test ensures that after clicking the logout button, the user is redirected to the login page.
+class SeleniumTestLogout(TestCase):
+    def setUp(self):
+        self.testApp = create_app(TestConfig)
+        self.app_context = self.testApp.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        # Create a test user with hashed password
+        hashed_password = generate_password_hash('hashed_password')
+        test_user = User(
+            username='test_user',
+            fname='John',
+            lname='Doe',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Developer',
+            study='Computer Science',
+            bio='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        )
+
+        db.session.add(test_user)
+        db.session.commit()
+
+        self.server_process = multiprocessing.Process(target=self.testApp.run)
+        self.server_process.start()
+
+        self.driver = webdriver.Chrome()
+        self.driver.get(localHost)
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+        self.server_process.terminate()
+        self.driver.close()
+
+    def test_logout(self):
+        # Fill in the login form
+        self.driver.find_element(By.NAME, 'username').send_keys('test_user')
+        self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
+        self.driver.find_element(By.NAME, 'submit').click()
+
+        # Wait for the page to load
+        time.sleep(3)
+
+        # Navigate to the profile page
+        self.driver.get(localHost + 'profile/test_user')
+
+        # Click on the logout link
+        self.driver.find_element(By.LINK_TEXT, 'Log out').click()
+
+        # Wait for the page to redirect to the login page
+        WebDriverWait(self.driver, 10).until(
+            EC.url_contains('/')
+        )
+
+        # Assert that the URL contains '/login', indicating successful logout
+        self.assertIn('/', self.driver.current_url)
+
