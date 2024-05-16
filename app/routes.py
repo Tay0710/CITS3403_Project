@@ -120,13 +120,14 @@ def viewpost(post_id):
     title = 'ViewPost'  # Assigning the title here
     return render_template("viewpost.html", post=post, title=title)
 
+
 @app.route('/deleteUser/<int:user_id>')
 @login_required
 def deleteUser(user_id):
     if (user_id == current_user.id) :
-        #try: 
+        try: 
             user_to_delete = User.query.get_or_404(user_id)
-            # logout_user()
+            logout_user()
             db.session.delete(user_to_delete)
 
             # delete user's posts and comments
@@ -136,16 +137,16 @@ def deleteUser(user_id):
             comments=db.session.scalars(user_to_delete.comments.select()).all()
             for comment in comments :
                 db.session.delete(comment)
-                
+
             db.session.commit()
             flash("Account was successfully deleted.")
             return redirect(url_for("home"))
-        #except:
-            #flash("There was a problem deleting the account. Try again.")
-            #return redirect(f"/profile/{current_user.username}")
+        except:
+            flash("There was a problem deleting the account. Try again.")
+            return redirect(f"/profile/{current_user.username}")
 
     else :
-        flash("you can't delete someone else's stuff")
+        flash("You can't delete someone else's accounts")
         redirect(url_for(f"/profile/{current_user.username}"))
 
 @app.route('/comment/delete/<int:comment_id>')
@@ -153,10 +154,14 @@ def deleteUser(user_id):
 def delete_comment(comment_id):
     try: 
         comment_to_delete = Comments.query.get_or_404(comment_id)
-        db.session.delete(comment_to_delete)
-        db.session.commit()
-        flash("Comment was successfully deleted.")
-        return redirect(f"/profile/{current_user.username}")
+        if (comment_to_delete.user_id == current_user.id) :
+            db.session.delete(comment_to_delete)
+            db.session.commit()
+            flash("Comment was successfully deleted.")
+            return redirect(f"/profile/{current_user.username}")
+        else :
+            flash("You can't delete someone else's comments.")
+            return redirect(f"/profile/{current_user.username}")
     except:
         flash("There was a problem deleting the comment. Try again.")
         return redirect(f"/profile/{current_user.username}")
@@ -166,18 +171,41 @@ def delete_comment(comment_id):
 def delete_post(post_id):
     try: 
         post_to_delete = Questions.query.get_or_404(post_id)
-        db.session.delete(post_to_delete)
-        db.session.commit()
-        flash("Post was successfully deleted.")
-        return redirect(f"/profile/{current_user.username}")
+        if (post_to_delete.user_id == current_user.id) :
+            db.session.delete(post_to_delete)
+            db.session.commit()
+            flash("Post was successfully deleted.")
+            return redirect(f"/profile/{current_user.username}")
+        else :
+            flash("You can't delete someone else's posts.")
+            return redirect(f"/profile/{current_user.username}")            
     except:
         flash("There was a problem deleting the post. Try again.")
         return redirect(f"/profile/{current_user.username}")
+
+@app.route('/post/edit/<int:post_id>', methods=['POST'])
+@login_required
+def editPost(post_id):
+    try :
+        post_to_edit = Questions.query.get_or_404(post_id)
+        if (post_to_edit.user_id == current_user.id) :
+            post_to_edit.description = request.form["newPostDescription"] + " [Edited]"
+            db.session.commit()
+            flash("Post edited successfully")
+            return redirect(f"/profile/{current_user.username}")
+        else:
+            flash("You can't edit someone else's post.")
+            return redirect(f"/profile/{current_user.username}") 
+    except :
+        flash("There was a problem editing the post. Try again.")
+        return  redirect(f"/profile/{current_user.username}")
     
 @app.route('/editProfile', methods=['GET', 'POST'])
 @login_required
 def editProfile():
     form = EditProfileForm(current_user.username, current_user.email)
+
+    # if request is to submit the editProfile form
     if form.validate_on_submit():
         current_user.fname = form.fname.data
         current_user.lname = form.lname.data
@@ -188,6 +216,8 @@ def editProfile():
         current_user.bio = form.bio.data
         db.session.commit()
         return redirect(f"/profile/{current_user.username}")
+    
+    # if request is to get the editProfile form (with current details filled in)
     elif request.method == 'GET':
         form.fname.data = current_user.fname
         form.lname.data = current_user.lname

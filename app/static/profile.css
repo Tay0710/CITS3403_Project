@@ -6,3 +6,12 @@
 .deleteBtn {
     float: right;
 }
+
+.editPostBtn {
+    float: right;
+    font-style: italic;
+}
+
+.editPostTextArea {
+    color : black;
+}
