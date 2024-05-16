@@ -2,17 +2,19 @@
 
 {% block content %}
 
+<div class="welcome-text">
 <!--Just that section of wording-->
 <h1>Welcome to the StudiVault Forum!</h1>
-<h2 class="subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+<h2 class = "subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+</div>
 
-<div class="selection-container">
-    <!-- Dropdown menu for degrees -->
-    <div class="topic-selection">
-        <h1>Topics</h1>
-        <label for="topics">Select a Topic</label>
-        <select id="topics">
-            {% for topic in grouped_posts.keys() %}
+<div class = "selection-container">
+  <!-- Dropdown menu for degrees -->
+  <div class="topic-selection">
+      <h1>Topics</h1>
+      <label for="topics">Select a Topic</label>
+      <select id="topics">
+          {% for topic in grouped_posts.keys() %}
             <option value="{{ topic }}">{{ topic }}</option>
             {% endfor %}
             <!-- Add degree options here -->

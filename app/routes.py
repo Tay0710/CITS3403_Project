@@ -7,6 +7,7 @@ import sqlalchemy as sa
 from app import db
 from app.models import User, Questions, Comments
 from app.forms import CreateProfileForm
+from sqlalchemy import desc
 
 from app.blueprints import main
 
@@ -58,7 +59,7 @@ def profile(username):
 @main.route('/forum')
 @login_required
 def forum():
-    all_posts = Questions.query.all()
+    all_posts = Questions.query.order_by(desc(Questions.timestamp)).all()
     posts_with_topics = [(post, post.topic, post.subtopic) for post in all_posts]   #List of tuples
     
     grouped_posts = {"All Topics": all_posts}       #Default grouping of all posts 
