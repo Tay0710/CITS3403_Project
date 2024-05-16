@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     subtopicSelect.disabled = true; 
         
 
-    
     topicSelect.addEventListener("change", function() {     // Function to update subtopic dropdown menu based on the selected topic  
-        
         var selectedTopic = topicSelect.value;
         var selectedSubtopic = subtopicSelect.value;
 
@@ -28,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+
     subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
         var selectedSubtopic = subtopicSelect.value;
         var selectedTopic = topicSelect.value;
@@ -39,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    
     function dropDownOptions(selectedTopic) {           // Function about topic to subtopic filter behaviours
-        // Clear existing options
-        subtopicSelect.innerHTML = "";
+        subtopicSelect.innerHTML = "";      // Clear existing options
         subtopicSelect.disabled = true;
 
         if (selectedTopic !== "" && subtopics[selectedTopic]) {        // If a valid topic is selected, populate subtopic options
@@ -60,13 +59,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function showAllPosts() {               // Function to show all posts without grouping 
 
+    function showAllPosts() {               // Function to show all posts without grouping 
         var allPosts = document.querySelectorAll('.subForumRow');           // Remove 'hidden' css to reveal all posts
             allPosts.forEach(function(post) {
                 post.classList.remove('hidden');
         });
-
 
         if (topicSelect.value !== "All Topics") {           // Apply 'hidden' to all posts that are not the selected topic 
             var groupedPosts = document.querySelectorAll('.subForumRow[data-topic]');
@@ -79,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function PostsByFilter(selectedTopic, selectedSubtopic) {            // Function to show/hide posts and titles based on the selected topic
+
+    function PostsByFilter(selectedTopic, selectedSubtopic) {            // Function to show/hide posts based on the selected topic
         var allPosts = document.querySelectorAll('.subForumRow');
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
@@ -88,10 +87,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 post.classList.remove('hidden');
             }
         });
-        updateTitle(selectedTopic, selectedSubtopic);
+        updateTitle(selectedTopic, selectedSubtopic);       //Display the correct Title for selected Topic
     }
 
-    function updateTitle(selectedTopic, selectedSubtopic) {
+
+    function updateTitle(selectedTopic, selectedSubtopic) {     //Function to apply correct title additions based on subtopic
         var titleText;
         if (selectedSubtopic && selectedSubtopic !== "All Subtopics") {
             titleText = selectedTopic + " - " + selectedSubtopic;
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
             titleText = selectedTopic
         }
 
-        var titleExists = document.querySelector('.subForumTitle');         // Function to create, and apply correct Title based on topic selected 
+        var titleExists = document.querySelector('.subForumTitle');         
 
         if (!titleExists) {
             var subForumTitle = document.createElement('div');
@@ -111,12 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             titleExists.querySelector('h2').textContent = titleText;
         }
-
     }    
     updateTitle(topicSelect.value, subtopicSelect.value)           //Show the title initially 
 
-
-    
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
         var selectedTopic = topicSelect.value;
