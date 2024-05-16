@@ -185,7 +185,7 @@ def editPost(post_id):
     try :
         post_to_edit = Questions.query.get_or_404(post_id)
         if (post_to_edit.user_id == current_user.id) :
-            post_to_edit.description = request.form["newPostDescription"] + " [Edited]"
+            post_to_edit.description = request.form["newPostDescription"]
             db.session.commit()
             flash("Post edited.", 'success')
             return redirect(url_for("profile", username=current_user.username))
