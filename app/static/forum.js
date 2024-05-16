@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showAllPosts();
         } else {
             dropDownOptions(selectedTopic);
-            whatToShow(selectedTopic, selectedSubtopic);
+            PostsByFilter(selectedTopic, selectedSubtopic);
         }
     });
 
@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
         var selectedTopic = topicSelect.value;
         if (selectedSubtopic !== "") {
             filterBySubtopic(selectedSubtopic);
+            updateTitle(selectedTopic, selectedSubtopic);
         } else {
-            whatToShow(selectedTopic);
+            PostsByFilter(selectedTopic);
         }
     });
 
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function whatToShow(selectedTopic, selectedSubtopic) {            // Function to show/hide posts and titles based on the selected topic
+    function PostsByFilter(selectedTopic, selectedSubtopic) {            // Function to show/hide posts and titles based on the selected topic
         var allPosts = document.querySelectorAll('.subForumRow');
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
@@ -84,7 +85,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 post.classList.remove('hidden');
             }
         });
+        updateTitle(selectedTopic, selectedSubtopic);
+    }
 
+    function updateTitle(selectedTopic, selectedSubtopic) {
         var titleText;
         if (selectedSubtopic && selectedSubtopic !== "All Subtopics") {
             titleText = selectedTopic + " - " + selectedSubtopic;
@@ -106,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }    
-    whatToShow(topicSelect.value, subtopicSelect.value)           //Show the title initially 
+    updateTitle(topicSelect.value, subtopicSelect.value)           //Show the title initially 
 
 
     
