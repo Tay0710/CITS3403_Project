@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var selectedTopic = topicSelect.value;
 
         if (selectedSubtopic == "All Subtopics") { 
-            whatToShow(selectedTopic);
+            PostsByFilter(selectedTopic);
         } else {
             var allPosts = document.querySelectorAll('.subForumRow');
             allPosts.forEach(function(post) {
