@@ -27,11 +27,13 @@ select {
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Distribute items evenly along the main axis */
     align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* ensure items wrap on smaller screens */
 }
 
 .search-bar {
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
+
 }
 
 .search-bar input {

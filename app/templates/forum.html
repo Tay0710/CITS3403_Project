@@ -47,7 +47,7 @@
     <div class="subForum">
         <!-- New Sub/chain -->
         {% for post in grouped_posts['All Topics'] %}
-        <div class="subForumRow" data-postId="{{ post.post_id }}">
+        <div class="subForumRow" data-postId="{{ post.post_id }}" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
             <!-- Post content here -->
             <div class="post">
                 <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
