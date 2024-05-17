@@ -4,10 +4,34 @@
 
 <div class="container">
 
-    {% if current_user == user%}
-    <a href="{{ url_for('main.logout') }}">Log out</a>
-    <p>This is your profile.</p>
+    <!-- Display any messages -->
 
+    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+        {% for message in messages %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(category_filter=["error"]) %}
+    {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+        {% for message in messages %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Error. </strong> {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Display user details -->
+
+    {% if current_user == user%}
+    <p>This is your profile.</p>
     {% else %}
     
     <p>Welcome to {{ user.username }}'s profile.</p>
@@ -31,10 +55,8 @@
 
         {% if current_user == user %}
         <tr>
-
             <th>Email</th>
             <td>{{ user.email }}</td>
-
         </tr>
         {% endif %}
         <tr>
@@ -53,6 +75,16 @@
         </tr>
     </table>
 
+    {% if current_user == user%}
+    <a href="{{ url_for('main.logout') }}" class="btn active">Log out</a>
+    <a href="{{ url_for('main.editProfile') }}" class="btn active">Edit Profile</a>
+    <button type="button" class="btn active" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
+    {% endif %}
+
+    <!-- Display user's posts -->
+
+    {% if posts %}
+
     <div class="subForum">
         <div class="subForumTitle">
             <h2>{{ user.username }}'s Posts</h2>
@@ -62,13 +94,24 @@
     {% for post in posts %}
 
     <div class="post">
+        <input type="hidden" value="{{ post.post_id }}"> <!-- Hidden input field to store post_id -->
+        {% if current_user == user %}
+        <button type="button" class="btn active deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
+        <button class="btn active editPostBtn">Edit</button>
+        {% endif %}
         <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
         <p>{{ post.description }}</p>
-        <p>({{ post.timestamp }})</p>
+        <p>({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
     </div>
 
     {% endfor %}
+
+    {% endif %}
+
+    <!-- Display user's comments -->
+
+    {% if comments %}
 
     <div class="subForum">
         <div class="subForumTitle">
@@ -78,12 +121,98 @@
 
     {% for comment in comments %}
         <div class="post">
+            <input type="hidden" value="{{ comment.comment_id }}">
+            {% if current_user == user %}
+            <button type="button" class="btn active deleteBtn deleteCommentBtn" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete</button>
+            {% endif %}
             <p>{{ comment.comment_text }}</p>
             <p>{{ comment.timestamp }}</p>
         </div>
     {% endfor %}
 
-</div>
+    {% endif %}
 
+    <!-- From https://www.w3schools.com/bootstrap5/tryit.asp?filename=trybs_modal_sm&stacked=h -->
+    <!-- Models -->
+    <div class="modal" id="deleteUserModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Account</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you want to delete your account?
+                <br><br>Deleting your account will delete all your posts and comments.
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{{ url_for('main.deleteUser', user_id=user.id) }}" class="btn btn-danger active">Delete Account</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="deletePostModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Post</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you want to delete your post?
+                <br><br>All its comments will also be deleted.
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form id="deletePostModalForm" action="" method="get">
+                    <button type="submit" class="btn active btn-danger">Delete Post</a>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="deleteCommentModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Comment</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form id="deleteCommentModalForm" action="" method="get">
+                    <button type="submit" class="btn active btn-danger">Delete Comment</a>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="{{ url_for('static', filename='profile.js') }}"></script>
+</div>
 
 {% endblock %}

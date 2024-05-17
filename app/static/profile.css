@@ -2,3 +2,16 @@
     padding: 10px;
     margin: 5px;
 }
+
+.deleteBtn {
+    float: right;
+}
+
+.editPostBtn {
+    float: right;
+    font-style: italic;
+}
+
+.editPostTextArea {
+    color : black;
+}
