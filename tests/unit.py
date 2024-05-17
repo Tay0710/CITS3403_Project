@@ -153,3 +153,71 @@ class TestUserLogin(TestCase):
 
             # Assert that the user is logged in
             self.assertTrue(current_user.is_authenticated)
+
+# Unit Test Case 5: Test logs in then makes a request to the forum page to verify that the test post is present in the forum.
+class TestUserPostDisplay(TestCase):
+    def setUp(self):
+        self.app = create_app(TestConfig)
+        self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        # Hash the password
+        actual_password = 'hashed_password'
+        hashed_password = generate_password_hash(actual_password)
+        print(f"Hashed password: {hashed_password}")
+
+        # Create a test user with hashed password
+        self.user = User(
+            username='testuser',
+            fname='Test',
+            lname='User',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Tester',
+            study='Flask Testing',
+            bio='Just a test user'
+        )
+        db.session.add(self.user)
+        db.session.commit()
+
+        # Create a test post
+        test_post = Questions(
+            topic='Test Topic',
+            subtopic='Test Subtopic',
+            title='Test Post Title',
+            description='Test Post Description',
+            user_id=self.user.id,
+            author=self.user
+        )
+        db.session.add(test_post)
+        db.session.commit()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+    def test_user_login(self):
+        with self.app.test_request_context():
+            # Manually log in as test user
+            user = User.query.filter_by(username='testuser').first()
+
+            # Check if the actual password matches the stored password hash
+            actual_password = 'hashed_password'
+            print(f"Stored password hash: {user.password_hash}")
+            self.assertTrue(check_password_hash(user.password_hash, actual_password))
+
+            login_user(user)
+            print(f"Current user id after login: {current_user.get_id()}")
+
+            # Assert that the user is logged in
+            self.assertTrue(current_user.is_authenticated)
+
+            # Check forum section
+            response = self.client.get('/forum')
+            print("Response status code:", response.status_code)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Test Post Title', response.data)  # Assuming 'Test Post Title' is present in the forum
+
