@@ -8,6 +8,7 @@ from flask_moment import Moment
 db = SQLAlchemy()
 login = LoginManager()
 login.login_view = 'home'
+moment = Moment()
 
 def create_app(Config):
     app = Flask(__name__)
@@ -17,9 +18,8 @@ def create_app(Config):
     app.register_blueprint(main)
     db.init_app(app)
     login.init_app(app)
+    moment.init_app(app)
     
     return app
-
-moment = Moment(app)
 
 from app import routes, models, errors, filters

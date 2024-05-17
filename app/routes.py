@@ -25,8 +25,8 @@ def home():
         return redirect(next_page)
     return render_template('home.html', title='Home', form=form)
 
-@login_required
 @main.route('/submit', methods=['POST'])
+@login_required
 def submit():
     topic = request.form['topic']
     subtopic = request.form['subtopic']
@@ -43,6 +43,7 @@ def submit():
     return redirect(url_for('main.thank_you'))
 
 @main.route('/thank-you')
+@login_required
 def thank_you():
     return render_template('thank_you.html')
 
@@ -114,14 +115,6 @@ def get_comments(post_id):
     comments = [comment.comment_text for comment in post.comments]
     return jsonify(comments)
 
-@main.route('/post/<int:post_id>')
-@login_required
-def viewpost(post_id):
-    post = Questions.query.get_or_404(post_id)
-    title = 'ViewPost'  # Assigning the title here
-    return render_template("viewpost.html", post=post, title=title)
-
-
 @main.route('/deleteUser/<int:user_id>')
 @login_required
 def deleteUser(user_id):
@@ -140,13 +133,13 @@ def deleteUser(user_id):
                 db.session.delete(comment)
 
             db.session.commit()
-            return redirect(url_for("home"))
+            return redirect(url_for("main.home"))
         except:
             flash("Account could not be deleted. Try again.", 'error')
-            return redirect(url_for("profile", username=current_user.username))
+            return redirect(url_for("main.profile", username=current_user.username))
 
     else :
-        redirect(url_for("profile", username=current_user.username))
+        redirect(url_for("main.profile", username=current_user.username))
 
 @main.route('/comment/delete/<int:comment_id>')
 @login_required
@@ -157,12 +150,12 @@ def delete_comment(comment_id):
             db.session.delete(comment_to_delete)
             db.session.commit()
             flash("Comment deleted.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
+            return redirect(url_for("main.profile", username=current_user.username))
         else :
-            return redirect(url_for("profile", username=current_user.username))
+            return redirect(url_for("main.profile", username=current_user.username))
     except:
         flash("Comment could not be deleted. Try again.", 'error')
-        return redirect(url_for("profile", username=current_user.username))
+        return redirect(url_for("main.profile", username=current_user.username))
     
 @main.route('/post/delete/<int:post_id>')
 @login_required
@@ -173,12 +166,12 @@ def delete_post(post_id):
             db.session.delete(post_to_delete)
             db.session.commit()
             flash("Post deleted.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
+            return redirect(url_for("main.profile", username=current_user.username))
         else :
-            return redirect(url_for("profile", username=current_user.username))            
+            return redirect(url_for("main.profile", username=current_user.username))            
     except:
         flash("Post could not be deleted. Try again.", 'error')
-        return redirect(url_for("profile", username=current_user.username))
+        return redirect(url_for("main.profile", username=current_user.username))
 
 @main.route('/post/edit/<int:post_id>', methods=['POST'])
 @login_required
@@ -189,12 +182,12 @@ def editPost(post_id):
             post_to_edit.description = request.form["newPostDescription"]
             db.session.commit()
             flash("Post edited.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
+            return redirect(url_for("main.profile", username=current_user.username))
         else:
-            return redirect(url_for("profile", username=current_user.username)) 
+            return redirect(url_for("main.profile", username=current_user.username)) 
     except :
         flash("Post could not be deleted. Try again.", 'error')
-        return  redirect(url_for("profile", username=current_user.username))
+        return  redirect(url_for("main.profile", username=current_user.username))
     
 @main.route('/editProfile', methods=['GET', 'POST'])
 @login_required
@@ -212,7 +205,7 @@ def editProfile():
         current_user.bio = form.bio.data
         db.session.commit()
         flash("Profile updated.", 'success')
-        return redirect(url_for("profile", username=current_user.username))
+        return redirect(url_for("main.profile", username=current_user.username))
     
     # if request is to get the editProfile form (with current details filled in)
     elif request.method == 'GET':
@@ -223,9 +216,10 @@ def editProfile():
         form.position.data = current_user.position
         form.study.data = current_user.study
         form.bio.data = current_user.bio
-    return render_template("editProfile.html", title='Edit Profile', form=form)
+    return render_template(url_for("main.editProfile", title='Edit Profile', form=form))
 
 @main.route('/post/<int:post_id>')
+@login_required
 def viewpost(post_id):
     post = Questions.query.get_or_404(post_id)
     title = 'ViewPost'  # Assigning the title here
