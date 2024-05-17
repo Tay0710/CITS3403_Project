@@ -151,4 +151,17 @@ form input[type="submit"]:hover {
         height: 200px;
     }
     
+    .topics li {
+        display: grid;
+        grid-gap: 10px;
+    } 
+
+    .topics li span {
+        width: 120px;
+        display: inline-block;
+    }
+
+    .topics li p {
+        width: 50px;
+    }
 }

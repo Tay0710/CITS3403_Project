@@ -53,13 +53,6 @@ a {
   font-weight:bold;
 }
 
-.subForumRow{
-  /*
-  display: grid;
-  grid-template-columns: 7% 60% 13% 20%;
-  */
-}
-
 .post {
   padding: 10px;
   margin: 4px;
@@ -85,14 +78,8 @@ hr {
 /* For the smartphones */
 @media screen and (max-width: 460px){
   .container{
-    margin: 10px;
+    margin: auto;
     padding: 10px;
-  }
-
-  .subForumRow{
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 60% 40%;
   }
 
   .subForumIcon i{
@@ -110,45 +97,17 @@ hr {
     width: 98%;
   }
 
-  .topnav a:not(:first-child) {
-    display: none;
+  .topnav {
+    position: fixed;
   }
 
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
 
-  .topnav.responsive a {
-    display: block;
-    text-align: center;
+  body {
+    padding-top: 60px;
   }
+} 
 
-  .topnav.responsive .search-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
 
-  .topnav.responsive .search-container form {
-    display: flex;
-    align-items: center;
-  }
-
-  .topnav.responsive .search-container input[type="text"] {
-    flex: 1;
-    padding: 5px;
-    border-radius: 3px;
-    border: none;
-  }
-
-  .topnav.responsive .search-container button {
-    padding: 5px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-}
 
 /* For the tablets */
 @media screen and (min-width: 460px) and (max-width: 1024){
@@ -236,47 +195,6 @@ footer {
   left: 0;
 }
 
-
-
-
-/* Search Box */
-.search-container {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.search-container input[type="text"] {
-  padding: 5px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 3px;
-}
-
-.section-header {
-  font-size: 24px; /* Large font size */
-  font-weight: bold; /* Bold text */
-  text-align: center; /* Centered text */
-  margin-top: 20px; /* Add some space above the headers */
-  margin-bottom: 10px; /* Add some space below the headers */
-}
-
-.search-container button {
-  padding: 5px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.search-container button i {
-  color: white;
-}
-
-.search-container button:hover i {
-  color: #c0502b;
-}
 
 
 /* Post and comment display */
