@@ -37,23 +37,26 @@
         </section>
     </main>
 
-    <p class="intro">Please log in to view and post in the forum.</p>
+    {% if current_user.is_anonymous %}
 
+    <p class="intro" id="login">Please log in to view and post in the forum.</p>
 
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}:<br>
             {{ form.username(size=32) }}
+
             {% for error in form.username.errors %}
-            <br><span style="color: red;">[{{ error }}]</span>
+            <span class="errorMsg">{{ error }}</span><br>
             {% endfor %}
         </p>
         <p>
             {{ form.password.label }}:<br>
             {{ form.password(size=32) }}
+
             {% for error in form.password.errors %}
-            <br><span style="color: red;">[{{ error }}]</span>
+            <span class="errorMsg">{{ error }}</span>
             {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
@@ -61,6 +64,8 @@
     </form>
 
     <p>Don't have an account? <a href="{{ url_for('main.createProfile') }}">Create profile.</a></p>
+
+    {% endif %}
 
 </body>
 
