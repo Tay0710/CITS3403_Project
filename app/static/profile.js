@@ -1,9 +1,12 @@
 window.onload=()=>{
+
+    // add edit post functionality to edit post buttons
     let editPostButtons = document.getElementsByClassName("editPostBtn");
 
     for (let i = 0; i < editPostButtons.length; i++) {
         editPostButtons[i].addEventListener("click", editPost, false);
     }
+    // add the postId and commentId (of the clicked post or comment) to the delete button in the associated modal
     document.getElementById("deletePostModal").addEventListener(("show.bs.modal"), addPostIDToModal, false);
     document.getElementById("deleteCommentModal").addEventListener(("show.bs.modal"), addCommentIDToModal, false);
 }
