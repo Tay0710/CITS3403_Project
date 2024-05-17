@@ -11,14 +11,13 @@ window.onload=()=>{
 function addPostIDToModal(e) {
     const post_div = e.relatedTarget.parentElement;
     const post_id = post_div.children[0].value;
-    alert(post_id);
-    document.getElementById("deletePostModalForm").action += post_id;
+    document.getElementById("deletePostModalForm").action = "/post/delete/" + post_id;
 }
 
 function addCommentIDToModal(e) {
     const comment_div = e.relatedTarget.parentElement;
     let comment_id = comment_div.children[0].value;
-    document.getElementById("deleteCommentModalForm").action += comment_id;
+    document.getElementById("deleteCommentModalForm").action = "/comment/delete/" + comment_id;
 }
 
 function editPost(e) {
