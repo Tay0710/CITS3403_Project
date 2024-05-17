@@ -87,6 +87,7 @@ def createProfile():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        flash("Account created. Please log in.", 'success')
         return redirect(url_for('main.home'))
     return render_template("createProfile.html", title='Create Profile', form=form)
 
