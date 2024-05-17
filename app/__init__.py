@@ -3,7 +3,6 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from flask_moment import Moment
 
 db = SQLAlchemy()
 login = LoginManager()
@@ -20,6 +19,4 @@ def create_app(Config):
     
     return app
 
-moment = Moment(app)
-
-from app import routes, models, errors, filters
+from app import routes, models

@@ -37,8 +37,8 @@ class User(UserMixin, db.Model):
     study: so.Mapped[str] = so.mapped_column(sa.String(64))
     bio: so.Mapped[str] = so.mapped_column(sa.String(200))
 
-    questions: so.WriteOnlyMapped['Questions'] = so.relationship(back_populates='author', cascade="all, delete, delete-orphan", passive_deletes=True)
-    comments: so.WriteOnlyMapped['Comments'] = so.relationship(back_populates='author', cascade="all, delete, delete-orphan", passive_deletes=True)
+    questions: so.WriteOnlyMapped['Questions'] = so.relationship(back_populates='author')
+    comments: so.WriteOnlyMapped['Comments'] = so.relationship(back_populates='author')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -56,11 +56,11 @@ class Questions(db.Model):
     title: so.Mapped[str] = so.mapped_column(sa.String(120))
     description: so.Mapped[str] = so.mapped_column(sa.String(255))
     timestamp: so.Mapped[str] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
-    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id, ondelete='CASCADE'), index=True)
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
     author: so.Mapped[User] = so.relationship(back_populates='questions')
 
     # Define the relationship with Comments
-    comments = relationship('Comments', cascade='all, delete', backref='question')
+    comments = relationship('Comments', backref='question')
     
     def __repr__(self):
         return '<Questions {}>'.format(self.title)
@@ -70,7 +70,7 @@ class Comments(db.Model):
     comment_text: so.Mapped[str] = so.mapped_column(sa.Text, nullable=False)
     post_id: so.Mapped[int] = so.mapped_column(sa.Integer, db.ForeignKey('questions.post_id'), nullable=False)
     timestamp: so.Mapped[str] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
-    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id, ondelete='CASCADE'), index=True)
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
     author: so.Mapped[User] = so.relationship(back_populates='comments')
 
     def __repr__(self):
