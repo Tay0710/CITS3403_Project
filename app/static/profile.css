@@ -1,6 +1,9 @@
 #user-details {
+    height: 100%;
+    width: 100%;
     padding: 10px;
     margin: 5px;
+    border-radius: 10px;
 }
 
 .deleteBtn {
@@ -9,9 +12,30 @@
 
 .editPostBtn {
     float: right;
-    font-style: italic;
+    font-style: normal;
 }
 
+.profileButton {
+    padding: 7px 10px;
+    background-color: #008080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-style: normal;
+}
+
+.profileButton:hover {
+    background-color: #006666;
+  }
+
 .editPostTextArea {
+    max-width: 100%;
+}
+
+.postDesc {
     width: 100%;
+    height: 100%;
+    overflow: auto;
+
 }

@@ -61,6 +61,8 @@ a {
 }
 
 .post {
+  height: 100%;
+  width: 100%;
   padding: 10px;
   margin: 4px;
   border-radius: 5px;
