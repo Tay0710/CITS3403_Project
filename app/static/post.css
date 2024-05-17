@@ -41,7 +41,7 @@
     cursor: pointer;
     font-weight: bold;
 }
-  
+  /* styles for submit button on hover */
 .forum-form input[type="submit"]:hover {
     background-color: #006666;
 }
