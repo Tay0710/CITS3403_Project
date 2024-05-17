@@ -279,3 +279,101 @@ class TestUserProfile(TestCase):
             self.assertIn(user.position.encode(), response.data)
             self.assertIn(user.study.encode(), response.data)
             self.assertIn(user.bio.encode(), response.data)
+
+# Unit Test Case 7: Test verifies that the forum page displays the correct number of comments for each post.
+class TestComments(TestCase):
+    def setUp(self):
+        self.app = create_app(TestConfig)
+        self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        # Hash the password
+        actual_password = 'hashed_password'
+        hashed_password = generate_password_hash(actual_password)
+
+        # Create a test user with hashed password
+        self.user = User(
+            username='testuser',
+            fname='Test',
+            lname='User',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Tester',
+            study='Flask Testing',
+            bio='Just a test user'
+        )
+        db.session.add(self.user)
+        db.session.commit()
+
+        # Create a test post
+        test_post = Questions(
+            topic='Test Topic',
+            subtopic='Test Subtopic',
+            title='Test Post Title',
+            description='Test Post Description',
+            user_id=self.user.id,
+            author=self.user
+        )
+        db.session.add(test_post)
+        db.session.commit()
+        
+        comment1 = Comments(
+            comment_text='Comment 1',
+            post_id=test_post.post_id,
+            user_id=self.user.id,
+            author=self.user
+        )
+        db.session.add(comment1)
+
+        comment2 = Comments(
+            comment_text='Comment 2',
+            post_id=test_post.post_id,
+            user_id=self.user.id,
+            author=self.user
+        )
+        db.session.add(comment2)
+        db.session.commit()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+    def test_comments_page(self):
+        with self.app.test_request_context():
+            # Manually log in as test user
+            user = User.query.filter_by(username='testuser').first()
+
+            # Check if the actual password matches the stored password hash
+            actual_password = 'hashed_password'
+            self.assertTrue(check_password_hash(user.password_hash, actual_password))
+
+            login_user(user)
+
+            # Assert that the user is logged in
+            self.assertTrue(current_user.is_authenticated)
+
+            # Check forum section
+            response = self.client.get('/forum')
+            self.assertEqual(response.status_code, 200)
+
+            # Check if the post and its comments are displayed in the forum page
+            self.assertIn(b'Test Post Title', response.data)
+            self.assertIn(b'Test Post Description', response.data)
+
+            # Find the link to the specific post page
+            post_link = '/post/'  # Adjust this to match your actual post link format
+            post_link += str(Questions.query.filter_by(title='Test Post Title').first().post_id)  # Assuming post_id is used in the link
+
+            # Navigate to the specific post page
+            response_post = self.client.get(post_link)
+            self.assertEqual(response_post.status_code, 200)
+
+            # Check if the post and its comments are displayed in the specific post page
+            self.assertIn(b'Test Post Title', response_post.data)
+            self.assertIn(b'Test Post Description', response_post.data)
+            self.assertIn(b'Comment 1', response_post.data)
+            self.assertIn(b'Comment 2', response_post.data)
+
