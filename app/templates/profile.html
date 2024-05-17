@@ -76,9 +76,9 @@
     </table>
 
     {% if current_user == user%}
-    <a href="{{ url_for('main.logout') }}" class="btn active">Log out</a>
-    <a href="{{ url_for('main.editProfile') }}" class="btn active">Edit Profile</a>
-    <button type="button" class="btn active" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
+    <a href="{{ url_for('main.logout') }}" class="profileButton">Log out</a>
+    <a href="{{ url_for('main.editProfile') }}" class="profileButton">Edit Profile</a>
+    <button type="button" class="profileButton" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
     {% endif %}
 
     <!-- Display user's posts -->
@@ -94,14 +94,14 @@
     {% for post in posts %}
 
     <div class="post">
-        <input type="hidden" value="{{ post.post_id }}"> <!-- Hidden input field to store post_id -->
+        <p hidden class="hiddenPostId">{{ post.post_id }}</p>
         {% if current_user == user %}
-        <button type="button" class="btn active deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
-        <button class="btn active editPostBtn">Edit</button>
+        <button type="button" class="profileButton deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
+        <button class="profileButton editPostBtn">Edit</button>
         {% endif %}
         <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
-        <p>{{ post.description }}</p>
+        <p class="postDesc">{{ post.description }}</p>
         <p>({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
     </div>
 
@@ -121,12 +121,12 @@
 
     {% for comment in comments %}
         <div class="post">
-            <input type="hidden" value="{{ comment.comment_id }}">
+            <p hidden class="hiddenCommentId">{{ comment.comment_id }}</p>
             {% if current_user == user %}
-            <button type="button" class="btn active deleteBtn deleteCommentBtn" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete</button>
+            <button type="button" class="profileButton deleteBtn deleteCommentBtn" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete</button>
             {% endif %}
             <p>{{ comment.comment_text }}</p>
-            <p>{{ comment.timestamp }}</p>
+            <p>({{ moment(comment.timestamp | string_to_date).format('LLL') }})</p>
         </div>
     {% endfor %}
 
