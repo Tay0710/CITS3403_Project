@@ -2,6 +2,9 @@ from unittest import TestCase
 from app import create_app, db
 from config import TestConfig
 from app.models import User, Questions, Comments
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, current_user
+
 
 # Unit Test Case 1: Test checks if homepage returns the correct status code and link when loaded.
 class TestApp(TestCase):
@@ -101,3 +104,52 @@ class TestLoginFormFields(TestCase):
         self.assertIn(b'Username', response.data)
         self.assertIn(b'Password', response.data)
         self.assertIn(b'Remember Me', response.data)
+
+# Unit Test Case 4: Test verifies the login functionality using a test user with a hashed password.
+class TestUserLogin(TestCase):
+    def setUp(self):
+        self.app = create_app(TestConfig)
+        self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        # Hash the password
+        actual_password = 'hashed_password'
+        hashed_password = generate_password_hash(actual_password)
+        print(f"Hashed password: {hashed_password}")
+
+        # Create a test user with hashed password
+        self.user = User(
+            username='testuser',
+            fname='Test',
+            lname='User',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Tester',
+            study='Flask Testing',
+            bio='Just a test user'
+        )
+        db.session.add(self.user)
+        db.session.commit()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+    def test_user_login(self):
+        with self.app.test_request_context():
+            # Manually log in as test user
+            user = User.query.filter_by(username='testuser').first()
+
+            # Check if the actual password matches the stored password hash
+            actual_password = 'hashed_password'
+            print(f"Stored password hash: {user.password_hash}")
+            self.assertTrue(check_password_hash(user.password_hash, actual_password))
+
+            login_user(user)
+            print(f"Current user id after login: {current_user.get_id()}")
+
+            # Assert that the user is logged in
+            self.assertTrue(current_user.is_authenticated)
