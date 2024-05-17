@@ -36,55 +36,9 @@
     {% if title == "ViewPost" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='viewpost.css') }}">
     {% endif %}
-    
-    <style>
-        /* CSS for navigation bar */
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: center; /* Center-align the navigation links */
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px; /* Add padding to the navigation links */
-        }
-
-        /* Media query for smaller screens */
-        @media screen and (max-width: 768px) {
-            nav ul {
-                flex-direction: column; /* Change to a column layout */
-                text-align: left; /* Align links to the left */
-            }
-
-            nav ul li {
-                display: block; /* Display links as blocks */
-                margin-bottom: 10px; /* Add margin between links */
-            }
-        }
-    </style>
 
 </head>
 
-<body>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Forum</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Post</a></li>
-            <li><a href="#">View Post</a></li>
-        </ul>
-    </nav>
-
-    {% block content %}{% endblock %}
-
-</body>
+{% block content %}{% endblock %}
 
 </html>
