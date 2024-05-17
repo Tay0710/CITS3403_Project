@@ -6,7 +6,7 @@
 
     <p>Fill in the details below to create a profile.</p>
 
-    <form action="" method="post" class="profile-form">
+    <form action="" method="post">
         {{ form.hidden_tag() }}
 
             {{ form.fname.label }}
@@ -71,7 +71,7 @@
             {% for error in form.password2.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-
+            <br>
             {{ form.submit() }}
     </form>
     
