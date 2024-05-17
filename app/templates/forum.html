@@ -51,7 +51,7 @@
             <!-- Post content here -->
             <div class="post">
                 <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
-                <p>by <a href="{{ url_for('main.profile', username=post.author.username) }}" class="boldInfoLink">{{ post.author.username }}</a> ({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
+                <p>by <a href="{{ url_for('main.profile', username=post.author.username) }}" class="boldInfoLink">{{ post.author.username }}</a> ({{ post.timestamp }})</p>
                 <p class="descriptionText">{{ post.description }}</p>
             </div>
             <!-- Comments -->

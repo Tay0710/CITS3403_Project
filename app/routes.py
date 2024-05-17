@@ -1,23 +1,25 @@
 from flask import render_template, request, url_for, redirect, flash, jsonify
 from urllib.parse import urlsplit
 import sqlite3
-from app.forms import LoginForm, CreateProfileForm, EditProfileForm
+from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app import db
 from app.models import User, Questions, Comments
-from sqlalchemy import delete, desc
-
+from app.forms import CreateProfileForm
+from sqlalchemy import desc
 
 from app.blueprints import main
 
 @main.route('/', methods=['GET','POST'])
 def home():
+    #if current_user.is_authenticated:
+        #return redirect(url_for('forum'))
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
         if user is None or not user.check_password(form.password.data):
-            return redirect("/#login")
+            return redirect((url_for('main.home')))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or urlsplit(next_page).netloc != '':
@@ -97,7 +99,6 @@ def logout():
     return redirect(url_for('main.home'))
 
 @main.route('/add_comment/<int:post_id>', methods=['POST'])
-@login_required
 def add_comment(post_id):
     post = Questions.query.get_or_404(post_id)
     comment_text = request.form.get('comment_text')
@@ -108,122 +109,10 @@ def add_comment(post_id):
     return redirect(url_for('main.viewpost', post_id=post_id))
 
 @main.route('/comments/<int:post_id>')
-@login_required
 def get_comments(post_id):
     post = Questions.query.get_or_404(post_id)
     comments = [comment.comment_text for comment in post.comments]
     return jsonify(comments)
-
-@main.route('/post/<int:post_id>')
-@login_required
-def viewpost(post_id):
-    post = Questions.query.get_or_404(post_id)
-    title = 'ViewPost'  # Assigning the title here
-    return render_template("viewpost.html", post=post, title=title)
-
-
-@main.route('/deleteUser/<int:user_id>')
-@login_required
-def deleteUser(user_id):
-    if (user_id == current_user.id) :
-        try: 
-            user_to_delete = User.query.get_or_404(user_id)
-            logout_user()
-            db.session.delete(user_to_delete)
-
-            # delete user's posts and comments
-            posts=db.session.scalars(user_to_delete.questions.select()).all()
-            for post in posts :
-                db.session.delete(post)
-            comments=db.session.scalars(user_to_delete.comments.select()).all()
-            for comment in comments :
-                db.session.delete(comment)
-
-            db.session.commit()
-            return redirect(url_for("home"))
-        except:
-            flash("Account could not be deleted. Try again.", 'error')
-            return redirect(url_for("profile", username=current_user.username))
-
-    else :
-        redirect(url_for("profile", username=current_user.username))
-
-@main.route('/comment/delete/<int:comment_id>')
-@login_required
-def delete_comment(comment_id):
-    try: 
-        comment_to_delete = Comments.query.get_or_404(comment_id)
-        if (comment_to_delete.user_id == current_user.id) :
-            db.session.delete(comment_to_delete)
-            db.session.commit()
-            flash("Comment deleted.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
-        else :
-            return redirect(url_for("profile", username=current_user.username))
-    except:
-        flash("Comment could not be deleted. Try again.", 'error')
-        return redirect(url_for("profile", username=current_user.username))
-    
-@main.route('/post/delete/<int:post_id>')
-@login_required
-def delete_post(post_id):
-    try: 
-        post_to_delete = Questions.query.get_or_404(post_id)
-        if (post_to_delete.user_id == current_user.id) :
-            db.session.delete(post_to_delete)
-            db.session.commit()
-            flash("Post deleted.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
-        else :
-            return redirect(url_for("profile", username=current_user.username))            
-    except:
-        flash("Post could not be deleted. Try again.", 'error')
-        return redirect(url_for("profile", username=current_user.username))
-
-@main.route('/post/edit/<int:post_id>', methods=['POST'])
-@login_required
-def editPost(post_id):
-    try :
-        post_to_edit = Questions.query.get_or_404(post_id)
-        if (post_to_edit.user_id == current_user.id) :
-            post_to_edit.description = request.form["newPostDescription"]
-            db.session.commit()
-            flash("Post edited.", 'success')
-            return redirect(url_for("profile", username=current_user.username))
-        else:
-            return redirect(url_for("profile", username=current_user.username)) 
-    except :
-        flash("Post could not be deleted. Try again.", 'error')
-        return  redirect(url_for("profile", username=current_user.username))
-    
-@main.route('/editProfile', methods=['GET', 'POST'])
-@login_required
-def editProfile():
-    form = EditProfileForm(current_user.username, current_user.email)
-
-    # if request is to submit the editProfile form
-    if form.validate_on_submit():
-        current_user.fname = form.fname.data
-        current_user.lname = form.lname.data
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.position = form.position.data
-        current_user.study = form.study.data
-        current_user.bio = form.bio.data
-        db.session.commit()
-        flash("Profile updated.", 'success')
-        return redirect(url_for("profile", username=current_user.username))
-    
-    # if request is to get the editProfile form (with current details filled in)
-    elif request.method == 'GET':
-        form.fname.data = current_user.fname
-        form.lname.data = current_user.lname
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-        form.position.data = current_user.position
-        form.study.data = current_user.study
-        form.bio.data = current_user.bio
-    return render_template("editProfile.html", title='Edit Profile', form=form)
 
 @main.route('/post/<int:post_id>')
 def viewpost(post_id):
@@ -264,3 +153,4 @@ def search():
     } for result in comment_results]
 
     return jsonify({'posts': serialized_post_results, 'comments': serialized_comment_results})
+

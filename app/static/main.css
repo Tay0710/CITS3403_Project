@@ -24,7 +24,7 @@ body {
 }
 
 /* this also makes the nav bar links slanted */
-a {
+a{
   color: #c0502b;
   font-style: italic;
   text-decoration: none;
@@ -285,8 +285,3 @@ footer {
   font-size: 1.5em;
 }
 
-
-/* Error Messages */
-.errorMsg {
-  color: red;
-}
