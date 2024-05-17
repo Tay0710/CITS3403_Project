@@ -6,8 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app import db
 from app.models import User, Questions, Comments
-from sqlalchemy import delete, desc
-
+from sqlalchemy import desc, delete
 
 from app.blueprints import main
 
@@ -17,7 +16,7 @@ def home():
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
         if user is None or not user.check_password(form.password.data):
-            return redirect("/#login")
+            return redirect((url_for('main.home')))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or urlsplit(next_page).netloc != '':
@@ -258,3 +257,4 @@ def search():
     } for result in comment_results]
 
     return jsonify({'posts': serialized_post_results, 'comments': serialized_comment_results})
+
