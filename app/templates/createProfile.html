@@ -6,78 +6,73 @@
 
     <p>Fill in the details below to create a profile.</p>
 
-    <form action="" method="post">
+    <form action="" method="post" class="profile-form">
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.fname.label }}<br>
-            {{ form.fname() }}<br>
+
+            {{ form.fname.label }}
+            {{ form.fname() }}
             {% for error in form.fname.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.lname.label }}<br>
-            {{ form.lname() }}<br>
+
+            {{ form.lname.label }}
+            {{ form.lname() }}
             {% for error in form.lname.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username() }}<br>
+
+            {{ form.username.label }}
+            {{ form.username() }}
             {% for error in form.username.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email() }}<br>
+
+            {{ form.email.label }}
+            {{ form.email() }}
             {% for error in form.email.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
+
             {{ form.position.label }}
+            <div>
             {% for option in form.position %}
-                <br>
                 <tr>
                     <td>{{ option }}</td>
-                    <td>{{ option.label }}</td>
+                    <td>{{ option.label(class="radioLabel") }}</td>
                 </tr>
+                <br>
             {% endfor %}
+            <br>
+            </div>
             {% for error in form.position.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.study.label }}<br>
-            {{ form.study(size=5) }}<br>
+
+            {{ form.study.label }}
+            {{ form.study(size=5) }}
             {% for error in form.study.errors %}
             <span style="color: red;">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.bio.label }}<br>
-            {{ form.bio() }}<br>
+
+            {{ form.bio.label }}
+            {{ form.bio() }}
             {% for error in form.bio.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password() }}<br>
+
+            {{ form.password.label }}
+            {{ form.password() }}
             {% for error in form.password.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2() }}<br>
+
+            {{ form.password2.label }}
+            {{ form.password2() }}
             {% for error in form.password2.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
+
+            {{ form.submit() }}
     </form>
     
 </div>

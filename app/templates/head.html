@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='viewpost.css') }}">
     {% endif %}
     
+    {% if title == "Create Profile" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='profileForm.css') }}">
+    {% endif %}
 
 </head>
 

@@ -7,7 +7,7 @@ from flask_moment import Moment
 
 db = SQLAlchemy()
 login = LoginManager()
-login.login_view = 'home'
+login.login_view = 'main.home'
 moment = Moment()
 
 def create_app(Config):
