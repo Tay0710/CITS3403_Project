@@ -112,7 +112,11 @@ def add_comment(post_id):
 @login_required
 def get_comments(post_id):
     post = Questions.query.get_or_404(post_id)
-    comments = [comment.comment_text for comment in post.comments]
+    comments = []
+    for comment in post.comments:
+        author = db.first_or_404(sa.select(User).where(User.id == comment.user_id))
+        comments.append({"comment_text": comment.comment_text, "author": author.username})
+    print(comments)
     return jsonify(comments)
 
 @main.route('/deleteUser/<int:user_id>')

@@ -12,11 +12,12 @@ function fetchComments() {
             data.forEach(comment => {
                 var commentDiv = document.createElement("div");
                 commentDiv.classList.add("comment");
-                commentDiv.innerHTML = `<p>${comment}</p>`; // Corrected line
+                commentDiv.innerHTML = `<p><a href="/profile/${comment['author']}">${comment['author']}</a> says:<br>${comment['comment_text']}</p>`; // Corrected line
                 commentsDiv.appendChild(commentDiv);
             });
         });
 }
+
 
 document.getElementById("commentForm").addEventListener("submit", function(event) {
     event.preventDefault();
