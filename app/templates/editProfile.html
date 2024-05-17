@@ -63,20 +63,6 @@
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
         </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password() }}<br>
-            {% for error in form.password.errors %}
-            <span class="errorMsg">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2() }}<br>
-            {% for error in form.password2.errors %}
-            <span class="errorMsg">{{ error }}</span>
-            {% endfor %}
-        </p>
         <p>{{ form.submit() }}</p>
     </form>
     
