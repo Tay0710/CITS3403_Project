@@ -49,6 +49,7 @@
         </section>
     </main>
 
+    <!-- Only show login if user is anonymous -->
     {% if current_user.is_anonymous %}
 
     <p class="intro" id="login">Please log in to view and post in the forum.</p>
