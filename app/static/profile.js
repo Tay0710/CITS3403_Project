@@ -50,7 +50,6 @@ function createEditForm(original_post_desc) {
     textArea.name = "newPostDescription";
     textArea.value = original_post_desc;
     textArea.classList.add("editPostTextArea");
-    textArea.contentEditable = "true";
     textArea.required = "true";
 
     // create submit button

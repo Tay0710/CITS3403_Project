@@ -31,15 +31,15 @@
     <!-- Display user details -->
 
     {% if current_user == user%}
-    <p>This is your profile.</p>
+    <p id="profile_intro">This is your profile.</p>
     {% else %}
     
-    <p>Welcome to {{ user.username }}'s profile.</p>
+    <p id="profile_intro">Welcome to {{ user.username }}'s profile.</p>
    
     {% endif %}
 
-
-    <table class="table" id="user-details">
+    <div id="user-details">
+    <table class="table">
         <tr>
             <th>Username</th>
             <td>{{ user.username }}</td>
@@ -65,9 +65,7 @@
         </tr>
         <tr>
             <th>Area of study</th>
-            <td>
-                {{ user.study }}
-            </td>
+            <td>{{ user.study }}</td>
         </tr>
         <tr>
             <th>Bio</th>
@@ -75,11 +73,15 @@
         </tr>
     </table>
 
+
     {% if current_user == user%}
-    <a href="{{ url_for('main.logout') }}" class="profileButton">Log out</a>
-    <a href="{{ url_for('main.editProfile') }}" class="profileButton">Edit Profile</a>
-    <button type="button" class="profileButton" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
+    <div id="user-buttons">
+        <a href="{{ url_for('main.logout') }}" class="profileButton">Log out</a>
+        <a href="{{ url_for('main.editProfile') }}" class="profileButton">Edit Profile</a>
+        <button type="button" class="profileButton" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
+    </div>
     {% endif %}
+    </div>
 
     <!-- Display user's posts -->
 
@@ -153,7 +155,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="{{ url_for('main.deleteUser', user_id=user.id) }}" class="btn btn-danger active">Delete Account</a>
+                <a href="{{ url_for('main.deleteUser', user_id=user.id) }}" class="btn btn-danger active deleteButtonForModal">Delete Account</a>
               </div>
           </div>
         </div>
@@ -178,7 +180,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form id="deletePostModalForm" action="" method="get">
+                <form class="modalForm" id="deletePostModalForm" action="" method="get">
                     <button type="submit" class="btn active btn-danger">Delete Post</a>
                 </form>
               </div>
@@ -204,7 +206,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form id="deleteCommentModalForm" action="" method="get">
+                <form class="modalForm" id="deleteCommentModalForm" action="" method="get">
                     <button type="submit" class="btn active btn-danger">Delete Comment</a>
                 </form>
               </div>

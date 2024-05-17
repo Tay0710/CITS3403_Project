@@ -219,7 +219,7 @@ footer {
 
 /* Form styling */
 
-form {
+form:not(.modalForm) {
   display: flex;
   flex-direction: column;
   align-items: center;

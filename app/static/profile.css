@@ -1,9 +1,43 @@
 #user-details {
-    height: 100%;
-    width: 100%;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#user-details table {
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
+    table-layout: fixed;
+    border: 1px solid #333;
+}
+
+#profile_intro {
+    font-weight: bold;
+    font-size: 1.2em; /* Adjust the size as needed */
+    color: #008080;
+    margin: 0 0 15px 0;
+    padding: 0;
+    text-align: center;
+}
+
+#user-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-details th {
+    text-align: right;
+    margin: 5px;
+    padding: 10px;
+    color: #c0502b;
+}
+
+#user-details td {
+    margin: 5px;
+    padding: 10px;
+    overflow-wrap: break-word;
 }
 
 .deleteBtn {
@@ -15,10 +49,6 @@
     font-style: normal;
 }
 
-.bio {
-    overflow-wrap: break-word;
-}
-
 .profileButton {
     padding: 7px 10px;
     background-color: #008080;
@@ -27,6 +57,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-style: normal;
+    margin: 2px;
 }
 
 .profileButton:hover {
@@ -34,21 +65,21 @@
   }
 
 .editPostTextArea {
-    max-width: 100%;
+    width: 100%;
 }
 
 .post_title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
 .comment-text {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .post {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-#bio {
-    word-wrap: break-word;
+.deleteButtonForModal {
+    font-style: normal;
 }
