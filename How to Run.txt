@@ -13,7 +13,7 @@
     flask db migrate
 8. Update the tables:
     flask db upgrade
-9. Enter a secret key of your choosing:
+9. Enter a secret key of your choosing (don't use this one):
     export SECRET_KEY='asdhasjdhasjdh22e'
 10. Run the flask app using debug for easy refreshing:
     flask run --debug
