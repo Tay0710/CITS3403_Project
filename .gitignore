@@ -1,5 +1,6 @@
 venv
 app.db
 *.pyc
-app/__pycache__
-__pycache__
+**/__pycache__
+google-chrome-stable_current_amd64.deb
+instance/

@@ -76,7 +76,7 @@
     </table>
 
     {% if current_user == user%}
-    <a href="{{ url_for('logout') }}" class="btn active">Log out</a>
+    <a href="{{ url_for('main.logout') }}" class="btn active">Log out</a>
     <a href="{{ url_for('editProfile') }}" class="btn active">Edit Profile</a>
     <button type="button" class="btn active" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Account</button>
     {% endif %}
@@ -99,7 +99,7 @@
         <button type="button" class="btn active deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
         <button class="btn active editPostBtn">Edit</button>
         {% endif %}
-        <a class='post_title' href="{{ url_for('viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
+        <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
         <p>{{ post.description }}</p>
         <p>({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>

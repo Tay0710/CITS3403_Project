@@ -1,9 +1,8 @@
-"""Link Posts and Comments to user_id (author)
+"""Reconnected the database to the models.py with new columns
 
-
-Revision ID: 155ebba9b207
-Revises: 5f95109d3db8
-Create Date: 2024-05-12 14:37:07.366521
+Revision ID: d219b16bede3
+Revises: 155ebba9b207
+Create Date: 2024-05-14 09:34:00.456576
 
 """
 from alembic import op
@@ -11,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '155ebba9b207'
-down_revision = '5f95109d3db8'
+revision = 'd219b16bede3'
+down_revision = '155ebba9b207'
 branch_labels = None
 depends_on = None
 

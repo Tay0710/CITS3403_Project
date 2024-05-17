@@ -13,39 +13,49 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #c0502b;
+  background-color: #f9f9f9;
+  color: #c0502b; /* Added to match home.css */
 }
 
-.post-container h1{
-  color: #fff;
+.post-container h1 {
+  color: inherit; /* Use the container's text color */
 }
 
-.post-container p{
+.post-container h3 {
   margin-top: 10px;
+  color: #333; /* Use the container's text color */
+  margin: 0;
+}
+
+.post-container p {
+  margin-top: 10px;
+  color: #333; /* Use the container's text color */
 }
 
 .bolded {
   font-weight: bold;
+  color: #c0502b;
 }
 
-.post-info h3 {
-  margin: 0;
-}
-
-.comments-container {
+.comments-section {
   margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #008080;
-}
+  background-color: #f9f9f9;
+  
+} 
 
 .comment {
   margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
+  padding: 5px;
+  margin-left: auto; /* Auto left margin */
+  margin-right: auto; /* Auto right margin */
+  width: 90%;
+  border: 2px solid #008080;
   border-radius: 5px;
   background-color: #f9f9f9;
+  color: #333; /* Text color for comments */
 }
 
 .comment-form-container {
@@ -53,21 +63,39 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 #commentsTitle h2 {
   font-size: 1.5em;
   font-weight: bold;
-  background-color: #008080;
-  color: #fff;
-  padding: 7px;
-  width: 97%;
+  background-color: #f9f9f9;
+  color: #008080;
+  padding-bottom: 15px;
+  width: 96.5%;
   margin: 0 auto;
-  border-radius: 5px;
 }
 
-#comment_text {
+.comment p {
+  align-items: center; /* Center vertically */
+  margin: 0;
+}
+
+.comment-form-container {
+  max-width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form-container form p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.comment-form-container form textarea {
   width: 100%;
   padding: 5px;
   margin-top: 7px;
@@ -77,19 +105,21 @@ body {
   box-sizing: border-box;
 }
 
-.comment-form-container button {
+.comment-form-container form button {
   padding: 10px 20px;
   background-color: #008080;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
 }
 
-.comment-form-container button:hover {
+.comment-form-container form button:hover {
   background-color: #006666;
 }
+
+
 
 /* Responsive layout for smaller screens */
 @media (max-width: 768px) {
