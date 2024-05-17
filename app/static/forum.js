@@ -11,22 +11,36 @@ document.addEventListener("DOMContentLoaded", function() {
     subtopicSelect.disabled = true; 
         
 
-    
     topicSelect.addEventListener("change", function() {     // Function to update subtopic dropdown menu based on the selected topic  
-        
         var selectedTopic = topicSelect.value;
+        var selectedSubtopic = subtopicSelect.value;
 
         if (selectedTopic == "") {
             showAllPosts();
         } else {
             dropDownOptions(selectedTopic);
-            whatToShow(selectedTopic)
+            PostsByFilter(selectedTopic, selectedSubtopic);
+            if (selectedSubtopic !== "" && selectedSubtopic !== "All Subtopics") {
+                updateTitle(selectedTopic, "");
+            }
         }
     });
 
+
+    subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
+        var selectedSubtopic = subtopicSelect.value;
+        var selectedTopic = topicSelect.value;
+        if (selectedSubtopic !== "") {
+            filterBySubtopic(selectedSubtopic);
+            updateTitle(selectedTopic, selectedSubtopic);
+        } else {
+            PostsByFilter(selectedTopic);
+        }
+    });
+
+    
     function dropDownOptions(selectedTopic) {           // Function about topic to subtopic filter behaviours
-        // Clear existing options
-        subtopicSelect.innerHTML = "";
+        subtopicSelect.innerHTML = "";      // Clear existing options
         subtopicSelect.disabled = true;
 
         if (selectedTopic !== "" && subtopics[selectedTopic]) {        // If a valid topic is selected, populate subtopic options
@@ -36,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
             defaultOption.text = "All Subtopics";
             subtopicSelect.add(defaultOption)
         
-                
             subtopics[selectedTopic].forEach(function(subtopic) {       // Add subtopic options based on the selected topic
                 var option = document.createElement("option");
                 option.text = subtopic;
@@ -45,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function showAllPosts() {               // Function to show all posts without grouping 
 
+    function showAllPosts() {               // Function to show all posts without grouping 
         var allPosts = document.querySelectorAll('.subForumRow');           // Remove 'hidden' css to reveal all posts
             allPosts.forEach(function(post) {
                 post.classList.remove('hidden');
@@ -63,7 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function whatToShow(selectedTopic) {            // Function to show/hide posts and titles based on the selected topic
+
+    function PostsByFilter(selectedTopic, selectedSubtopic) {            // Function to show/hide posts based on the selected topic
         var allPosts = document.querySelectorAll('.subForumRow');
         allPosts.forEach(function(post) {
             if (selectedTopic !== "" && selectedTopic !== "All Topics" && post.dataset.topic !== selectedTopic) {
@@ -72,37 +86,39 @@ document.addEventListener("DOMContentLoaded", function() {
                 post.classList.remove('hidden');
             }
         });
+        updateTitle(selectedTopic, selectedSubtopic);       //Display the correct Title for selected Topic
+    }
 
-        var titleExists = document.querySelector('.subForumTitle');         // Function to create, and apply correct Title based on topic selected 
+
+    function updateTitle(selectedTopic, selectedSubtopic) {     //Function to apply correct title additions based on subtopic
+        var titleText;
+        if (selectedSubtopic && selectedSubtopic !== "All Subtopics") {
+            titleText = selectedTopic + " - " + selectedSubtopic;
+        } else {
+            titleText = selectedTopic
+        }
+
+        var titleExists = document.querySelector('.subForumTitle');         
 
         if (!titleExists) {
             var subForumTitle = document.createElement('div');
             subForumTitle.classList.add('subForumTitle');
-            var titleText = document.createElement('h2');
-            titleText.textContent = selectedTopic;
-            subForumTitle.appendChild(titleText);
+            var titleElement = document.createElement('h2');
+            titleElement.textContent = titleText;
+            subForumTitle.appendChild(titleElement);
             subForumContainer.prepend(subForumTitle);
         } else {
-            titleExists.querySelector('h2').textContent = selectedTopic;
+            titleExists.querySelector('h2').textContent = titleText;
         }
-
     }    
-    whatToShow(topicSelect.value)           //Show the title initially 
+    updateTitle(topicSelect.value, subtopicSelect.value)           //Show the title initially 
 
-    subtopicSelect.addEventListener("change", function() {          // Pick subfilter based on topic filter selected
-        var selectedSubtopic = subtopicSelect.value;
-        if (selectedSubtopic !== "") {
-            filterBySubtopic(selectedSubtopic);
-        } else {
-            whatToShow(topicSelect.value);
-        }
-    });
 
     function filterBySubtopic(selectedSubtopic) {           // Filter posts by subtopic 
         var selectedTopic = topicSelect.value;
 
         if (selectedSubtopic == "All Subtopics") { 
-            whatToShow(selectedTopic);
+            PostsByFilter(selectedTopic);
         } else {
             var allPosts = document.querySelectorAll('.subForumRow');
             allPosts.forEach(function(post) {

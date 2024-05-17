@@ -33,6 +33,7 @@ select {
 .search-bar {
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
+
 }
 
 .search-bar input {
