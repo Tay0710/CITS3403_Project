@@ -94,7 +94,7 @@
     {% for post in posts %}
 
     <div class="post">
-        <p type="hidden" class="hiddenPostId">{{ post.post_id }}</p>
+        <p hidden class="hiddenPostId">{{ post.post_id }}</p>
         {% if current_user == user %}
         <button type="button" class="btn active deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
         <button class="btn active editPostBtn">Edit</button>
@@ -121,7 +121,7 @@
 
     {% for comment in comments %}
         <div class="post">
-            <p type="hidden" class="hiddenCommentId">{{ comment.comment_id }}</p>
+            <p hidden class="hiddenCommentId">{{ comment.comment_id }}</p>
             {% if current_user == user %}
             <button type="button" class="btn active deleteBtn deleteCommentBtn" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete</button>
             {% endif %}
