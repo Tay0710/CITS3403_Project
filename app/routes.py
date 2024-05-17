@@ -215,7 +215,7 @@ def editProfile():
         form.position.data = current_user.position
         form.study.data = current_user.study
         form.bio.data = current_user.bio
-    return render_template(url_for("main.editProfile", title='Edit Profile', form=form))
+    return render_template('editProfile.html', title='Edit Profile', form=form)
 
 @main.route('/post/<int:post_id>')
 @login_required
