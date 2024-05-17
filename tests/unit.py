@@ -166,7 +166,6 @@ class TestUserPostDisplay(TestCase):
         # Hash the password
         actual_password = 'hashed_password'
         hashed_password = generate_password_hash(actual_password)
-        print(f"Hashed password: {hashed_password}")
 
         # Create a test user with hashed password
         self.user = User(
@@ -206,18 +205,15 @@ class TestUserPostDisplay(TestCase):
 
             # Check if the actual password matches the stored password hash
             actual_password = 'hashed_password'
-            print(f"Stored password hash: {user.password_hash}")
             self.assertTrue(check_password_hash(user.password_hash, actual_password))
 
             login_user(user)
-            print(f"Current user id after login: {current_user.get_id()}")
 
             # Assert that the user is logged in
             self.assertTrue(current_user.is_authenticated)
 
             # Check forum section
             response = self.client.get('/forum')
-            print("Response status code:", response.status_code)
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Test Post Title', response.data)  # Assuming 'Test Post Title' is present in the forum
 
