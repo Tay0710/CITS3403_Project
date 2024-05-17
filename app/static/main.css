@@ -89,12 +89,6 @@ hr {
     padding: 10px;
   }
 
-  .subForumRow{
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 60% 40%;
-  }
-
   .subForumIcon i{
     font-size: 8vw;
   }
