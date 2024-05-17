@@ -13,25 +13,25 @@ window.onload=()=>{
 
 function addPostIDToModal(e) {
     const post_div = e.relatedTarget.parentElement;
-    const post_id = post_div.children[0].value;
+    const post_id = post_div.querySelector(".hiddenPostId").innerHTML;
     document.getElementById("deletePostModalForm").action = "/post/delete/" + post_id;
 }
 
 function addCommentIDToModal(e) {
     const comment_div = e.relatedTarget.parentElement;
-    let comment_id = comment_div.children[0].value;
+    let comment_id = comment_div.querySelector(".hiddenCommentId").innerHTML;
     document.getElementById("deleteCommentModalForm").action = "/comment/delete/" + comment_id;
 }
 
 function editPost(e) {
     const post_div = e.target.parentElement;
     
-    // post desc is always 6th element
-    let current_post_desc = post_div.children[5];
+    // create and edit form that already contains original post description text
+    let current_post_desc = post_div.querySelector(".postDesc");
     const editForm = createEditForm(current_post_desc.innerHTML);
 
-    // hidden element containing post_id stored is 1st element
-    editForm.action = "/post/edit/" + post_div.children[0].value;
+    // get the post_id from hidden field so data is sent to correct url
+    editForm.action = "/post/edit/" + post_div.querySelector(".hiddenPostId").innerHTML;
     e.target.parentElement.insertBefore(editForm, current_post_desc);
     current_post_desc.remove();
 }

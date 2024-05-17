@@ -6,24 +6,24 @@ from app import db
 from app.models import User
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username:', validators=[DataRequired()])
+    password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Log In')
 
 class CreateProfileForm(FlaskForm):
-    fname = StringField('First Name', validators=[DataRequired(), Length(min=1, max=64)])
-    lname = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=64)])
-    username = StringField('Username', validators=[DataRequired(), Length(min=1, max=64)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=1, max=120)])
-    position = RadioField('Position', choices=[
+    fname = StringField('First Name:', validators=[DataRequired(), Length(min=1, max=64)])
+    lname = StringField('Last Name:', validators=[DataRequired(), Length(min=1, max=64)])
+    username = StringField('Username:', validators=[DataRequired(), Length(min=1, max=64)])
+    email = StringField('Email:', validators=[DataRequired(), Email(), Length(min=1, max=120)])
+    position = RadioField('Position:', choices=[
         ('Undergraduate Student', 'Undergraduate Student'),
         ('Postgraduate Student', 'Postgraduate Student'),
         ('Staff', 'Staff'),
         ('Future Student', 'Future Student'),
         ('Graduate', 'Graduate')
     ], validators=[DataRequired()])
-    study = SelectField('Area of Study', choices=[
+    study = SelectField('Area of Study:', choices=[
         ('Accounting', 'Accounting'),
         ('Agricultural Science', 'Agricultural Science'),
         ('Anatomy and Human Biology', 'Anatomy and Human Biology'),
@@ -88,9 +88,9 @@ class CreateProfileForm(FlaskForm):
         ('Urban and Regional Planning', 'Urban and Regional Planning'),
         ('Zoology', 'Zoology')
     ], validators=[DataRequired()])
-    bio = TextAreaField('Bio', validators=[DataRequired(),  Length(min=1, max=200)])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    bio = TextAreaField('Bio:', validators=[DataRequired(),  Length(min=1, max=200)])
+    password = PasswordField('Password:', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password:', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Create Profile')
 
     def validate_username(self, username):
@@ -105,18 +105,18 @@ class CreateProfileForm(FlaskForm):
             raise ValidationError('This email is already used.') 
 
 class EditProfileForm(FlaskForm):
-    fname = StringField('First Name', validators=[DataRequired(), Length(min=1, max=64)])
-    lname = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=64)])
-    username = StringField('Username', validators=[DataRequired(), Length(min=1, max=64)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=1, max=120)])
-    position = RadioField('Position', choices=[
+    fname = StringField('First Name:', validators=[DataRequired(), Length(min=1, max=64)])
+    lname = StringField('Last Name:', validators=[DataRequired(), Length(min=1, max=64)])
+    username = StringField('Username:', validators=[DataRequired(), Length(min=1, max=64)])
+    email = StringField('Email:', validators=[DataRequired(), Email(), Length(min=1, max=120)])
+    position = RadioField('Position:', choices=[
         ('Undergraduate Student', 'Undergraduate Student'),
         ('Postgraduate Student', 'Postgraduate Student'),
         ('Staff', 'Staff'),
         ('Future Student', 'Future Student'),
         ('Graduate', 'Graduate')
     ], validators=[DataRequired()])
-    study = SelectField('Area of Study', choices=[
+    study = SelectField('Area of Study:', choices=[
         ('Accounting', 'Accounting'),
         ('Agricultural Science', 'Agricultural Science'),
         ('Anatomy and Human Biology', 'Anatomy and Human Biology'),
@@ -181,7 +181,7 @@ class EditProfileForm(FlaskForm):
         ('Urban and Regional Planning', 'Urban and Regional Planning'),
         ('Zoology', 'Zoology')
     ], validators=[DataRequired()])
-    bio = TextAreaField('Bio', validators=[DataRequired(),  Length(min=1, max=200)])
+    bio = TextAreaField('Bio:', validators=[DataRequired(),  Length(min=1, max=200)])
     submit = SubmitField('Update Profile')
 
     # Adapted from Mega-Tutorial
