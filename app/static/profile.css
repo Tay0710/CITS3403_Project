@@ -39,3 +39,15 @@
     overflow: auto;
 
 }
+
+.post_title {
+    word-wrap: break-word;
+  }
+
+.comment-text {
+    word-wrap: break-word;
+}
+
+.post {
+    word-wrap: break-word;
+}
