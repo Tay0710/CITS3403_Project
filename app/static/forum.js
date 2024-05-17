@@ -185,15 +185,14 @@ function displaySearchResults(postResults, commentResults) {
         postLink.classList.add('post_title');
         postLink.href = `/post/${result.post_id}`;
         postLink.textContent = result.title;
-
-        // Add post information
-        var postInfo = document.createElement('div');
-        postInfo.innerHTML = `
-            <p><strong>User:</strong> ${result.username}</p>
-            <p><strong>Description:</strong> ${result.description}</p>
-        `;
-
         postContent.appendChild(postLink);
+
+        var postInfo = document.createElement('div');
+        postInfo.classList.add('post_info');
+        postInfo.innerHTML = `
+            <p>by <a href="/profile/${result.username}" class="boldInfoLink">${result.username}</a> (${moment(result.timestamp).format('LLL')})</p>
+            <p class="descriptionText">${result.description}</p>
+        `;
         postContent.appendChild(postInfo);
 
         postRow.appendChild(postContent);
@@ -206,33 +205,34 @@ function displaySearchResults(postResults, commentResults) {
     commentHeader.classList.add('section-header'); // Add class for styling
     subForumContainer.appendChild(commentHeader);
 
-    // Display comment results
+    // Display comments
     commentResults.forEach(result => {
-        var postRow = document.createElement('div');
-        postRow.classList.add('subForumRow');
-        postRow.dataset.postId = result.post_id;
+        var commentRow = document.createElement('div');
+        commentRow.classList.add('subForumRow');
+        commentRow.dataset.postId = result.post_id;
 
-        var postContent = document.createElement('div');
-        postContent.classList.add('post');
+        var commentContent = document.createElement('div');
+        commentContent.classList.add('post');
 
-        var postLink = document.createElement('a');
-        postLink.classList.add('post_title');
-        postLink.href = `/post/${result.post_id}`;
-        postLink.textContent = result.post_title;
-        postContent.appendChild(postLink);
+        var commentLink = document.createElement('a');
+        commentLink.classList.add('post_title');
+        commentLink.href = `/post/${result.post_id}`;
+        commentLink.textContent = result.post_title;
+        commentContent.appendChild(commentLink);
 
-        // Add comment information
-        var postInfo = document.createElement('div');
-        postInfo.innerHTML = `
-            <p><strong>User:</strong> ${result.username}</p>
-            <p><strong>Comment:</strong> ${result.comment_text}</p>
+        var commentInfo = document.createElement('div');
+        commentInfo.classList.add('post_info');
+        commentInfo.innerHTML = `
+            <p>by <a href="/profile/${result.username}" class="boldInfoLink">${result.username}</a> (${moment(result.timestamp).format('LLL')})</p>
+            <p><strong>Matching Comment:</strong> ${result.comment_text}</p>
         `;
+        commentContent.appendChild(commentInfo);
 
-        postContent.appendChild(postInfo); // Add comment information to postContent
-
-        postRow.appendChild(postContent);
-        subForumContainer.appendChild(postRow);
+        commentRow.appendChild(commentContent);
+        subForumContainer.appendChild(commentRow);
     });
+
+    
 }
 
 });
