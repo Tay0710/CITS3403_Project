@@ -1,5 +1,5 @@
 var slideIndex = 0;
-
+// adding variable to keep track of current slide index
 function moveSlide(n) {
     var slides = document.getElementsByClassName("gallery-image");
     if (n === 1 && slideIndex === slides.length - 1) {
