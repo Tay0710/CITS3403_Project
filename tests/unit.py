@@ -221,3 +221,65 @@ class TestUserPostDisplay(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Test Post Title', response.data)  # Assuming 'Test Post Title' is present in the forum
 
+# Unit Test Case 6: Test logs in then verifies that user details are correctly displayed on the profile page.
+class TestUserProfile(TestCase):
+    def setUp(self):
+        self.app = create_app(TestConfig)
+        self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
+
+        # Hash the password
+        actual_password = 'hashed_password'
+        hashed_password = generate_password_hash(actual_password)
+
+        # Create a test user with hashed password
+        self.user = User(
+            username='testuser',
+            fname='Test',
+            lname='User',
+            email='test@example.com',
+            password_hash=hashed_password,
+            position='Tester',
+            study='Flask Testing',
+            bio='Just a test user'
+        )
+        db.session.add(self.user)
+        db.session.commit()
+
+        # Create a test post
+        test_post = Questions(
+            topic='Test Topic',
+            subtopic='Test Subtopic',
+            title='Test Post Title',
+            description='Test Post Description',
+            user_id=self.user.id,
+            author=self.user
+        )
+        db.session.add(test_post)
+        db.session.commit()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+    def test_user_profile(self):
+        with self.app.test_request_context():
+            # Manually log in as test user
+            user = User.query.filter_by(username='testuser').first()
+
+            login_user(user)
+
+            # Make a request to the profile page
+            response = self.client.get(f'/profile/{user.username}')
+            self.assertEqual(response.status_code, 200)
+
+            # Check if user details match
+            self.assertIn(user.fname.encode(), response.data)
+            self.assertIn(user.lname.encode(), response.data)
+            self.assertIn(user.email.encode(), response.data)
+            self.assertIn(user.position.encode(), response.data)
+            self.assertIn(user.study.encode(), response.data)
+            self.assertIn(user.bio.encode(), response.data)
