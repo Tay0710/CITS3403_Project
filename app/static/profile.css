@@ -15,6 +15,10 @@
     font-style: normal;
 }
 
+.bio {
+    overflow-wrap: break-word;
+}
+
 .profileButton {
     padding: 7px 10px;
     background-color: #008080;
@@ -33,13 +37,6 @@
     max-width: 100%;
 }
 
-.postDesc {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-
-}
-
 .post_title {
     word-wrap: break-word;
   }
@@ -49,5 +46,9 @@
 }
 
 .post {
+    word-wrap: break-word;
+}
+
+#bio {
     word-wrap: break-word;
 }

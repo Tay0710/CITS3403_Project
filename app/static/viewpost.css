@@ -178,3 +178,7 @@ body {
     padding-top: 60px;
   }
 }
+
+.comment p {
+  overflow-wrap: break-word;
+}
