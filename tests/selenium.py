@@ -80,6 +80,8 @@ class SeleniumTestLogin(TestCase):
         self.driver.close()
 
     def test_login_redirect(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
         # Fill in the login form
         username_input = self.driver.find_element(By.NAME, 'username')
         username_input.send_keys('test_user')
@@ -132,6 +134,9 @@ class SeleniumTestAddPost(TestCase):
         self.driver.close()
 
     def test_add_post(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
+        
         # Log in as test user
         self.driver.find_element(By.NAME, 'username').send_keys('test_user')
         self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
@@ -213,6 +218,9 @@ class SeleniumTestAddComment(TestCase):
         self.driver.close()
 
     def test_add_comment(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
+        
         # Log in as test user
         self.driver.find_element(By.NAME, 'username').send_keys('test_user')
         self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
@@ -290,6 +298,9 @@ class SeleniumTestSearchBar(TestCase):
         self.driver.close()
 
     def test_login_and_search_post(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
+        
         # Fill in the login form
         self.driver.find_element(By.NAME, 'username').send_keys('test_user')
         self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
@@ -354,6 +365,8 @@ class SeleniumTestLogout(TestCase):
         self.driver.close()
 
     def test_logout(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
         # Fill in the login form
         self.driver.find_element(By.NAME, 'username').send_keys('test_user')
         self.driver.find_element(By.NAME, 'password').send_keys('hashed_password')
@@ -399,6 +412,9 @@ class SeleniumTestUserRegistration(TestCase):
         self.driver.close()
 
     def test_user_registration(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)  # Wait for the scroll to complete
+        
         # Wait for the create profile link to be visible
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//a[@href='/createProfile']"))
