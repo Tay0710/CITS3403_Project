@@ -10,3 +10,5 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
+
+# Directly from https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-error-handling

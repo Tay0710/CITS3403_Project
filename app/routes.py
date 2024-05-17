@@ -259,3 +259,5 @@ def search():
 
     return jsonify({'posts': serialized_post_results, 'comments': serialized_comment_results})
 
+# delete account, delete post and delete comment based on code by Codemy.com (https://www.youtube.com/@Codemycom/search)
+# edit profile based on https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vi-profile-page-and-avatars
