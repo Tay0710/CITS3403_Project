@@ -3,46 +3,42 @@
 {% block content %}
 
 <div class="welcome-text">
-<!--Just that section of wording-->
-<h1>Welcome to the StudiVault Forum!</h1>
-<h2 class = "subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+    <!--Just that section of wording-->
+    <h2 class="subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+    <p class="note">Please clear the search bar to use the filters.</p>
 </div>
 
-<div class = "selection-container">
-  <!-- Dropdown menu for degrees -->
-  <div class="topic-selection">
-      <h1>Topics</h1>
-      <label for="topics">Select a Topic</label>
-      <select id="topics">
-          {% for topic in grouped_posts.keys() %}
+<div class="selection-container">
+    <!-- Dropdown menu for degrees -->
+    <div class="topic-selection">
+        <label for="topics">Select a Topic:</label>
+        <select id="topics">
+            {% for topic in grouped_posts.keys() %}
             <option value="{{ topic }}">{{ topic }}</option>
             {% endfor %}
-            <!-- Add degree options here -->
         </select>
     </div>
 
     <!-- Placeholder for the dropdown menu for general topics -->
     <div class="subtopic-selection">
-        <h1>Unit or Subject</h1>
-        <label for="subtopic">Select a unit or subject</label>
+        <label for="subtopic">Select a unit or subject:</label>
         <select id="subtopic">
-            <option value="">unit or subject</option>
+            <option value="">All Subtopics</option>
             {% for topic, subtopic_list in subtopics.items() %}
             {% for subtopic in subtopic_list %}
             <option value="{{ subtopic }}">{{ subtopic }}</option>
             {% endfor %}
             {% endfor %}
-            <!-- Add topic options here -->
         </select>
-    </div>
-
-    <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button type="submit">Search</button>
     </div>
 </div>
 
-<!-- No formatting but comment and post showing-->        
+<div class="search-bar">
+    <input type="text" placeholder="Search...">
+    <button type="submit">Search</button>
+</div>
+
+<!-- No formatting but comment and post showing-->
 <div class="container">
     <div class="subForum">
         <!-- New Sub/chain -->
