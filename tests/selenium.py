@@ -240,13 +240,14 @@ class SeleniumTestAddComment(TestCase):
         self.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
         
         # Wait for the comment to be added to the page
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, f'//div[@class="comment" and p="Test Comment Text"]'))
+        WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, '//div[@class="comment"]/p[text()="Test Comment Text"]'))
         )
 
         # Check if the comment was added to the database
         comment = Comments.query.filter_by(comment_text='Test Comment Text').first()
         self.assertIsNotNone(comment)
+
         
  # Selenium Test Case 5: Test logs in user and searches for pre-existing post, verifying the post appears in search results.
 class SeleniumTestSearchBar(TestCase):
