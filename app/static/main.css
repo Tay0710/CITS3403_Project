@@ -117,7 +117,7 @@ hr {
 
 
 /* For the tablets */
-@media screen and (min-width: 460px) and (max-width: 1024){
+@media screen and (min-width: 460px) and (max-width: 1024px){
   .container{
     margin: 15px;
     padding: 15px;
