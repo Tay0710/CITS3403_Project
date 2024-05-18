@@ -58,6 +58,7 @@
     cursor: pointer;
     font-style: normal;
     margin: 2px;
+    text-align: center;
 }
 
 .profileButton:hover {
