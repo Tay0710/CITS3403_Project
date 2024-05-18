@@ -20,25 +20,19 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #ECECEC;
   padding-bottom: 100px;
-  /* display: block; */
 }
 
-/* this also makes the nav bar links slanted */
 a {
   color: #c0502b;
   font-style: italic;
   text-decoration: none;
 }
 
-
-
 .descriptionText {
   word-wrap: break-word;
 }
 
-
 /* Post display */
-
 .subForum{
   margin-top:20px;
 }
@@ -82,7 +76,7 @@ hr {
   margin: 0;
 }
 
-/* For the smartphones */
+/* For the smaller screens */
 @media screen and (max-width: 460px){
   .container{
     margin: auto;
@@ -108,13 +102,10 @@ hr {
     position: fixed;
   }
 
-
   body {
     padding-top: 60px;
   }
 } 
-
-
 
 /* For the tablets */
 @media screen and (min-width: 460px) and (max-width: 1024px){
@@ -142,17 +133,13 @@ hr {
   }
 }
 
-
-
 /* Nav Bar */
-
 .topnav {
   overflow: hidden;
   background-color: #333;
-  /* position: fixed; */
   top: 0;
   width: 100%;
-  z-index: 100000; /* Ensure it's above other content */
+  z-index: 100000;
 }
 
 .topnav a {
@@ -175,15 +162,11 @@ hr {
   color: white;
 }
 
-
-/* Add a border between the slogan and content */
 .slogan {
-  border-bottom: 3px solid #333; /* Add a 2px solid border at the bottom */
-  margin-bottom: 20px; /* Add some space below the border */
-  padding-bottom: 20px; /* Add some space below the border for better spacing */
+  border-bottom: 3px solid #333;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
-
-
 
 footer {
   background-color: #333;
@@ -197,23 +180,17 @@ footer {
   padding-top: 20px;
 }
 
-
-
-/* Post and comment display */
-
+/* Post title */
 .post_title {
   font-size: 1.5em;
 }
-
 
 /* Error Messages */
 .errorMsg {
   color: red;
 }
 
-
 /* Form styling */
-
 form:not(.modalForm) {
   display: flex;
   flex-direction: column;
@@ -282,11 +259,11 @@ form ul {
   list-style-type:none;
 }
 
-/* radio fields label */
-form li label {
-  font-weight: normal;
-}
-
 .formExplanation {
   text-align: center;
+}
+
+/* Radio fields label */
+form li label {
+  font-weight: normal;
 }
