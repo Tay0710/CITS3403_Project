@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
+    <!-- Based on code from https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp -->
     <main>
     <!-- Display any messages -->
         {% with messages = get_flashed_messages(category_filter=["success"]) %}
@@ -16,7 +15,6 @@
         {% endif %}
         {% endwith %}
 
-        <!-- Gallery of happy student photos -->
         <div class="gallery-container">
             <div class="gallery-slider">
                 <img class="gallery-image" src="https://icic.thu.edu.tw/upload/sitemap/University_Posters.jpg" alt="Group of Students">
