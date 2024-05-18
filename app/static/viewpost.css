@@ -14,22 +14,22 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  color: #c0502b; /* Added to match home.css */
+  color: #c0502b;
 }
 
 .post-container h1 {
-  color: inherit; /* Use the container's text color */
+  color: inherit;
 }
 
 .post-container h3 {
   margin-top: 10px;
-  color: #333; /* Use the container's text color */
+  color: #333;
   margin: 0;
 }
 
 .post-container p {
   margin-top: 10px;
-  color: #333; /* Use the container's text color */
+  color: #333;
 }
 
 .bolded {
@@ -49,13 +49,13 @@ body {
 .comment {
   margin-bottom: 20px;
   padding: 5px;
-  margin-left: auto; /* Auto left margin */
-  margin-right: auto; /* Auto right margin */
+  margin-left: auto;
+  margin-right: auto;
   width: 90%;
   border: 2px solid #008080;
   border-radius: 5px;
   background-color: #f9f9f9;
-  color: #333; /* Text color for comments */
+  color: #333;
 }
 
 .comment-form-container {
@@ -77,7 +77,7 @@ body {
 }
 
 .comment p {
-  align-items: center; /* Center vertically */
+  align-items: center;
   margin: 0;
 }
 
