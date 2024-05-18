@@ -119,6 +119,9 @@ body {
   background-color: #006666;
 }
 
+.post-container p {
+  word-wrap: break-word;
+}
 
 
 /* Responsive layout for smaller screens */
