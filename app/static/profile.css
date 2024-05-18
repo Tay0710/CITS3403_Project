@@ -1,9 +1,11 @@
+/* User Details Container */
 #user-details {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* User Details Table Styling */
 #user-details table {
     padding: 10px;
     margin: 5px;
@@ -12,6 +14,7 @@
     border: 1px solid #333;
 }
 
+/* Profile Introduction Styling */
 #profile_intro {
     font-weight: bold;
     font-size: 1.2em; /* Adjust the size as needed */
@@ -21,12 +24,14 @@
     text-align: center;
 }
 
+/* User Buttons Container */
 #user-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* User Details Table Header Styling */
 #user-details th {
     text-align: right;
     margin: 5px;
@@ -34,21 +39,25 @@
     color: #c0502b;
 }
 
+/* User Details Table Data Styling */
 #user-details td {
     margin: 5px;
     padding: 10px;
     overflow-wrap: break-word;
 }
 
+/* Delete Button Styling */
 .deleteBtn {
     float: right;
 }
 
+/* Edit Post Button Styling */
 .editPostBtn {
     float: right;
     font-style: normal;
 }
 
+/* Profile Button Styling */
 .profileButton {
     padding: 7px 10px;
     background-color: #008080;
@@ -63,8 +72,9 @@
 
 .profileButton:hover {
     background-color: #006666;
-  }
+}
 
+/* Edit Post Text Area Styling */
 .editPostTextArea {
     width: 100%;
     padding: 5px;
@@ -75,18 +85,22 @@
     box-sizing: border-box;
 }
 
+/* Post Title Styling */
 .post_title {
     overflow-wrap: break-word;
-  }
+}
 
+/* Comment Text Styling */
 .comment-text {
     overflow-wrap: break-word;
 }
 
+/* Post Styling */
 .post {
     overflow-wrap: break-word;
 }
 
+/* Delete Button for Modal Styling */
 .deleteButtonForModal {
     font-style: normal;
 }
