@@ -103,8 +103,17 @@ p {
     margin-top: 20px; /* Add some space above the text */
 }
 
-
-
+footer p {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    min-height: 1%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-top: 20px;
+  }
 
 /* css for smaller screens */
 @media only screen and (max-width: 768px) {
