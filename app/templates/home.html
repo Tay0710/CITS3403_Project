@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Based on code from https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp -->
+    <main>
+    <!-- Display any messages -->
+        {% with messages = get_flashed_messages(category_filter=["success"]) %}
+        {% if messages %}
+        <div class="alert alert-success alert-dismissible">
+            {% for message in messages %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <div class="gallery-container">
+            <div class="gallery-slider">
+                <img class="gallery-image" src="https://icic.thu.edu.tw/upload/sitemap/University_Posters.jpg" alt="Group of Students">
+                <img class="gallery-image" src="https://storage.googleapis.com/gamecocksonline-com/2020/08/889dda65-wbs_stadium_fans_1600x600-1024x384.jpg" alt="Sport">
+                <img class="gallery-image" src="https://www.mecmining.com.au/wp-content/uploads/2020/10/shutterstock_646064452.jpg" alt="Internship">
+                <img class="gallery-image" src="https://www.geospatialworld.net/wp-content/uploads/2022/03/Brown-University-Engineering-Research-Center-1024x384.jpg" alt="Accomodation">
+                <img class="gallery-image" src="https://independentsector.org/wp-content/uploads/2022/03/Libraby-VFG-Featured-8-29-18-1024x384.jpg" alt="Library">
+            </div>
+            <button class="prev-button" onclick="moveSlide(-1)">❮</button>
+            <button class="next-button" onclick="moveSlide(1)">❯</button>
+        </div>
+
+        <section id="forum">
+            <p class="intro">Welcome to StudiVault – Your Gateway to the University Community!</p>
+            <p>StudiVault is more than just a forum; it's your direct line to the vibrant university
+                community. Whether you're seeking answers, sharing insights, or connecting 
+                with peers and staff, StudiVault is the place to be. Engage in lively 
+                discussions, seek advice, and expand your knowledge through meaningful 
+                interactions.</p>
+            <p class="scroll">Please scroll down to LOG IN and ACCESS the StudiVault website!</p>
+            <div class="topics">
+                <p class="intro">Key Features</p>
+                <ul>
+                    <li><span>Create Your Profile:</span> Personalize your StudiVault experience by creating a profile that showcases your interests and expertise. Connect with like-minded individuals and establish your presence within the community.</li>
+                    <li><span>Share Your Voice:</span> Create and publish posts that resonate with you. Whether it's a question, a thought-provoking idea, or a helpful tip, your posts can spark engaging conversations and provide valuable insights to others.</li>
+                    <li><span>Explore and Discover:</span> Dive into the vast repository of discussions on various topics. Use the search feature to find posts that interest you or explore new threads to expand your horizons.</li>
+                    <li><span>Join the Conversation:</span> Comment on posts to share your perspective, offer advice, or simply show support. Your contributions can help others and foster a sense of community within StudiVault.</li>
+                </ul>
+            </div>    
+        </section>
+    </main>
+
+    <!-- Only show login if user is anonymous -->
+    {% if current_user.is_anonymous %}
+
+    <p class="intro" id="login">Please log in to view and post in the forum.</p>
+
+    <form method="post" novalidate>
+        {{ form.hidden_tag() }}
+            {{ form.username.label }}
+            {{ form.username(size=32) }}
+
+            {% for error in form.username.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+        
+            {{ form.password.label }}
+            {{ form.password(size=32) }}
+
+            {% for error in form.password.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+        
+        <div>{{ form.remember_me() }} {{ form.remember_me.label }}</div><br>
+        {{ form.submit() }}
+    </form>
+
+    <p>Don't have an account? <a href="{{ url_for('main.createProfile') }}">Create profile.</a></p>
+
+    {% endif %}
+
+{% endblock %}

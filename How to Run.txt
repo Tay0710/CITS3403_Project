@@ -1,0 +1,29 @@
+1. Install python (3.8.10)
+2. Install virtual environment:
+    sudo apt-get install python3-venv
+3. Create virtual environment:
+    python3 -m venv venv
+4. Run the virtual environment:
+    source venv/bin/activate
+5. Install the requirements.txt file:
+    pip install -r requirements.txt
+6. Install browsers within Linux. For example Chrome:
+    a. wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    b. sudo dpkg -i google-chrome-stable_current_amd64.deb
+    c. if any errors: sudo apt-get install -f
+7. Initialise the database:
+    flask db init 
+8. Do the migrations:
+    flask db migrate
+9. Update the tables:
+    flask db upgrade
+10. Enter a secret key of your choosing (don't use this one):
+    export SECRET_KEY='asdhasjdhasjdh22e'
+11. Run the flask app using debug for easy refreshing:
+    flask run --debug
+    OR 
+    Run the unittests:
+    python -m unittest tests/unit.py
+    OR
+    Run the Selenium tests:
+    python -m unittest tests/selenium.py

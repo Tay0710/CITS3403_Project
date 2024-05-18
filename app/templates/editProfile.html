@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Based on code from https://www.w3schools.com/html/html_forms.asp -->
+
+<div class="container">
+
+    <p class="formExplanation">Fill in the details below to edit your profile.</p>
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+
+            {{ form.fname.label }}
+            {{ form.fname() }}
+            {% for error in form.fname.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.lname.label }}
+            {{ form.lname() }}
+            {% for error in form.lname.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.username.label }}
+            {{ form.username() }}
+            {% for error in form.username.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.email.label }}
+            {{ form.email() }}
+            {% for error in form.email.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.position.label() }}
+            {{ form.position() }}
+            {% for error in form.position.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.study.label }}
+            {{ form.study(size=5) }}
+            {% for error in form.study.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.bio.label }}
+            {{ form.bio() }}
+            {% for error in form.bio.errors %}
+            <span class="errorMsg">{{ error }}</span>
+            {% endfor %}
+            <br>
+            {{ form.submit() }}
+    </form>
+    
+</div>
+{% endblock %}

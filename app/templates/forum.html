@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Based on code from https://www.w3schools.com/html/html_forms.asp -->
+<!-- Based on code from https://www.w3schools.com/js/ -->
+
+<div class="welcome-text">
+    <h2 class="subtitle">Use The Filters Or Search Bar Below To Find Your Answer</h2>
+    <p class="note">Please clear the search bar to use the filters.</p>
+</div>
+
+<div class="selection-container">
+    <!-- Dropdown menu for degrees -->
+    <div class="topic-selection">
+        <label for="topics">Select a Topic:</label>
+        <select id="topics">
+            {% for topic in grouped_posts.keys() %}
+            <option value="{{ topic }}">{{ topic }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Placeholder for the dropdown menu for general topics -->
+    <div class="subtopic-selection">
+        <label for="subtopic">Select a unit or subject:</label>
+        <select id="subtopic">
+            <option value="">All Subtopics</option>
+            {% for topic, subtopic_list in subtopics.items() %}
+            {% for subtopic in subtopic_list %}
+            <option value="{{ subtopic }}">{{ subtopic }}</option>
+            {% endfor %}
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="search-bar">
+    <input type="text" placeholder="Search...">
+    <button type="submit">Search</button>
+</div>
+
+<div class="container">
+    <div class="subForum">
+        <!-- New Sub/chain -->
+        {% for post in grouped_posts['All Topics'] %}
+        <div class="subForumRow" data-postId="{{ post.post_id }}" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
+            <!-- Post content here -->
+            <div class="post">
+                <a class='post_title boldInfoLink' href="{{ url_for('main.viewpost', post_id=post.post_id) }}">{{ post.title }}</a>
+                <p>by <a href="{{ url_for('main.profile', username=post.author.username) }}" class="boldInfoLink">{{ post.author.username }}</a> ({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
+                <p class="descriptionText">{{ post.description }}</p>
+            </div>
+            <!-- Comments -->
+            <div class="comments"></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include "footer.html" %}
+
+{% endblock %}

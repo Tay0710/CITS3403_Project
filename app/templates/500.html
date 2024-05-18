@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- Based on code from https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-error-handling-->
+
+    <h1>An unexpected error has occurred</h1>
+    <p>Sorry for the inconvenience.</p>
+    <p><a href="{{ url_for('main.home') }}">Back to Home</a></p>
+{% endblock %}

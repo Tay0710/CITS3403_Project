@@ -1,0 +1,29 @@
+{% include "head.html" %}
+
+<!-- Based on code from https://www.w3schools.com/css/css_navbar.asp-->
+<body>
+  <header>
+    <div class="topnav">
+      <a href="{{ url_for('main.home') }}" {% if request.path == "/" %} class="active" {% endif %}>Home</a>
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('main.forum') }}" {% if request.path == "/forum" %} class="active" {% endif %}>Forum</a>
+      <a href="{{ url_for('main.post') }}" {% if request.path == "/post" %} class="active" {% endif %}>Post</a>
+      <a href="{{ url_for('main.profile', username=current_user.username) }}" {% if request.path == "/profile" %} class="active" {% endif %}>Profile</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>StudiVault</h1>
+    <p style="text-align: center" class="slogan">Vaulting you to Academic Success</p>
+
+    {% block content %}{% endblock %}
+
+    {% include "footer.html" %}
+    {{ moment.include_moment() }}
+
+  </div>
+
+</body>
+
+</html>

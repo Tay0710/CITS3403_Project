@@ -1,0 +1,137 @@
+/* Gallery styling */
+.gallery-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.gallery-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.gallery-image {
+    flex: 0 0 100%;
+    height: 384px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-button {
+    left: 0;
+}
+
+.next-button {
+    right: 0;
+}
+
+
+/* Forum section styling */
+#forum {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.topics {
+    margin-top: 20px;
+}
+
+.topics ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.topics li {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    align-items: start;
+}
+  
+.topics li p {
+    grid-column: 2 / 3;
+}
+
+.topics ul li span {
+    font-weight: bold;
+    color: #c0502b;
+    margin-right: 5px;
+    grid-column: 1 / 2;
+    align-self: center;
+    padding-left: 20px;
+}
+
+#forum p.intro {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #008080;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+#forum p.scroll {
+    font-weight: bold;
+    color: #c0502b;
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+a {
+    font-weight: bold;
+}
+p.intro {
+    font-weight: bold;
+}
+
+p {
+    text-align:center;
+}
+
+/* Footer styling*/
+footer p {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    min-height: 1%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-top: 20px;
+  }
+
+/* css for smaller screens */
+@media only screen and (max-width: 768px) {
+    .gallery-image {
+        height: 200px;
+    }
+    
+    .topics li {
+        display: grid;
+        grid-gap: 10px;
+    } 
+
+    .topics li span {
+        width: 120px;
+        display: inline-block;
+    }
+
+    .topics li p {
+        width: 50px;
+    }
+}
