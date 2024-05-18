@@ -236,3 +236,9 @@ function displaySearchResults(postResults, commentResults) {
 }
 
 });
+
+/* References:
+For filtering functionality
+https://www.w3schools.com/js/js_htmldom.asp
+https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+*/
