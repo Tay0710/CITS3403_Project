@@ -46,7 +46,7 @@
         <div class="subForumRow" data-postId="{{ post.post_id }}" data-topic="{{ post.topic }}" data-subtopic="{{ post.subtopic }}">
             <!-- Post content here -->
             <div class="post">
-                <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
+                <a class='post_title boldInfoLink' href="{{ url_for('main.viewpost', post_id=post.post_id) }}">{{ post.title }}</a>
                 <p>by <a href="{{ url_for('main.profile', username=post.author.username) }}" class="boldInfoLink">{{ post.author.username }}</a> ({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
                 <p class="descriptionText">{{ post.description }}</p>
             </div>

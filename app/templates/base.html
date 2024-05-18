@@ -1,8 +1,4 @@
 {% include "head.html" %}
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial scale="1.0"">
-</head>
 
 <body>
   <header>
@@ -21,8 +17,12 @@
     <p style="text-align: center" class="slogan">Vaulting you to Academic Success</p>
 
     {% block content %}{% endblock %}
+
+    {% include "footer.html" %}
+    {{ moment.include_moment() }}
+
   </div>
 
-  {% include "footer.html" %}
-  {{ moment.include_moment() }}
 </body>
+
+</html>

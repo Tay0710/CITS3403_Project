@@ -283,6 +283,15 @@ form input[type="submit"]:hover {
   background-color: #006666;
 }
 
-form .radioLabel {
+form ul {
+  list-style-type:none;
+}
+
+/* radio fields label */
+form li label {
   font-weight: normal;
+}
+
+.formExplanation {
+  text-align: center;
 }

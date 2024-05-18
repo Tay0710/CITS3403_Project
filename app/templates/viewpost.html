@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<body>
     <div class="post-container">
         <h1>{{ post.title }}</h1>
         <div class="post-info">
@@ -35,6 +33,5 @@
     </div>
 
     <script src="{{ url_for('static', filename='comment.js') }}"></script>
-</body>
 
 {% endblock %}

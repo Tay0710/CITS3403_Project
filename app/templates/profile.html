@@ -101,7 +101,7 @@
         <button type="button" class="profileButton deleteBtn deletePostBtn" data-bs-toggle="modal" data-bs-target="#deletePostModal">Delete</button>
         <button class="profileButton editPostBtn">Edit</button>
         {% endif %}
-        <a class='post_title' href="{{ url_for('main.viewpost', post_id=post.post_id) }}" class="boldInfoLink">{{ post.title }}</a>
+        <a class='post_title boldInfoLink' href="{{ url_for('main.viewpost', post_id=post.post_id) }}">{{ post.title }}</a>
         <p>{{ post.topic }}: {{ post.subtopic }}</p>
         <p class="postDesc">{{ post.description }}</p>
         <p>({{ moment(post.timestamp | string_to_date).format('LLL') }})</p>
@@ -180,8 +180,8 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form class="modalForm" id="deletePostModalForm" action="" method="get">
-                    <button type="submit" class="btn active btn-danger">Delete Post</a>
+                <form class="modalForm" id="deletePostModalForm" method="get">
+                    <button type="submit" class="btn active btn-danger">Delete Post</button>
                 </form>
               </div>
           </div>
@@ -206,8 +206,8 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form class="modalForm" id="deleteCommentModalForm" action="" method="get">
-                    <button type="submit" class="btn active btn-danger">Delete Comment</a>
+                <form class="modalForm" id="deleteCommentModalForm" method="get">
+                    <button type="submit" class="btn active btn-danger">Delete Comment</button>
                 </form>
               </div>
           </div>

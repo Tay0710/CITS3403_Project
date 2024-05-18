@@ -4,9 +4,9 @@
 
 <div class="container">
 
-    <p>Fill in the details below to create a profile.</p>
+    <p class="formExplanation">Fill in the details below to create a profile.</p>
 
-    <form action="" method="post">
+    <form method="post">
         {{ form.hidden_tag() }}
 
             {{ form.fname.label }}
@@ -33,17 +33,8 @@
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
 
-            {{ form.position.label }}
-            <div>
-            {% for option in form.position %}
-                <tr>
-                    <td>{{ option }}</td>
-                    <td>{{ option.label(class="radioLabel") }}</td>
-                </tr>
-                <br>
-            {% endfor %}
-            <br>
-            </div>
+            {{ form.position.label() }}
+            {{ form.position() }}
             {% for error in form.position.errors %}
             <span class="errorMsg">{{ error }}</span>
             {% endfor %}
