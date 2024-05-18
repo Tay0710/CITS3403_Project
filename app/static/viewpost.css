@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding-bottom: 20px;
   background-color: #ECECEC;
   color: #333;
 }
@@ -29,7 +29,7 @@ body {
 
 .post-container p {
   margin-top: 10px;
-  color: #333;
+  color: #333; 
 }
 
 .bolded {
@@ -59,11 +59,7 @@ body {
 }
 
 .comment-form-container {
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  padding-bottom: 40px; 
 }
 
 #commentsTitle h2 {
@@ -79,15 +75,6 @@ body {
 .comment p {
   align-items: center;
   margin: 0;
-}
-
-.comment-form-container {
-  max-width: 50%;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comment-form-container form p {
@@ -122,7 +109,6 @@ body {
 .post-container p {
   word-wrap: break-word;
 }
-
 
 /* Responsive layout for smaller screens */
 @media (max-width: 768px) {
