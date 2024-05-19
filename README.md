@@ -52,5 +52,5 @@ This can also be found in the 'How to Run' text file:
     Run the Selenium tests:
 -     python -m unittest tests/selenium.py
 
-### Selenium Tests
-The video for the functioning Selenium tests can be found within the main folder.
+### Tests
+The videos for the functioning Selenium tests and unittests can be found within the main folder.
