@@ -24,19 +24,26 @@ This can also be found in the 'How to Run' text file:
     source venv/bin/activate
 5. Install the requirements.txt file:
     pip install -r requirements.txt
-6. Install browsers within Linux. For example Chrome:
+   The following installs may need to occur manually:
+-	    pip install selenium
+-	    pip install flask
+-	    pip install Flask-SQLAlchemy
+-	    pip install Flask-Migrate
+-	    pip install Flask-Login
+-	    pip install Flask-Moment
+7. Install browsers within Linux. For example Chrome:
     a. wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     b. sudo dpkg -i google-chrome-stable_current_amd64.deb
     c. if any errors: sudo apt-get install -f
-7. Initialise the database:
+8. Initialise the database:
     flask db init 
-8. Do the migrations:
+9. Do the migrations:
     flask db migrate
-9. Update the tables:
+10. Update the tables:
     flask db upgrade
-10. Enter a secret key of your choosing (don't use this one):
+11. Enter a secret key of your choosing (don't use this one):
     export SECRET_KEY='asdhasjdhasjdh22e'
-11. Run the flask app using debug for easy refreshing:
+12. Run the flask app using debug for easy refreshing:
     flask run --debug
     OR 
     Run the unittests:
